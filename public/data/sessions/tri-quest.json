@@ -85,7 +85,16 @@
       "title": "Engineering & Tech",
       "category": "engineering",
       "questionIds": [
-        "sample-engineering-1"
+        "eng-moth-bug",
+        "eng-cpu",
+        "eng-chatgpt",
+        "eng-ecg",
+        "eng-binary-1010",
+        "eng-python-name",
+        "eng-turing",
+        "eng-mri",
+        "eng-gpt-meaning",
+        "eng-heart-transplant"
       ]
     }
   ]

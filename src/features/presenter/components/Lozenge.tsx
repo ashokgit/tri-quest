@@ -5,10 +5,11 @@ import type { CSSProperties, ReactNode } from 'react'
  * The game-show "lozenge": an elongated hexagon with a metallic rim, used for
  * the question bar, answer options and labels.
  */
-export type LozengeVariant = 'idle' | 'locked' | 'correct' | 'wrong' | 'gold'
+export type LozengeVariant = 'idle' | 'dim' | 'locked' | 'correct' | 'wrong' | 'gold'
 
 const RIM: Record<LozengeVariant, string> = {
   idle: 'linear-gradient(180deg, #f1f5fb 0%, #8795ad 48%, #5d6b84 52%, #e3e9f2 100%)',
+  dim: 'linear-gradient(180deg, #4a5670 0%, #2c3548 50%, #465269 100%)',
   gold: 'linear-gradient(180deg, #fff1c2 0%, #d9a534 48%, #a8741a 52%, #ffe39a 100%)',
   locked: 'linear-gradient(180deg, #fff6dc 0%, #ffd27a 50%, #fff0c8 100%)',
   correct: 'linear-gradient(180deg, #e3ffe9 0%, #8ff0a4 50%, #dcffe5 100%)',
@@ -17,6 +18,8 @@ const RIM: Record<LozengeVariant, string> = {
 
 const FILL: Record<LozengeVariant, string> = {
   idle: 'linear-gradient(180deg, #13295a 0%, #050b1d 46%, #020612 54%, #102350 100%)',
+  // Faded-out answers stay opaque so the rail behind never shows through the text.
+  dim: 'linear-gradient(180deg, #0a1633 0%, #030814 46%, #02050e 54%, #09152f 100%)',
   gold: 'linear-gradient(180deg, #13295a 0%, #050b1d 46%, #020612 54%, #102350 100%)',
   locked: 'linear-gradient(180deg, #ffd88a 0%, #f59e0b 48%, #d97f00 52%, #ffb938 100%)',
   correct: 'linear-gradient(180deg, #9ef5b0 0%, #22c55e 48%, #149a45 52%, #52e07f 100%)',
@@ -45,7 +48,7 @@ interface Props {
 }
 
 export function Lozenge({ variant = 'idle', tip = 48, rim = 3, className = '', style, flash = false, children }: Props) {
-  const dark = variant === 'idle' || variant === 'gold'
+  const dark = variant === 'idle' || variant === 'gold' || variant === 'dim'
   return (
     <div className={`relative flex ${className}`} style={{ filter: GLOW[variant], ...style }}>
       <div className="absolute inset-0" style={{ clipPath: shape(tip), background: RIM[variant] }} />
@@ -56,7 +59,7 @@ export function Lozenge({ variant = 'idle', tip = 48, rim = 3, className = '', s
         transition={flash ? { duration: 1.4, ease: 'linear' } : { duration: 0.2 }}
       />
       <div
-        className={`relative flex flex-1 items-center ${dark ? 'text-white' : 'text-stage-950'}`}
+        className={`relative flex flex-1 items-center ${variant === 'dim' ? 'text-white/30' : dark ? 'text-white' : 'text-stage-950'}`}
         style={{ paddingInline: tip + 8 }}
       >
         {children}

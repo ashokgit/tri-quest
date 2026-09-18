@@ -793,13 +793,179 @@
       ]
     },
     {
-      "id": "sample-engineering-1",
+      "id": "eng-moth-bug",
       "category": "engineering",
       "difficulty": "easy",
       "type": "truefalse",
-      "prompt": "The first computer 'bug' was an actual moth found inside a computer.",
+      "prompt": "Engineers once found a real moth trapped inside a computer and taped it into their logbook as a \"bug\".",
       "answer": true,
-      "explanation": "In 1947, engineers working on the Harvard Mark II taped a moth into their logbook."
+      "explanation": "In 1947, the Harvard Mark II team logged it as the \"first actual case of bug being found\".",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-cpu",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does CPU stand for?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Personal Unit",
+        "Central Program Utility",
+        "Core Processing Unit"
+      ],
+      "answerIndex": 0,
+      "explanation": "The CPU is the computer's brain: it carries out the instructions of a program.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-chatgpt",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which company created ChatGPT?",
+      "options": [
+        "Google",
+        "Meta",
+        "Microsoft",
+        "OpenAI"
+      ],
+      "answerIndex": 3,
+      "explanation": "OpenAI released ChatGPT in November 2022.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-ecg",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "An ECG records the electrical activity of which organ?",
+      "options": [
+        "Heart",
+        "Brain",
+        "Lungs",
+        "Kidneys"
+      ],
+      "answerIndex": 0,
+      "explanation": "ECG = electrocardiogram. For the brain, it would be an EEG.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-binary-1010",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the binary number 1010 in decimal?",
+      "options": [
+        "8",
+        "12",
+        "10",
+        "1010"
+      ],
+      "answerIndex": 2,
+      "explanation": "1010₂ = 8 + 0 + 2 + 0 = 10.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-python-name",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which programming language is named after a comedy group, not a snake?",
+      "options": [
+        "Java",
+        "C",
+        "Rust",
+        "Python"
+      ],
+      "answerIndex": 3,
+      "explanation": "Guido van Rossum named it after the British comedy show Monty Python's Flying Circus.",
+      "tags": [
+        "computer",
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-turing",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Who proposed a famous test for whether a machine can think, and is called the father of computer science?",
+      "options": [
+        "Charles Babbage",
+        "Alan Turing",
+        "John von Neumann",
+        "Ada Lovelace"
+      ],
+      "answerIndex": 1,
+      "explanation": "Alan Turing proposed the \"imitation game\", now called the Turing test, in 1950.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-mri",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which scanner uses a strong magnet and radio waves, not X-rays, to image the body?",
+      "options": [
+        "X-ray",
+        "CT scan",
+        "MRI",
+        "Ultrasound"
+      ],
+      "answerIndex": 2,
+      "explanation": "MRI = magnetic resonance imaging. CT uses X-rays; ultrasound uses sound waves.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-gpt-meaning",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What does \"GPT\" stand for in ChatGPT?",
+      "options": [
+        "General Purpose Technology",
+        "Generative Pre-trained Transformer",
+        "Graphical Processing Tool",
+        "Global Pattern Trainer"
+      ],
+      "answerIndex": 1,
+      "explanation": "Transformer is the neural-network design behind most modern AI language models.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-heart-transplant",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "The first successful human heart transplant was done in 1967 in which country?",
+      "options": [
+        "South Africa",
+        "USA",
+        "UK",
+        "India"
+      ],
+      "answerIndex": 0,
+      "explanation": "Dr Christiaan Barnard performed it in Cape Town, South Africa.",
+      "tags": [
+        "biomedical"
+      ]
     }
   ]
 }
