@@ -118,6 +118,25 @@
         "gk-constitution-year",
         "gk-most-time-zones"
       ]
+    },
+    {
+      "id": "r6-current-affairs",
+      "title": "Current Affairs",
+      "category": "current-affairs",
+      "questionIds": [
+        "ca-nepal-pm",
+        "ca-balen-rapper",
+        "ca-fifa-2026-winner",
+        "ca-t20-2026-winner",
+        "ca-asian-games-host",
+        "ca-first-female-pm",
+        "ca-election-2026-party",
+        "ca-nepal-t20-win",
+        "ca-winter-olympics-top",
+        "ca-artemis-apollo",
+        "ca-artemis-canada",
+        "ca-pope"
+      ]
     }
   ]
 }

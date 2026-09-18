@@ -1226,6 +1226,226 @@
         "world",
         "trick"
       ]
+    },
+    {
+      "id": "ca-nepal-pm",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Who is the current Prime Minister of Nepal?",
+      "options": [
+        "Sushila Karki",
+        "K.P. Sharma Oli",
+        "Balen Shah",
+        "Pushpa Kamal Dahal"
+      ],
+      "answerIndex": 2,
+      "explanation": "Balen Shah was sworn in on 27 March 2026, becoming Nepal's youngest Prime Minister.",
+      "tags": [
+        "nepal",
+        "politics"
+      ]
+    },
+    {
+      "id": "ca-balen-rapper",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Before politics, Nepal's Prime Minister Balen Shah was known as a rapper.",
+      "answer": true,
+      "explanation": "He was a rapper, then Mayor of Kathmandu (2022–2026), before becoming Prime Minister.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "ca-fifa-2026-winner",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which country won the 2026 FIFA World Cup?",
+      "options": [
+        "Spain",
+        "Argentina",
+        "France",
+        "Brazil"
+      ],
+      "answerIndex": 0,
+      "explanation": "Spain beat Argentina 1–0 after extra time on 19 July 2026, their second title after 2010.",
+      "tags": [
+        "sport",
+        "world"
+      ]
+    },
+    {
+      "id": "ca-t20-2026-winner",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which team won the 2026 ICC Men's T20 World Cup?",
+      "options": [
+        "New Zealand",
+        "India",
+        "Australia",
+        "England"
+      ],
+      "answerIndex": 1,
+      "explanation": "India beat New Zealand by 96 runs in Ahmedabad on 8 March 2026, becoming the first team to win three T20 World Cups.",
+      "tags": [
+        "sport",
+        "cricket"
+      ]
+    },
+    {
+      "id": "ca-asian-games-host",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "The 2026 Asian Games opened on 19 September. Which country is hosting them?",
+      "options": [
+        "China",
+        "South Korea",
+        "India",
+        "Japan"
+      ],
+      "answerIndex": 3,
+      "explanation": "Aichi and Nagoya, Japan, host the Games from 19 September to 4 October 2026.",
+      "tags": [
+        "sport",
+        "world"
+      ]
+    },
+    {
+      "id": "ca-first-female-pm",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Who became Nepal's first female Prime Minister in September 2025?",
+      "options": [
+        "Bidya Devi Bhandari",
+        "Sushila Karki",
+        "Onsari Gharti Magar",
+        "Sujata Koirala"
+      ],
+      "answerIndex": 1,
+      "explanation": "Sushila Karki, also Nepal's first female Chief Justice, led the interim government after the Gen Z protests.",
+      "tags": [
+        "nepal",
+        "politics"
+      ]
+    },
+    {
+      "id": "ca-election-2026-party",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which party won a majority in Nepal's March 2026 general election?",
+      "options": [
+        "Nepali Congress",
+        "CPN-UML",
+        "CPN (Maoist Centre)",
+        "Rastriya Swatantra Party"
+      ],
+      "answerIndex": 3,
+      "explanation": "The RSP won 182 of the 275 seats in the House of Representatives.",
+      "tags": [
+        "nepal",
+        "politics"
+      ]
+    },
+    {
+      "id": "ca-nepal-t20-win",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "truefalse",
+      "prompt": "Nepal won a match at the 2026 T20 World Cup.",
+      "answer": true,
+      "explanation": "Nepal beat Scotland by 7 wickets at Mumbai's Wankhede Stadium, their first T20 World Cup win since 2014.",
+      "tags": [
+        "sport",
+        "cricket",
+        "nepal"
+      ]
+    },
+    {
+      "id": "ca-winter-olympics-top",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which country topped the medal table at the 2026 Winter Olympics in Milan–Cortina?",
+      "options": [
+        "Norway",
+        "USA",
+        "Italy",
+        "Germany"
+      ],
+      "answerIndex": 0,
+      "explanation": "Norway won a record 18 gold medals, the most by any country at a single Winter Games.",
+      "tags": [
+        "sport",
+        "world"
+      ]
+    },
+    {
+      "id": "ca-artemis-apollo",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "In April 2026, NASA's Artemis II flew astronauts around the Moon: the first crewed Moon mission since which program?",
+      "answer": "Apollo",
+      "explanation": "The last crewed Moon mission was Apollo 17 in 1972.",
+      "tags": [
+        "space",
+        "science"
+      ]
+    },
+    {
+      "id": "ca-artemis-canada",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Besides the USA, which country had an astronaut on the Artemis II crew?",
+      "options": [
+        "Japan",
+        "UK",
+        "Canada",
+        "India"
+      ],
+      "answerIndex": 2,
+      "explanation": "Canada's Jeremy Hansen flew with NASA's Reid Wiseman, Victor Glover and Christina Koch.",
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "id": "ca-pope",
+      "category": "current-affairs",
+      "verify": true,
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Who is the current Pope, elected in May 2025?",
+      "options": [
+        "Pope Francis",
+        "Pope Leo XIV",
+        "Pope Benedict XVI",
+        "Pope John Paul II"
+      ],
+      "answerIndex": 1,
+      "explanation": "Pope Leo XIV is the first Pope from the United States.",
+      "tags": [
+        "world"
+      ]
     }
   ]
 }
