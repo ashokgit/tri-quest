@@ -563,12 +563,234 @@
       "tags": []
     },
     {
-      "id": "sample-fun-1",
+      "id": "fun-keyboard",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "What has keys but can't open any locks?",
+      "answer": "A keyboard (or a piano!)",
+      "explanation": "You probably touched one today already.",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "fun-months-28",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "How many months of the year have 28 days?",
+      "options": [
+        "One",
+        "Two",
+        "Six",
+        "All twelve"
+      ],
+      "answerIndex": 3,
+      "explanation": "Every month has at least 28 days. February just stops there.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-towel",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "What gets wetter the more it dries?",
+      "answer": "A towel",
+      "explanation": "It dries you, and gets wetter doing it.",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "fun-second-place",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "You are running a race and overtake the person in 2nd place. What place are you in now?",
+      "options": [
+        "First",
+        "Second",
+        "Third",
+        "Last"
+      ],
+      "answerIndex": 1,
+      "explanation": "You took their spot, so you're 2nd. First place is still ahead of you!",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-clock",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "What has hands but can't clap?",
+      "answer": "A clock",
+      "explanation": "Two hands, zero applause.",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "fun-banana-berry",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Bananas are berries, but strawberries are not.",
+      "answer": true,
+      "explanation": "Botanically, a banana is a berry. A strawberry's \"seeds\" sit on the outside, so it doesn't qualify.",
+      "tags": [
+        "science-fact"
+      ]
+    },
+    {
+      "id": "fun-sheep",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "A farmer has 17 sheep. All but 9 run away. How many are left?",
+      "options": [
+        "9",
+        "8",
+        "17",
+        "0"
+      ],
+      "answerIndex": 0,
+      "explanation": "\"All but 9\" means 9 stayed behind.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-kg-iron-cotton",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which is heavier: 1 kg of iron or 1 kg of cotton?",
+      "options": [
+        "Iron",
+        "Cotton",
+        "They weigh the same",
+        "Depends on the weather"
+      ],
+      "answerIndex": 2,
+      "explanation": "A kilogram is a kilogram!",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-catch-cold",
       "category": "fun-tricky",
       "difficulty": "medium",
       "type": "open",
-      "prompt": "What has keys but can't open any locks?",
-      "answer": "A keyboard (or a piano!)"
+      "prompt": "What can you catch but can't throw?",
+      "answer": "A cold",
+      "explanation": "Or a bus, if you run fast enough.",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "fun-venus-day",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "truefalse",
+      "prompt": "A day on Venus is longer than a year on Venus.",
+      "answer": true,
+      "explanation": "Venus takes about 243 Earth days to spin once, but only about 225 to orbit the Sun.",
+      "tags": [
+        "science-fact"
+      ]
+    },
+    {
+      "id": "fun-subtract-5",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "How many times can you subtract 5 from 25?",
+      "options": [
+        "5",
+        "4",
+        "Only once",
+        "Infinitely many"
+      ],
+      "answerIndex": 2,
+      "explanation": "After the first time, you're subtracting from 20!",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-mary",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Mary's father has five daughters: Nana, Nene, Nini and Nono. What is the fifth daughter's name?",
+      "answer": "Mary",
+      "explanation": "The answer was in the question all along.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-before-everest",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Before Mount Everest was discovered, what was the highest mountain in the world?",
+      "answer": "Mount Everest",
+      "explanation": "It was still the highest. Nobody had measured it yet!",
+      "tags": [
+        "trick",
+        "nepal"
+      ]
+    },
+    {
+      "id": "fun-letter-m",
+      "category": "fun-tricky",
+      "difficulty": "hard",
+      "type": "open",
+      "prompt": "What comes once in a minute, twice in a moment, but never in a thousand years?",
+      "answer": "The letter M",
+      "explanation": "One M in \"minute\", two in \"moment\", and none in \"a thousand years\".",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "fun-bat-ball",
+      "category": "fun-tricky",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A bat and a ball cost Rs 110 in total. The bat costs Rs 100 more than the ball. How much does the ball cost?",
+      "options": [
+        "Rs 10",
+        "Rs 15",
+        "Rs 1",
+        "Rs 5"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ball Rs 5, bat Rs 105: the difference is Rs 100 and the total is Rs 110. (Rs 10 is the trap!)",
+      "tags": [
+        "trick",
+        "maths"
+      ]
+    },
+    {
+      "id": "fun-incorrectly",
+      "category": "fun-tricky",
+      "difficulty": "hard",
+      "type": "open",
+      "prompt": "Which word is spelled incorrectly in every dictionary?",
+      "answer": "\"Incorrectly\"",
+      "explanation": "Every dictionary spells it i-n-c-o-r-r-e-c-t-l-y. 😄",
+      "tags": [
+        "trick"
+      ]
     },
     {
       "id": "sample-engineering-1",
