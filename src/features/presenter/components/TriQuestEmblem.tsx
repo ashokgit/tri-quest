@@ -1,5 +1,3 @@
-import { motion } from 'motion/react'
-
 /**
  * Show logo: gold rings around the NIET triangle (split into four, like the seal),
  * with a slowly turning outer ring.
@@ -38,12 +36,10 @@ export function TriQuestEmblem({ size = 520, glow = true }: { size?: number; glo
         <circle cx="200" cy="200" r="186" fill="url(#tq-disc)" stroke="url(#tq-gold)" strokeWidth="7" />
         <circle cx="200" cy="200" r="168" fill="none" stroke="url(#tq-gold)" strokeWidth="1.5" opacity="0.7" />
 
-        {/* Outer tick ring, turning slowly */}
-        <motion.g
-          style={{ originX: '200px', originY: '200px' }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-        >
+        {/* Outer tick ring, turning slowly. A native SVG rotation pivots exactly on the
+            emblem centre (CSS transform-origin on SVG groups follows the bounding box and drifts). */}
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="60s" repeatCount="indefinite" />
           {Array.from({ length: 60 }, (_, i) => (
             <line
               key={i}
@@ -57,7 +53,7 @@ export function TriQuestEmblem({ size = 520, glow = true }: { size?: number; glo
               transform={`rotate(${i * 6} 200 200)`}
             />
           ))}
-        </motion.g>
+        </g>
 
         {/* NIET triangle: three blue corners around a white centre */}
         <g stroke="url(#tq-gold)" strokeWidth="4" strokeLinejoin="round">

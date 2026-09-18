@@ -1,24 +1,378 @@
 {
   "version": 1,
   "categories": [
-    { "id": "science", "name": "+2 Science", "icon": "🧬" },
-    { "id": "niet", "name": "Know Your NIET", "icon": "🏛️" },
-    { "id": "audio-visual", "name": "Audio-Visual", "icon": "🎧" },
-    { "id": "fun-tricky", "name": "Fun & Tricky", "icon": "🤹" },
-    { "id": "engineering", "name": "Engineering & Tech", "icon": "⚙️" },
-    { "id": "current-affairs", "name": "Current Affairs", "icon": "📰" },
-    { "id": "gk", "name": "General Knowledge", "icon": "🌏" }
+    {
+      "id": "science",
+      "name": "+2 Science",
+      "icon": "🧬"
+    },
+    {
+      "id": "niet",
+      "name": "Know Your NIET",
+      "icon": "🏛️"
+    },
+    {
+      "id": "audio-visual",
+      "name": "Audio-Visual",
+      "icon": "🎧"
+    },
+    {
+      "id": "fun-tricky",
+      "name": "Fun & Tricky",
+      "icon": "🤹"
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering & Tech",
+      "icon": "⚙️"
+    },
+    {
+      "id": "current-affairs",
+      "name": "Current Affairs",
+      "icon": "📰"
+    },
+    {
+      "id": "gk",
+      "name": "General Knowledge",
+      "icon": "🌏"
+    }
   ],
   "questions": [
     {
-      "id": "sample-science-1",
+      "id": "sci-force-unit",
       "category": "science",
       "difficulty": "easy",
       "type": "mcq",
-      "prompt": "What is the SI unit of electric charge?",
-      "options": ["Ampere", "Coulomb", "Volt", "Ohm"],
+      "prompt": "What is the SI unit of force?",
+      "options": [
+        "Joule",
+        "Watt",
+        "Pascal",
+        "Newton"
+      ],
+      "answerIndex": 3,
+      "explanation": "1 newton is the force that accelerates 1 kg at 1 m/s².",
+      "tags": [
+        "physics"
+      ]
+    },
+    {
+      "id": "sci-red-wavelength",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which colour of visible light has the longest wavelength?",
+      "options": [
+        "Violet",
+        "Green",
+        "Red",
+        "Blue"
+      ],
+      "answerIndex": 2,
+      "explanation": "Red is about 620–750 nm; violet is the shortest, at about 380–450 nm.",
+      "tags": [
+        "physics"
+      ]
+    },
+    {
+      "id": "sci-gold-symbol",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is the chemical symbol for gold?",
+      "options": [
+        "Ag",
+        "Au",
+        "Gd",
+        "Go"
+      ],
       "answerIndex": 1,
-      "explanation": "One coulomb is the charge moved by one ampere in one second."
+      "explanation": "From the Latin \"aurum\". Ag is silver, from \"argentum\".",
+      "tags": [
+        "chemistry"
+      ]
+    },
+    {
+      "id": "sci-atmosphere-gas",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which gas makes up most of Earth's atmosphere?",
+      "options": [
+        "Nitrogen",
+        "Oxygen",
+        "Carbon dioxide",
+        "Argon"
+      ],
+      "answerIndex": 0,
+      "explanation": "About 78% nitrogen and 21% oxygen.",
+      "tags": [
+        "chemistry"
+      ]
+    },
+    {
+      "id": "sci-diamond-graphite",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Diamond and graphite are made of the same element.",
+      "answer": true,
+      "explanation": "Both are pure carbon (allotropes). Only the way the atoms bond is different.",
+      "tags": [
+        "chemistry"
+      ]
+    },
+    {
+      "id": "sci-powerhouse",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which organelle is called the \"powerhouse of the cell\"?",
+      "options": [
+        "Nucleus",
+        "Ribosome",
+        "Mitochondria",
+        "Golgi apparatus"
+      ],
+      "answerIndex": 2,
+      "explanation": "Mitochondria make most of the cell's ATP through cellular respiration.",
+      "tags": [
+        "biology"
+      ]
+    },
+    {
+      "id": "sci-heart-chambers",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "How many chambers does the human heart have?",
+      "options": [
+        "Two",
+        "Four",
+        "Three",
+        "Six"
+      ],
+      "answerIndex": 1,
+      "explanation": "Two atria and two ventricles.",
+      "tags": [
+        "biology"
+      ]
+    },
+    {
+      "id": "sci-derivative-x2",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is the derivative of x² with respect to x?",
+      "options": [
+        "2x",
+        "x",
+        "x³/3",
+        "2"
+      ],
+      "answerIndex": 0,
+      "explanation": "Power rule: d/dx (xⁿ) = n·xⁿ⁻¹.",
+      "tags": [
+        "maths"
+      ]
+    },
+    {
+      "id": "sci-moon-gravity",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Gravity on the Moon is roughly what fraction of gravity on Earth?",
+      "options": [
+        "One-sixth",
+        "One-half",
+        "One-tenth",
+        "One-quarter"
+      ],
+      "answerIndex": 0,
+      "explanation": "About 1.6 m/s² on the Moon vs 9.8 m/s² on Earth.",
+      "tags": [
+        "physics"
+      ]
+    },
+    {
+      "id": "sci-feather-hammer",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "truefalse",
+      "prompt": "If you drop a hammer and a feather together in a vacuum, they hit the ground at the same time.",
+      "answer": true,
+      "explanation": "Astronaut David Scott showed this on the Moon during Apollo 15 in 1971. No air means no air resistance.",
+      "tags": [
+        "physics"
+      ]
+    },
+    {
+      "id": "sci-electronegativity",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which element is the most electronegative?",
+      "options": [
+        "Oxygen",
+        "Chlorine",
+        "Fluorine",
+        "Nitrogen"
+      ],
+      "answerIndex": 2,
+      "explanation": "Fluorine tops the Pauling scale at 3.98.",
+      "tags": [
+        "chemistry"
+      ]
+    },
+    {
+      "id": "sci-laughing-gas",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which compound is known as \"laughing gas\"?",
+      "options": [
+        "NO₂",
+        "NO",
+        "N₂O₅",
+        "N₂O"
+      ],
+      "answerIndex": 3,
+      "explanation": "Nitrous oxide (N₂O), used as a mild anaesthetic.",
+      "tags": [
+        "chemistry"
+      ]
+    },
+    {
+      "id": "sci-largest-organ",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the largest organ of the human body?",
+      "options": [
+        "Liver",
+        "Brain",
+        "Lungs",
+        "Skin"
+      ],
+      "answerIndex": 3,
+      "explanation": "The skin covers about 2 m² in an adult. The liver is the largest internal organ.",
+      "tags": [
+        "biology"
+      ]
+    },
+    {
+      "id": "sci-rbc-nucleus",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "truefalse",
+      "prompt": "Mature human red blood cells have a nucleus.",
+      "answer": false,
+      "explanation": "They lose their nucleus as they mature, which leaves more room for haemoglobin.",
+      "tags": [
+        "biology"
+      ]
+    },
+    {
+      "id": "sci-zero-factorial",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "What is 0! (zero factorial)?",
+      "answer": "1",
+      "explanation": "There is exactly one way to arrange nothing, and 0! = 1 keeps n! = n × (n−1)! working for n = 1.",
+      "tags": [
+        "maths"
+      ]
+    },
+    {
+      "id": "sci-log2-1024",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is log₂ 1024?",
+      "options": [
+        "8",
+        "12",
+        "10",
+        "16"
+      ],
+      "answerIndex": 2,
+      "explanation": "2¹⁰ = 1024.",
+      "tags": [
+        "maths"
+      ]
+    },
+    {
+      "id": "sci-escape-velocity",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is the escape velocity from Earth's surface?",
+      "options": [
+        "7.9 km/s",
+        "11.2 km/s",
+        "42.1 km/s",
+        "3.0 km/s"
+      ],
+      "answerIndex": 1,
+      "explanation": "7.9 km/s is only enough to orbit Earth; 11.2 km/s gets you away for good.",
+      "tags": [
+        "physics"
+      ]
+    },
+    {
+      "id": "sci-ethyne-hybridisation",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is the hybridisation of each carbon atom in ethyne (C₂H₂)?",
+      "options": [
+        "sp",
+        "sp²",
+        "sp³",
+        "sp³d"
+      ],
+      "answerIndex": 0,
+      "explanation": "The triple bond leaves each carbon with two electron domains, so it is sp and the molecule is linear.",
+      "tags": [
+        "chemistry"
+      ]
+    },
+    {
+      "id": "sci-helicase",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Which enzyme unzips the DNA double helix during replication?",
+      "options": [
+        "DNA ligase",
+        "Helicase",
+        "DNA polymerase",
+        "Primase"
+      ],
+      "answerIndex": 1,
+      "explanation": "Helicase breaks the hydrogen bonds between base pairs; DNA polymerase then builds the new strands.",
+      "tags": [
+        "biology"
+      ]
+    },
+    {
+      "id": "sci-euler-identity",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Complete Euler's identity:  e^(iπ) + 1 = ?",
+      "options": [
+        "1",
+        "−1",
+        "i",
+        "0"
+      ],
+      "answerIndex": 3,
+      "explanation": "Often called the most beautiful equation in maths: it links e, i, π, 1 and 0.",
+      "tags": [
+        "maths"
+      ]
     },
     {
       "id": "sample-niet-1",
@@ -26,7 +380,12 @@
       "difficulty": "easy",
       "type": "mcq",
       "prompt": "In which year was NIET established?",
-      "options": ["2001", "2005", "2010", "2015"],
+      "options": [
+        "2001",
+        "2005",
+        "2010",
+        "2015"
+      ],
       "answerIndex": 1,
       "explanation": "It's right there on the seal: ESTD 2005.",
       "verify": true
