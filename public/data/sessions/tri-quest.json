@@ -96,6 +96,28 @@
         "eng-gpt-meaning",
         "eng-heart-transplant"
       ]
+    },
+    {
+      "id": "r5-gk",
+      "title": "General Knowledge",
+      "category": "gk",
+      "questionIds": [
+        "gk-nepal-flag",
+        "gk-national-flower",
+        "gk-buddha-birthplace",
+        "gk-national-bird",
+        "gk-largest-ocean",
+        "gk-mona-lisa",
+        "gk-longest-river-nepal",
+        "gk-everest-hillary",
+        "gk-smallest-country",
+        "gk-australia-capital",
+        "gk-most-native-speakers",
+        "gk-largest-desert",
+        "gk-everest-height",
+        "gk-constitution-year",
+        "gk-most-time-zones"
+      ]
     }
   ]
 }

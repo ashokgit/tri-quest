@@ -966,6 +966,266 @@
       "tags": [
         "biomedical"
       ]
+    },
+    {
+      "id": "gk-nepal-flag",
+      "category": "gk",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Nepal's flag is the only national flag in the world that isn't a rectangle.",
+      "answer": true,
+      "explanation": "Its two stacked pennants make it unique among national flags.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-national-flower",
+      "category": "gk",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is the national flower of Nepal?",
+      "options": [
+        "Lotus",
+        "Marigold",
+        "Rhododendron",
+        "Rose"
+      ],
+      "answerIndex": 2,
+      "explanation": "Lali Gurans (rhododendron) turns the hills red every spring.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-buddha-birthplace",
+      "category": "gk",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Where was Gautama Buddha born?",
+      "options": [
+        "Lumbini",
+        "Bodh Gaya",
+        "Kapilvastu",
+        "Sarnath"
+      ],
+      "answerIndex": 0,
+      "explanation": "Lumbini, in Nepal, is a UNESCO World Heritage Site.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-national-bird",
+      "category": "gk",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is the national bird of Nepal?",
+      "options": [
+        "Peacock",
+        "Danphe",
+        "Kalij pheasant",
+        "Crane"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Danphe (Himalayan monal) is famous for its shimmering rainbow feathers.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-largest-ocean",
+      "category": "gk",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which is the largest ocean on Earth?",
+      "options": [
+        "Atlantic",
+        "Indian",
+        "Arctic",
+        "Pacific"
+      ],
+      "answerIndex": 3,
+      "explanation": "The Pacific covers about a third of Earth's surface, more than all the land combined.",
+      "tags": [
+        "world"
+      ]
+    },
+    {
+      "id": "gk-mona-lisa",
+      "category": "gk",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Who painted the Mona Lisa?",
+      "answer": "Leonardo da Vinci",
+      "explanation": "It hangs in the Louvre in Paris, behind bulletproof glass.",
+      "tags": [
+        "world"
+      ]
+    },
+    {
+      "id": "gk-longest-river-nepal",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which is the longest river in Nepal?",
+      "options": [
+        "Koshi",
+        "Gandaki",
+        "Karnali",
+        "Bagmati"
+      ],
+      "answerIndex": 2,
+      "explanation": "The Karnali starts in Tibet and runs through western Nepal.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-everest-hillary",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Who reached the top of Mount Everest with Tenzing Norgay Sherpa in 1953?",
+      "options": [
+        "Edmund Hillary",
+        "George Mallory",
+        "Reinhold Messner",
+        "Junko Tabei"
+      ],
+      "answerIndex": 0,
+      "explanation": "They reached the summit on 29 May 1953.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-smallest-country",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which is the smallest country in the world by area?",
+      "options": [
+        "Monaco",
+        "Vatican City",
+        "San Marino",
+        "Maldives"
+      ],
+      "answerIndex": 1,
+      "explanation": "Vatican City is only about 0.44 km², smaller than many college campuses!",
+      "tags": [
+        "world"
+      ]
+    },
+    {
+      "id": "gk-australia-capital",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the capital of Australia?",
+      "options": [
+        "Sydney",
+        "Melbourne",
+        "Perth",
+        "Canberra"
+      ],
+      "answerIndex": 3,
+      "explanation": "Canberra was built as a compromise between rivals Sydney and Melbourne.",
+      "tags": [
+        "world"
+      ]
+    },
+    {
+      "id": "gk-most-native-speakers",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which language has the most native speakers in the world?",
+      "options": [
+        "English",
+        "Hindi",
+        "Mandarin Chinese",
+        "Spanish"
+      ],
+      "answerIndex": 2,
+      "explanation": "Mandarin has the most native speakers; English has the most speakers overall.",
+      "tags": [
+        "world"
+      ]
+    },
+    {
+      "id": "gk-largest-desert",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the largest desert in the world?",
+      "options": [
+        "Sahara",
+        "Antarctica",
+        "Gobi",
+        "Arabian"
+      ],
+      "answerIndex": 1,
+      "explanation": "A desert is defined by low rainfall, not heat. The Sahara is the largest hot desert.",
+      "tags": [
+        "world",
+        "trick"
+      ]
+    },
+    {
+      "id": "gk-everest-height",
+      "category": "gk",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is the official height of Mount Everest, as measured in 2020?",
+      "options": [
+        "8,848.86 m",
+        "8,611 m",
+        "8,586 m",
+        "8,849.99 m"
+      ],
+      "answerIndex": 0,
+      "explanation": "Measured jointly by Nepal and China. 8,611 m is K2, and 8,586 m is Kangchenjunga.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-constitution-year",
+      "category": "gk",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In which year was the current Constitution of Nepal promulgated?",
+      "options": [
+        "2006",
+        "2008",
+        "2012",
+        "2015"
+      ],
+      "answerIndex": 3,
+      "explanation": "It was promulgated on 20 September 2015 (Asoj 3, 2072 BS).",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "gk-most-time-zones",
+      "category": "gk",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Which country has the most time zones?",
+      "options": [
+        "Russia",
+        "USA",
+        "China",
+        "France"
+      ],
+      "answerIndex": 3,
+      "explanation": "France has 12, thanks to overseas territories around the world. Russia has 11.",
+      "tags": [
+        "world",
+        "trick"
+      ]
     }
   ]
 }
