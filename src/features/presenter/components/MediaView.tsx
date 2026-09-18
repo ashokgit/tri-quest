@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import type { Media } from '@/data/schema'
 import { mediaUrl } from '@/data/source'
+import { usePresenterStore } from '../store'
 
 /** Marks the playable element on stage so the P key can find it. */
 export const STAGE_MEDIA_ATTR = 'data-stage-media'
@@ -22,10 +23,12 @@ function ImageMedia({ media, obscurity }: { media: Extract<Media, { kind: 'image
   if (missing) return <MissingMedia src={media.src} />
 
   const blur = media.reveal === 'blur' ? obscurity * 36 : 0
-  const zoom = media.reveal === 'zoom' ? 1 + obscurity * 3 : 1
+  const zoom = media.reveal === 'zoom' ? 1 + obscurity * ((media.zoom ?? 4) - 1) : 1
+  const [fx, fy] = media.focus ?? [50, 50]
   return (
     <div className="relative h-full w-full overflow-hidden rounded-3xl bg-black/40 ring-2 ring-white/10">
       <motion.img
+        style={{ transformOrigin: `${fx}% ${fy}%` }}
         src={mediaUrl(media.src)}
         alt={media.alt ?? ''}
         draggable={false}
@@ -43,6 +46,11 @@ function PlayableMedia({ media }: { media: Extract<Media, { kind: 'audio' | 'vid
   const ref = useRef<HTMLMediaElement>(null)
   const [playing, setPlaying] = useState(false)
   const [missing, setMissing] = useState(false)
+  // Clips follow the hall volume set on the sound check page (mute only silences effects).
+  const volume = usePresenterStore((s) => s.volume)
+  useEffect(() => {
+    if (ref.current) ref.current.volume = volume
+  }, [volume])
 
   useEffect(() => {
     const el = ref.current

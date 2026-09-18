@@ -1,6 +1,9 @@
 # Tri-Quest media checklist
 
-Media for the Audio-Visual round. Save each file with **exactly** this name and path. When they're all in place, `npm run check:event` passes.
+✅ **All 13 files are in place** (sourced from Wikimedia Commons; authors and licences are in [CREDITS.md](CREDITS.md)). `npm run check:event` passes.
+⚠️ **Listen to `av-sarangi.mp3` before the event**: the source video is a Gandharva musician who may also sing, and it was clipped without listening.
+
+To replace any file, keep **exactly** this name and path, update CREDITS.md, and re-run `npm run check:event`.
 
 Good free sources: **Wikimedia Commons** (check each file's licence), **Unsplash** / **Pexels** (photos and video), **Pixabay** / **Freesound** (sounds). Use your own photos where you can, for example of Patan Durbar Square.
 
@@ -37,4 +40,5 @@ Keep clips to **5–15 seconds**. Trim any silence at the start, because `P` sta
 ## Notes
 - **Sizes:** images around 1920 px wide are plenty. Keep videos under about 20 MB so they load instantly.
 - **Clip windows:** to play only part of an audio or video file, add `"start"` and `"end"` (in seconds) to the question's `media` in `questions.json`.
+- **Zoom puzzles:** for `"reveal": "zoom"` images, `"zoom"` sets how far in the opening close-up is (default 4) and `"focus": [x, y]` the point it zooms into, in percent of the frame. Check the result on the slide check page with **Opening state**.
 - **Before the event:** run `npm run check:event`. It fails if any file is missing. Then do a full run-through: a missing file shows a big orange "Missing media" box on screen.

@@ -29,6 +29,8 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
   const { session, bank, questionsById } = loaded
   const categories = new Map(bank.categories.map((c) => [c.id, c]))
   const [issues, setIssues] = useState<Record<string, Issue[]>>({})
+  /** Which moment of each question to show: its opening (image most obscured) or its final reveal. */
+  const [moment, setMoment] = useState<'final' | 'opening'>('final')
 
   const slides = session.rounds.flatMap((round, roundIndex) =>
     round.questionIds.map((qid, indexInRound): Extract<Slide, { kind: 'question' }> => {
@@ -63,7 +65,23 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
               Checked {checked}/{slides.length} · <span className="text-niet-red">{errors} with errors</span> ·{' '}
               <span className="text-lock">{warnings} with warnings</span>
             </p>
-            <p className="mt-1 text-sm text-white/45">Each slide shows its final state: answer revealed, explanation shown.</p>
+            <p className="mt-1 text-sm text-white/45">
+              {moment === 'final'
+                ? 'Each slide shows its final state: answer revealed, explanation shown (layout is measured here).'
+                : 'Each slide shows its opening state: what students see first (blurred / zoomed-in pictures).'}
+            </p>
+          </div>
+          <div className="inline-flex rounded-xl bg-stage-950/60 p-1 font-display text-sm font-semibold ring-1 ring-white/10">
+            {(['final', 'opening'] as const).map((m) => (
+              <button
+                key={m}
+                type="button"
+                onClick={() => setMoment(m)}
+                className={`rounded-lg px-4 py-1.5 capitalize ${moment === m ? 'bg-gold text-stage-950' : 'text-white/70 hover:text-white'}`}
+              >
+                {m} state
+              </button>
+            ))}
           </div>
           <Link to="/" className="rounded-xl px-4 py-2 font-display font-semibold ring-1 ring-white/15 hover:bg-stage-700">
             ← Sessions
@@ -72,7 +90,7 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(480px,1fr))] gap-6">
           {slides.map((slide) => (
-            <Thumb key={slide.question.id} slide={slide} session={session} issues={issues[slide.question.id]} onMeasured={report} />
+            <Thumb key={slide.question.id} slide={slide} session={session} moment={moment} issues={issues[slide.question.id]} onMeasured={report} />
           ))}
         </div>
       </main>
@@ -83,11 +101,13 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
 function Thumb({
   slide,
   session,
+  moment,
   issues,
   onMeasured,
 }: {
   slide: Extract<Slide, { kind: 'question' }>
   session: Session
+  moment: 'final' | 'opening'
   issues?: Issue[]
   onMeasured: (id: string, issues: Issue[]) => void
 }) {
@@ -107,7 +127,7 @@ function Thumb({
     <figure data-question-id={q.id} data-issues={issues ? JSON.stringify(issues) : undefined} className={`space-y-2 rounded-xl p-2 ring-2 ${tone}`}>
       <div className="overflow-hidden rounded-lg bg-stage-950" style={{ width: STAGE_WIDTH * THUMB_SCALE, height: STAGE_HEIGHT * THUMB_SCALE }}>
         <div ref={root} className="relative origin-top-left" style={{ width: STAGE_WIDTH, height: STAGE_HEIGHT, transform: `scale(${THUMB_SCALE})` }}>
-          <QuestionSlide slide={slide} slideIndex={-1} stage={lastStage} session={session} />
+          <QuestionSlide slide={slide} slideIndex={-1} stage={moment === 'final' ? lastStage : 0} session={session} />
         </div>
       </div>
       <figcaption className="text-xs">

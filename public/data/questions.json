@@ -1577,7 +1577,12 @@
         "kind": "image",
         "src": "media/images/av-eiffel-tower.jpg",
         "reveal": "zoom",
-        "alt": "Eiffel Tower"
+        "alt": "Eiffel Tower",
+        "zoom": 12,
+        "focus": [
+          50,
+          38
+        ]
       }
     },
     {

@@ -47,10 +47,12 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
       </div>
 
       {/* Upper stage */}
-      <div data-upper-stage className="relative flex min-h-0 flex-1 items-center justify-center px-40 pt-10 pb-8">
+      <div data-upper-stage className="relative flex min-h-0 flex-1 flex-col items-center justify-center gap-5 px-40 pt-10 pb-8">
         {q.media ? (
           <motion.div
-            className="relative h-full max-h-[520px] w-full max-w-[1100px]"
+            layout
+            className="relative min-h-0 w-full max-w-[1100px] flex-1"
+            style={{ maxHeight: 520 }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: 'spring', stiffness: 180, damping: 22 }}
@@ -77,7 +79,8 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
         <AnimatePresence>
           {revealed && q.explanation && (
             <motion.div
-              className="absolute inset-x-0 bottom-6 flex justify-center px-40"
+              // With media, the explanation sits under the picture (which shrinks to make room) rather than covering it.
+              className={q.media ? 'flex shrink-0 justify-center' : 'absolute inset-x-0 bottom-6 flex justify-center px-40'}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4 }}

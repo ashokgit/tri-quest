@@ -29,6 +29,10 @@ export const Media = z.discriminatedUnion('kind', [
     alt: z.string().optional(),
     /** How the image is uncovered before the answer: progressively unblurred or zoomed out. */
     reveal: z.enum(['none', 'blur', 'zoom']).default('none'),
+    /** For `zoom`: how far in the opening close-up is (default 4×). */
+    zoom: z.number().min(1.5).max(16).optional(),
+    /** For `zoom`: the point to zoom into, as [x%, y%] of the media frame (default centre). */
+    focus: z.tuple([z.number().min(0).max(100), z.number().min(0).max(100)]).optional(),
   }),
   z.object({
     kind: z.literal('audio'),
