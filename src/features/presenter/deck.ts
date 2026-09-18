@@ -93,8 +93,10 @@ function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): 
     while (queues.some((q) => q.length)) for (const q of queues) if (q.length) dealt.push(q.shift()!)
     if (!dealt.length) continue
 
-    // Split evenly into levels of about LEVEL_SIZE.
-    const count = Math.max(1, Math.round(dealt.length / LEVEL_SIZE))
+    // Split evenly into levels of about LEVEL_SIZE. Hard questions always get at least
+    // two levels, so the show ends on a short, punchy Final Challenge.
+    const minLevels = difficulty === 'hard' && dealt.length >= 6 ? 2 : 1
+    const count = Math.max(minLevels, Math.round(dealt.length / LEVEL_SIZE))
     for (let i = 0; i < count; i++) {
       const items = dealt.slice(Math.floor((i * dealt.length) / count), Math.floor(((i + 1) * dealt.length) / count))
       levels.push({ difficulty, items: items.sort((a, b) => TYPE_EASE[a.q.type] - TYPE_EASE[b.q.type]) })

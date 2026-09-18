@@ -5,6 +5,7 @@
   "event": "NIET Orientation 2026",
   "tagline": "Happy · Healthy · Learning",
   "durationMinutes": 60,
+  "order": "difficulty",
   "seed": 2026,
   "defaults": {
     "timerSeconds": 20,
