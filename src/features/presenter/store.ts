@@ -1,0 +1,88 @@
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+import type { Position } from './deck'
+
+/**
+ * Countdown for the current question. `key` identifies the slide it belongs to,
+ * so stepping back and forth within a question doesn't restart it.
+ */
+export interface TimerState {
+  key: number | null
+  durationMs: number
+  /** Wall-clock end time while running. */
+  endsAt: number | null
+  /** Remaining time while paused or stopped. */
+  remainingMs: number
+}
+
+interface PresenterState {
+  /** Last position per session, persisted so a closed tab resumes where it was. */
+  positions: Record<string, Position>
+  muted: boolean
+  blackout: boolean
+  helpOpen: boolean
+  timer: TimerState
+
+  setPosition: (sessionId: string, pos: Position) => void
+  toggleMuted: () => void
+  toggleBlackout: () => void
+  setHelpOpen: (open: boolean) => void
+
+  startTimer: (key: number, seconds: number) => void
+  toggleTimer: () => void
+  addTime: (seconds: number) => void
+  stopTimer: () => void
+  resetTimer: () => void
+}
+
+const idleTimer: TimerState = { key: null, durationMs: 0, endsAt: null, remainingMs: 0 }
+
+export const remainingMs = (t: TimerState, now = Date.now()) =>
+  t.endsAt === null ? t.remainingMs : Math.max(0, t.endsAt - now)
+
+export const usePresenterStore = create<PresenterState>()(
+  persist(
+    (set) => ({
+      positions: {},
+      muted: false,
+      blackout: false,
+      helpOpen: false,
+      timer: idleTimer,
+
+      setPosition: (sessionId, pos) => set((s) => ({ positions: { ...s.positions, [sessionId]: pos } })),
+      toggleMuted: () => set((s) => ({ muted: !s.muted })),
+      toggleBlackout: () => set((s) => ({ blackout: !s.blackout })),
+      setHelpOpen: (helpOpen) => set({ helpOpen }),
+
+      startTimer: (key, seconds) =>
+        set({ timer: { key, durationMs: seconds * 1000, endsAt: Date.now() + seconds * 1000, remainingMs: seconds * 1000 } }),
+      toggleTimer: () =>
+        set(({ timer }) => {
+          if (timer.key === null) return {}
+          if (timer.endsAt !== null) return { timer: { ...timer, endsAt: null, remainingMs: remainingMs(timer) } }
+          if (timer.remainingMs <= 0) return {}
+          return { timer: { ...timer, endsAt: Date.now() + timer.remainingMs } }
+        }),
+      addTime: (seconds) =>
+        set(({ timer }) => {
+          if (timer.key === null) return {}
+          const delta = seconds * 1000
+          const left = Math.max(0, remainingMs(timer) + delta)
+          return {
+            timer: {
+              ...timer,
+              durationMs: Math.max(timer.durationMs, left),
+              endsAt: timer.endsAt === null ? null : Date.now() + left,
+              remainingMs: left,
+            },
+          }
+        }),
+      stopTimer: () => set(({ timer }) => ({ timer: { ...timer, endsAt: null, remainingMs: remainingMs(timer) } })),
+      resetTimer: () => set({ timer: idleTimer }),
+    }),
+    {
+      name: 'quizzeria-presenter',
+      partialize: (s) => ({ positions: s.positions, muted: s.muted }),
+    },
+  ),
+)
