@@ -40,3 +40,24 @@ scripts/validate-data.ts       pre-build data checks
 | `open` | `answer: string` | no options, answer shown on reveal |
 
 Every question can also have `media` (`image` with `reveal: blur \| zoom`, `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
+
+## Sound effects
+
+Sounds are generated in the browser (Web Audio), so they work offline without any audio files. The first key press or click turns sound on, because browsers block audio until then. `M` mutes.
+
+To replace any sound with your own recording, put the files in `public/media/sfx/` and create `public/media/sfx/sfx.json` mapping each cue to a file. `sfx.example.json` is a starting point. You don't have to list every cue; anything left out keeps its built-in sound. `npm run validate` checks that every listed file exists.
+
+| Cue | When it plays |
+|---|---|
+| `roundIntro` | Round title card appears |
+| `optionIn` | Each answer bar slides in |
+| `bed` | **Loops** while the clock runs (question tension music); fades out on lock-in, reveal or time-up |
+| `tick` | Each of the last 5 seconds |
+| `timeUp` | Clock hits zero ("Hands up!") |
+| `lock` | Host locks in an answer with A–D ("final answer") |
+| `correct` | Reveal when the answer is right (or nothing was locked) |
+| `wrong` | Reveal when the locked answer was wrong |
+| `reveal` | Answer shown for an open question |
+| `finale` | Closing slide (with confetti) |
+
+Sounds play only when moving forward, so stepping back to re-read a question stays quiet.

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import type { Session } from '@/data/schema'
-import { imageObscurity, stagesFor, timerStageIndex, type Slide } from '../deck'
+import { correctOptionIndex, imageObscurity, optionLabels, stagesFor, timerStageIndex, type Slide } from '../deck'
 import { Lozenge, Rail } from '../components/Lozenge'
 import { MediaView } from '../components/MediaView'
 import { OptionTiles } from '../components/OptionTiles'
@@ -29,8 +29,8 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
   const showOptions = stageKind === 'options' || revealed
   const locked = usePresenterStore((s) => (s.locked?.key === slideIndex ? s.locked.index : null))
 
-  const options = q.type === 'mcq' ? q.options : q.type === 'truefalse' ? ['True', 'False'] : null
-  const correctIndex = q.type === 'mcq' ? q.answerIndex : q.type === 'truefalse' ? (q.answer ? 0 : 1) : -1
+  const options = optionLabels(q)
+  const correctIndex = correctOptionIndex(q)
 
   return (
     <div className="relative flex h-full flex-col pb-14">

@@ -9,6 +9,7 @@ import {
   buildDeck,
   clampPosition,
   nextSlide,
+  optionLabels,
   revealAnswer,
   roundIntroIndex,
   stagesFor,
@@ -21,6 +22,8 @@ import { FinaleSlide } from './slides/FinaleSlide'
 import { QuestionSlide } from './slides/QuestionSlide'
 import { RoundIntroSlide } from './slides/RoundIntroSlide'
 import { WelcomeSlide } from './slides/WelcomeSlide'
+import { sfx } from './sfx'
+import { SoundDirector } from './SoundDirector'
 import { Stage } from './Stage'
 import { usePresenterStore } from './store'
 
@@ -36,6 +39,7 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
   const go = useCallback((next: Position) => setPosition(session.id, next), [setPosition, session.id])
 
   const blackout = usePresenterStore((s) => s.blackout)
+  const muted = usePresenterStore((s) => s.muted)
   const helpOpen = usePresenterStore((s) => s.helpOpen)
   const slide = deck[pos.slide]
 
@@ -80,6 +84,9 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
 
         {slide.kind !== 'welcome' && <NietBug label={session.event?.replace(/^NIET\s*/, '')} />}
 
+        <SoundDirector deck={deck} pos={pos} session={session} />
+        {muted && <div className="absolute right-6 bottom-5 z-10 text-3xl opacity-40">🔇</div>}
+
         <AnimatePresence>{helpOpen && <HelpOverlay />}</AnimatePresence>
         {blackout && <div className="absolute inset-0 z-50 bg-black" />}
       </div>
@@ -115,6 +122,8 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return
+      // Browsers only allow audio after a user gesture; any host key press unlocks it.
+      sfx.unlock()
       const store = usePresenterStore.getState()
       // Read the position fresh from the store so rapid key presses (clicker double-taps) each count.
       const pos = clampPosition(deck, store.positions[sessionId] ?? START)
@@ -185,7 +194,7 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: 
         const slide = deck[pos.slide]
         const stage = stagesFor(slide)[pos.stage]
         if (slide.kind !== 'question' || stage !== 'options') return
-        const count = slide.question.type === 'mcq' ? slide.question.options.length : slide.question.type === 'truefalse' ? 2 : 0
+        const count = optionLabels(slide.question)?.length ?? 0
         const index = e.key.toLowerCase().charCodeAt(0) - 97
         if (index < count) store.lockAnswer(pos.slide, index)
         return
@@ -197,8 +206,13 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: 
       }
     }
 
+    const onPointer = () => sfx.unlock()
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.addEventListener('pointerdown', onPointer)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('pointerdown', onPointer)
+    }
   }, [deck, sessionId, go, roundCount])
 }
 

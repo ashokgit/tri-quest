@@ -88,6 +88,20 @@ export function imageObscurity(slide: Slide, stage: number): number {
   return 0
 }
 
+/** Answer labels shown as tiles (null for open questions). */
+export function optionLabels(q: Question): string[] | null {
+  if (q.type === 'mcq') return q.options
+  if (q.type === 'truefalse') return ['True', 'False']
+  return null
+}
+
+/** Index of the correct tile, or -1 for open questions. */
+export function correctOptionIndex(q: Question): number {
+  if (q.type === 'mcq') return q.answerIndex
+  if (q.type === 'truefalse') return q.answer ? 0 : 1
+  return -1
+}
+
 export function clampPosition(deck: Slide[], pos: Position): Position {
   const slide = Math.min(Math.max(pos.slide, 0), deck.length - 1)
   const stage = Math.min(Math.max(pos.stage, 0), stagesFor(deck[slide]).length - 1)

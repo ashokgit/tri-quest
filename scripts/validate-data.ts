@@ -9,6 +9,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { z } from 'zod'
 import { QuestionBank, Session, SessionIndex } from '../src/data/schema.ts'
+import { CUES, type Cue } from '../src/features/presenter/cues.ts'
 
 const publicDir = join(import.meta.dirname, '..', 'public')
 const errors: string[] = []
@@ -65,6 +66,17 @@ for (const file of sessionFiles) {
   }
   console.log(`✔ ${session.id}: ${session.rounds.length} rounds, ${used.size} questions`)
 }
+// Optional sound overrides: every listed file must exist.
+const sfxManifest = join(publicDir, 'media/sfx/sfx.json')
+if (existsSync(sfxManifest)) {
+  const manifest = readJson('media/sfx/sfx.json') as Record<string, string> | undefined
+  for (const [cue, file] of Object.entries(manifest ?? {})) {
+    if (!CUES.includes(cue as Cue)) errors.push(`sfx.json: unknown cue "${cue}" (expected one of ${CUES.join(', ')})`)
+    else if (!existsSync(join(publicDir, 'media/sfx', file))) errors.push(`sfx.json → ${cue}: missing file public/media/sfx/${file}`)
+  }
+  console.log(`✔ sound overrides: ${Object.keys(manifest ?? {}).length} cue(s)`)
+}
+
 if (bank) console.log(`✔ question bank: ${bank.questions.length} questions in ${bank.categories.length} categories`)
 
 for (const w of warnings) console.warn(`⚠ ${w}`)
