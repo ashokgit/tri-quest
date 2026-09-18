@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { randomSeed } from '@/data/draw'
-import type { Position } from './deck'
+import type { Position, RoundOrder } from './deck'
 
 /**
  * Countdown for the current question. `key` identifies the slide it belongs to,
@@ -21,6 +21,8 @@ interface PresenterState {
   positions: Record<string, Position>
   /** Question-draw seed per session. Persisted so a reload never changes the questions mid-show. */
   seeds: Record<string, number>
+  /** Host's choice of round order per session (overrides the session file). */
+  orders: Record<string, RoundOrder>
   muted: boolean
   /** Master sound volume, 0 … 1 (set on the sound check page). */
   volume: number
@@ -33,6 +35,8 @@ interface PresenterState {
   setPosition: (sessionId: string, pos: Position) => void
   /** New random draw for a session; restarts it from the welcome slide. */
   reshuffle: (sessionId: string) => void
+  /** Switch between category rounds and the difficulty ladder; restarts the session. */
+  setOrder: (sessionId: string, order: RoundOrder) => void
   /** Drop this browser's reshuffle and go back to the session file's draw. */
   resetDraw: (sessionId: string) => void
   toggleMuted: () => void
@@ -54,6 +58,10 @@ const idleTimer: TimerState = { key: null, durationMs: 0, endsAt: null, remainin
 /** The session's draw number: the host's reshuffle if any, else the one pinned in the session file. */
 export const useSessionSeed = (session: { id: string; seed: number }) => usePresenterStore((s) => s.seeds[session.id] ?? session.seed)
 
+/** The session's round order: the host's choice if any, else the session file's. */
+export const useSessionOrder = (session: { id: string; order: RoundOrder }) =>
+  usePresenterStore((s) => s.orders[session.id] ?? session.order)
+
 export const remainingMs = (t: TimerState, now = Date.now()) =>
   t.endsAt === null ? t.remainingMs : Math.max(0, t.endsAt - now)
 
@@ -62,6 +70,7 @@ export const usePresenterStore = create<PresenterState>()(
     (set) => ({
       positions: {},
       seeds: {},
+      orders: {},
       muted: false,
       volume: 0.9,
       blackout: false,
@@ -76,6 +85,11 @@ export const usePresenterStore = create<PresenterState>()(
           delete seeds[sessionId]
           return { seeds, positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
         }),
+      setOrder: (sessionId, order) =>
+        set((s) => ({
+          orders: { ...s.orders, [sessionId]: order },
+          positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } },
+        })),
       reshuffle: (sessionId) =>
         set((s) => ({
           seeds: { ...s.seeds, [sessionId]: randomSeed() },
@@ -122,7 +136,7 @@ export const usePresenterStore = create<PresenterState>()(
     }),
     {
       name: 'quizzeria-presenter',
-      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, muted: s.muted, volume: s.volume }),
+      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, orders: s.orders, muted: s.muted, volume: s.volume }),
     },
   ),
 )

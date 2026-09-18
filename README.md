@@ -45,6 +45,15 @@ A round can show a random subset of its pool:
 - **Reshuffle:** the home page's **Reshuffle** button draws a new set in *this browser* and restarts the show. To make it the draw everywhere, copy its number into `"seed"` in the session file.
 - **Review:** `#/review/<session>` is a printable host cheat sheet of the current draw, with answers, media and "verify" flags.
 
+## Round order: by category or by difficulty
+
+The same drawn questions can be shown two ways. Pick one on the home page (**Order** toggle), or set `"order"` in the session file:
+
+- **By category** (`"category"`): the session's rounds as written (Science, NIET, Audio-Visual, …).
+- **By difficulty** (`"difficulty"`): a Millionaire-style ladder. All easy questions come first, split into a few levels, then medium, then hard, ending on the **Final Challenge**. Subjects are mixed inside each level, which runs true/false → multiple choice → open answer. Level names default to *Warm-up … Final Challenge*; override them with `"levelTitles"`.
+
+Each question keeps its own timer (e.g. 30s for Audio-Visual) in either order.
+
 ## Question types
 
 | `type` | Fields | Notes |

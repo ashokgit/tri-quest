@@ -121,6 +121,10 @@ export const Session = z.object({
   tagline: z.string().optional(),
   /** Planned length, used for pacing hints only. */
   durationMinutes: z.number().int().positive().optional(),
+  /** Default arrangement: the category rounds as written, or a ladder of rising difficulty built from the same questions. */
+  order: z.enum(['category', 'difficulty']).default('category'),
+  /** Names for the difficulty-ladder levels, easiest first (defaults to Warm-up … Final Challenge). */
+  levelTitles: z.array(z.string().min(1)).optional(),
   /** Default draw number for rounds with `pick`, so every device shows the same questions until reshuffled. */
   seed: z.number().int().positive().default(2026),
   defaults: z.object({

@@ -14,10 +14,12 @@ interface Props {
   questionCount: number
   timerSeconds: number
   ladder: LadderRung[]
+  /** "Round" for category rounds, "Level" for the difficulty ladder. */
+  label?: string
 }
 
 /** Round title card with a round "ladder" on the right, like a prize ladder. */
-export function RoundIntroSlide({ round, roundIndex, category, questionCount, timerSeconds, ladder }: Props) {
+export function RoundIntroSlide({ round, roundIndex, category, questionCount, timerSeconds, ladder, label = 'Round' }: Props) {
   return (
     <div className="flex h-full items-center">
       <div className="flex flex-1 flex-col items-center justify-center gap-10 pl-16 text-center">
@@ -38,7 +40,7 @@ export function RoundIntroSlide({ round, roundIndex, category, questionCount, ti
           animate={{ opacity: 1, letterSpacing: '0.5em' }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Round {roundIndex + 1}
+          {label} {roundIndex + 1}
         </motion.p>
 
         <motion.div

@@ -3,7 +3,7 @@ import { StatusScreen } from '@/app/StatusScreen'
 import { loadSession, type LoadedSession } from '@/data/source'
 import { correctOptionIndex, drawSession, optionLabels } from '@/features/presenter/deck'
 import { optionLetter } from '@/features/presenter/components/palette'
-import { usePresenterStore, useSessionSeed } from '@/features/presenter/store'
+import { usePresenterStore, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
 import { useAsync } from '@/lib/useAsync'
 import type { Question } from '@/data/schema'
 
@@ -22,7 +22,8 @@ function Review({ loaded }: { loaded: LoadedSession }) {
   const seed = useSessionSeed(session)
   const pinned = seed === session.seed
   const resetDraw = usePresenterStore((s) => s.resetDraw)
-  const rounds = drawSession(loaded, seed)
+  const order = useSessionOrder(session)
+  const rounds = drawSession(loaded, seed, order)
   const total = rounds.reduce((n, r) => n + r.questions.length, 0)
   const toVerify = rounds.flatMap((r) => r.questions).filter((q) => q.verify).length
   const withMedia = rounds.flatMap((r) => r.questions).filter((q) => q.media).length
@@ -37,7 +38,7 @@ function Review({ loaded }: { loaded: LoadedSession }) {
               {session.title} <span className="text-white/40 print:text-black/40">· {session.event}</span>
             </h1>
             <p className="mt-2 text-white/60 print:text-black/60">
-              {total} questions in {rounds.length} rounds · draw #{seed} · {withMedia} with media · {toVerify} flagged to verify
+              {total} questions in {rounds.length} {order === 'difficulty' ? 'levels (by difficulty)' : 'rounds (by category)'} · draw #{seed} · {withMedia} with media · {toVerify} flagged to verify
             </p>
             <p className="mt-1 text-sm text-white/45 print:hidden">
               {pinned ? (
@@ -64,12 +65,12 @@ function Review({ loaded }: { loaded: LoadedSession }) {
           </div>
         </header>
 
-        {rounds.map(({ round, category, questions }, r) => (
+        {rounds.map(({ round, category, questions, timers }, r) => (
           <section key={round.id} className="break-inside-avoid-page">
             <h2 className="mb-3 border-b border-white/15 pb-2 font-display text-2xl font-bold print:border-black/20">
-              Round {r + 1}: {category?.icon} {round.title}
+              {order === 'difficulty' ? 'Level' : 'Round'} {r + 1}: {category?.icon} {round.title}
               <span className="ml-2 text-base font-semibold text-white/50 print:text-black/50">
-                {questions.length} questions · {round.timerSeconds ?? session.defaults.timerSeconds}s each
+                {round.subtitle ?? `${questions.length} questions`} · {timerRange(timers)}
               </span>
             </h2>
             <ol className="space-y-3">
@@ -114,4 +115,11 @@ function ReviewItem({ q, n }: { q: Question; n: number }) {
       {q.media && <p className="mt-1 font-mono text-xs text-white/40 print:text-black/50">{q.media.src}</p>}
     </li>
   )
+}
+
+/** "20s each" or "20–30s" when a level mixes timers. */
+function timerRange(timers: number[]) {
+  const lo = Math.min(...timers)
+  const hi = Math.max(...timers)
+  return lo === hi ? `${lo}s each` : `${lo}–${hi}s`
 }

@@ -25,14 +25,15 @@ import { RoundIntroSlide } from './slides/RoundIntroSlide'
 import { WelcomeSlide } from './slides/WelcomeSlide'
 import { SoundDirector } from './SoundDirector'
 import { Stage } from './Stage'
-import { usePresenterStore, useSessionSeed } from './store'
+import { usePresenterStore, useSessionOrder, useSessionSeed } from './store'
 
 const START: Position = { slide: 0, stage: 0 }
 
 export function Presenter({ loaded }: { loaded: LoadedSession }) {
   const { session } = loaded
   const seed = useSessionSeed(session)
-  const deck = useMemo(() => buildDeck(loaded, seed), [loaded, seed])
+  const order = useSessionOrder(session)
+  const deck = useMemo(() => buildDeck(loaded, seed, order), [loaded, seed, order])
 
   const saved = usePresenterStore((s) => s.positions[session.id])
   const pos = clampPosition(deck, saved ?? START)
@@ -76,6 +77,7 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
                 questionCount={slide.round.questionIds.length}
                 timerSeconds={slide.round.timerSeconds ?? session.defaults.timerSeconds}
                 ladder={ladder}
+                label={order === 'difficulty' ? 'Level' : 'Round'}
               />
             )}
             {slide.kind === 'question' && <QuestionSlide slide={slide} slideIndex={pos.slide} stage={pos.stage} session={session} />}
