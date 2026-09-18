@@ -57,7 +57,30 @@
       ]
     },
     {
-      "id": "r3-fun",
+      "id": "r3-audio-visual",
+      "title": "Audio-Visual",
+      "category": "audio-visual",
+      "timerSeconds": 30,
+      "questionIds": [
+        "av-boudhanath",
+        "av-patan-durbar",
+        "av-einstein",
+        "av-emoji-titanic",
+        "av-emoji-lion-king",
+        "av-heartbeat",
+        "av-eiffel-zoom",
+        "av-curie",
+        "av-resistor",
+        "av-flag-bhutan",
+        "av-dolphin",
+        "av-sarangi",
+        "av-newtons-cradle",
+        "av-dial-up",
+        "av-red-blood-cells"
+      ]
+    },
+    {
+      "id": "r4-fun",
       "title": "Fun & Tricky",
       "category": "fun-tricky",
       "timerSeconds": 20,
@@ -81,7 +104,7 @@
       ]
     },
     {
-      "id": "r4-engineering",
+      "id": "r5-engineering",
       "title": "Engineering & Tech",
       "category": "engineering",
       "questionIds": [
@@ -98,7 +121,7 @@
       ]
     },
     {
-      "id": "r5-gk",
+      "id": "r6-gk",
       "title": "General Knowledge",
       "category": "gk",
       "questionIds": [
@@ -120,7 +143,7 @@
       ]
     },
     {
-      "id": "r6-current-affairs",
+      "id": "r7-current-affairs",
       "title": "Current Affairs",
       "category": "current-affairs",
       "questionIds": [

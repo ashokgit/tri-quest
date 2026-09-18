@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "validate": "tsx scripts/validate-data.ts",
+    "check:event": "tsx scripts/validate-data.ts --strict",
     "build": "npm run validate && tsc -b && vite build",
     "typecheck": "tsc -b",
     "lint": "oxlint",

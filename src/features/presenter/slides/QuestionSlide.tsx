@@ -57,6 +57,15 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
           >
             <MediaView media={q.media} obscurity={imageObscurity(slide, stage)} />
           </motion.div>
+        ) : q.showcase ? (
+          <motion.p
+            className="text-center font-display text-[200px] leading-none font-black tracking-wide drop-shadow-[0_0_50px_rgb(245_197_66/0.35)]"
+            initial={{ opacity: 0, scale: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 160, damping: 13 }}
+          >
+            {q.showcase}
+          </motion.p>
         ) : (
           <div className="opacity-25">
             <TriQuestEmblem size={380} glow={false} />

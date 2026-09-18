@@ -39,7 +39,7 @@ scripts/validate-data.ts       pre-build data checks
 | `truefalse` | `answer: boolean` | |
 | `open` | `answer: string` | no options, answer shown on reveal |
 
-Every question can also have `media` (`image` with `reveal: blur \| zoom`, `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
+Every question can also have `showcase` (big text on the stage, e.g. an emoji puzzle), `media` (`image` with `reveal: blur \| zoom`, `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
 
 ## Sound effects
 

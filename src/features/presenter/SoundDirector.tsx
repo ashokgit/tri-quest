@@ -60,7 +60,10 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
 
   // Tension bed while the clock runs on the current question.
   const onQuestion = timer.key === pos.slide
-  const bedOn = onQuestion && running && left > 0
+  const current = deck[pos.slide]
+  // No bed under audio/video clips: the clip is the soundtrack.
+  const clipQuestion = current.kind === 'question' && (current.question.media?.kind === 'audio' || current.question.media?.kind === 'video')
+  const bedOn = onQuestion && running && left > 0 && !clipQuestion
   useEffect(() => {
     if (bedOn) sfx.startBed()
     else sfx.stopBed()

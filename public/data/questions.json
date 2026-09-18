@@ -1446,6 +1446,331 @@
       "tags": [
         "world"
       ]
+    },
+    {
+      "id": "av-boudhanath",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Name this landmark.",
+      "answer": "Boudhanath Stupa",
+      "explanation": "One of the largest stupas in the world, and a UNESCO World Heritage Site.",
+      "tags": [
+        "image",
+        "nepal"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-boudhanath.jpg",
+        "reveal": "blur",
+        "alt": "Boudhanath Stupa"
+      }
+    },
+    {
+      "id": "av-patan-durbar",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "This heritage site isn't far from NIET. What is it?",
+      "options": [
+        "Kathmandu Durbar Square",
+        "Bhaktapur Durbar Square",
+        "Swayambhunath",
+        "Patan Durbar Square"
+      ],
+      "answerIndex": 3,
+      "explanation": "Patan (Lalitpur) Durbar Square, full of Newar architecture, just south of Kupondole.",
+      "tags": [
+        "image",
+        "nepal"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-patan-durbar.jpg",
+        "reveal": "zoom",
+        "alt": "Patan Durbar Square"
+      }
+    },
+    {
+      "id": "av-einstein",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Who is this famous scientist?",
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Nikola Tesla",
+        "Stephen Hawking"
+      ],
+      "answerIndex": 1,
+      "explanation": "Albert Einstein: relativity, E = mc², and the 1921 Nobel Prize in Physics.",
+      "tags": [
+        "image",
+        "science"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-einstein.jpg",
+        "reveal": "none",
+        "alt": "Albert Einstein"
+      }
+    },
+    {
+      "id": "av-emoji-titanic",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Guess the movie!",
+      "showcase": "🚢 🧊 💔",
+      "answer": "Titanic",
+      "explanation": "\"I'm the king of the world!\" (1997)",
+      "tags": [
+        "emoji",
+        "movie"
+      ]
+    },
+    {
+      "id": "av-emoji-lion-king",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Guess the movie!",
+      "showcase": "🦁 👑 🌅",
+      "answer": "The Lion King",
+      "explanation": "Hakuna Matata!",
+      "tags": [
+        "emoji",
+        "movie"
+      ]
+    },
+    {
+      "id": "av-heartbeat",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Listen carefully. What is this sound?",
+      "answer": "A heartbeat",
+      "explanation": "Lub-dub: the sound of heart valves closing, heard through a stethoscope. Biomedical engineers design those!",
+      "tags": [
+        "audio",
+        "biomedical"
+      ],
+      "media": {
+        "kind": "audio",
+        "src": "media/audio/av-heartbeat.mp3"
+      }
+    },
+    {
+      "id": "av-eiffel-zoom",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "We've zoomed right in. Which famous landmark is this?",
+      "answer": "The Eiffel Tower",
+      "explanation": "Paris, 1889: once the tallest structure in the world.",
+      "tags": [
+        "image",
+        "world"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-eiffel-tower.jpg",
+        "reveal": "zoom",
+        "alt": "Eiffel Tower"
+      }
+    },
+    {
+      "id": "av-curie",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Who is this scientist?",
+      "options": [
+        "Ada Lovelace",
+        "Rosalind Franklin",
+        "Marie Curie",
+        "Florence Nightingale"
+      ],
+      "answerIndex": 2,
+      "explanation": "Marie Curie, the first person to win Nobel Prizes in two sciences (Physics and Chemistry).",
+      "tags": [
+        "image",
+        "science"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-marie-curie.jpg",
+        "reveal": "blur",
+        "alt": "Marie Curie"
+      }
+    },
+    {
+      "id": "av-resistor",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Name this electronic component.",
+      "options": [
+        "Capacitor",
+        "Diode",
+        "Resistor",
+        "Transistor"
+      ],
+      "answerIndex": 2,
+      "explanation": "A resistor. Its coloured bands tell you its resistance value.",
+      "tags": [
+        "image",
+        "engineering"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-resistor.jpg",
+        "reveal": "zoom",
+        "alt": "Resistor"
+      }
+    },
+    {
+      "id": "av-flag-bhutan",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which country's flag is this?",
+      "options": [
+        "Bhutan",
+        "Sri Lanka",
+        "Myanmar",
+        "Mongolia"
+      ],
+      "answerIndex": 0,
+      "explanation": "Bhutan: the dragon (Druk) holds jewels for wealth and protection.",
+      "tags": [
+        "image",
+        "world"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-flag-bhutan.png",
+        "reveal": "blur",
+        "alt": "Flag of Bhutan"
+      }
+    },
+    {
+      "id": "av-dolphin",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which animal makes this sound?",
+      "options": [
+        "Whale",
+        "Dolphin",
+        "Bat",
+        "Seal"
+      ],
+      "answerIndex": 1,
+      "explanation": "Dolphins use clicks and whistles to find their way (echolocation).",
+      "tags": [
+        "audio",
+        "science"
+      ],
+      "media": {
+        "kind": "audio",
+        "src": "media/audio/av-dolphin.mp3"
+      }
+    },
+    {
+      "id": "av-sarangi",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which traditional Nepali instrument is this?",
+      "options": [
+        "Madal",
+        "Sarangi",
+        "Bansuri",
+        "Damphu"
+      ],
+      "answerIndex": 1,
+      "explanation": "The Sarangi, a bowed string instrument carved from a single piece of wood, traditionally played by the Gandarbha community.",
+      "tags": [
+        "audio",
+        "nepal"
+      ],
+      "media": {
+        "kind": "audio",
+        "src": "media/audio/av-sarangi.mp3"
+      }
+    },
+    {
+      "id": "av-newtons-cradle",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is this desk toy called?",
+      "options": [
+        "Galileo's pendulum",
+        "Kepler's swing",
+        "Newton's cradle",
+        "Tesla's coil"
+      ],
+      "answerIndex": 2,
+      "explanation": "Newton's cradle shows conservation of momentum and energy.",
+      "tags": [
+        "video",
+        "science"
+      ],
+      "media": {
+        "kind": "video",
+        "src": "media/video/av-newtons-cradle.mp4"
+      }
+    },
+    {
+      "id": "av-dial-up",
+      "category": "audio-visual",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Before Wi-Fi… what made this sound?",
+      "options": [
+        "Fax machine",
+        "Old printer",
+        "Radio static",
+        "Dial-up modem"
+      ],
+      "answerIndex": 3,
+      "explanation": "A dial-up modem connecting to the internet over a phone line. Ask your parents!",
+      "tags": [
+        "audio",
+        "engineering"
+      ],
+      "media": {
+        "kind": "audio",
+        "src": "media/audio/av-dial-up.mp3"
+      }
+    },
+    {
+      "id": "av-red-blood-cells",
+      "category": "audio-visual",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "This is seen under a microscope. What is it?",
+      "options": [
+        "Red blood cells",
+        "Bacteria",
+        "Pollen grains",
+        "Yeast cells"
+      ],
+      "answerIndex": 0,
+      "explanation": "Red blood cells: disc-shaped with a dip in the middle, and no nucleus.",
+      "tags": [
+        "image",
+        "biomedical"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-red-blood-cells.jpg",
+        "reveal": "none",
+        "alt": "Red blood cells under a microscope"
+      }
     }
   ]
 }

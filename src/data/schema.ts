@@ -51,6 +51,8 @@ const questionBase = {
   difficulty: Difficulty,
   prompt: z.string().min(1),
   media: Media.optional(),
+  /** Big text shown on the upper stage instead of media, e.g. an emoji puzzle or an equation. */
+  showcase: z.string().optional(),
   /** Shown under the answer on reveal. */
   explanation: z.string().optional(),
   /** Flag facts that must be checked (current affairs, NIET facts) before going live. */

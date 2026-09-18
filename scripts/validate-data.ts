@@ -12,6 +12,8 @@ import { QuestionBank, Session, SessionIndex } from '../src/data/schema.ts'
 import { CUES, type Cue } from '../src/features/presenter/cues.ts'
 
 const publicDir = join(import.meta.dirname, '..', 'public')
+/** --strict (event-day check) treats missing media as errors; otherwise they're warnings so work can continue. */
+const strict = process.argv.includes('--strict')
 const errors: string[] = []
 const warnings: string[] = []
 
@@ -43,7 +45,9 @@ if (bank) {
     if (seen.has(q.id)) errors.push(`questions.json: duplicate question id "${q.id}"`)
     seen.add(q.id)
     if (!categoryIds.has(q.category)) errors.push(`questions.json → ${q.id}: unknown category "${q.category}"`)
-    if (q.media && !existsSync(join(publicDir, q.media.src))) errors.push(`questions.json → ${q.id}: missing media file public/${q.media.src}`)
+    if (q.media && !existsSync(join(publicDir, q.media.src))) {
+      ;(strict ? errors : warnings).push(`${q.id}: missing media file public/${q.media.src}`)
+    }
     if (q.verify) warnings.push(`${q.id} is flagged "verify"`)
   }
 }
