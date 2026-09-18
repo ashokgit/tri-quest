@@ -52,6 +52,8 @@ class SoundBoard {
     const e = this.engine
     if (!e || !this.ready) return
     const at = e.now + delay
+    // Countdown ticks land when the clock music is loudest; dip it so each tick cuts through.
+    if (cue === 'tick') this.loops.get('bed')?.duck?.(at)
     const file = this.overrides.get(cue)
     if (file) this.playBuffer(file, at)
     else CUE_SYNTHS[cue](e, at, variant)

@@ -46,8 +46,11 @@ export const CUE_SYNTHS: Record<OneShotCue, (e: AudioEngine, at: number, variant
 
   /** Countdown tick; `variant` is the seconds left, rising in pitch as time runs out. */
   tick(e, at, secondsLeft) {
-    woodblock(e, at, 900 + (5 - Math.min(5, secondsLeft)) * 140, 0.5)
-    kick(e, at, 0.35, 160, 90, 0.12)
+    const f = 900 + (5 - Math.min(5, secondsLeft)) * 140
+    woodblock(e, at, f, 0.95)
+    tone(e, { at, freq: f, dur: 0.16, gain: 0.45, reverb: 0.15 })
+    noise(e, { at, dur: 0.02, gain: 0.35, filter: 'highpass', freq: 3000 })
+    kick(e, at, 0.7, 180, 90, 0.16)
   },
 
   /** Time's up: a gong and a dissonant brass stab. */
@@ -123,6 +126,8 @@ export interface Loop {
   stop: (fade?: number) => void
   /** 0 = calm … 1 = last seconds. Only the bed uses it. */
   setIntensity?: (x: number) => void
+  /** Briefly dip the loop so a cue (e.g. a countdown tick) cuts through. */
+  duck?: (at: number) => void
 }
 
 /** Lookahead scheduler: calls `schedule(step, time)` for each 16th note just before it's due. */
@@ -191,12 +196,21 @@ export function startBed(e: AudioEngine): Loop {
     }
   })
 
+  let stopped = false
   return {
     setIntensity: (x) => {
       intensity = Math.max(0, Math.min(1, x))
     },
+    duck: (at) => {
+      if (stopped) return
+      bus.gain.cancelScheduledValues(at)
+      bus.gain.setTargetAtTime(0.3, at, 0.008)
+      bus.gain.setTargetAtTime(1, at + 0.2, 0.08)
+    },
     stop: (fade = 0.4) => {
+      stopped = true
       stopSeq()
+      bus.gain.cancelScheduledValues(e.now)
       bus.gain.setTargetAtTime(0.0001, e.now, fade / 3)
       window.setTimeout(() => bus.disconnect(), (fade + 1.5) * 1000)
     },
