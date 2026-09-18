@@ -1,10 +1,12 @@
 {
+  "theme": "theme.mp3",
   "roundIntro": "round-intro.mp3",
   "optionIn": "option-in.mp3",
   "bed": "question-bed.mp3",
   "tick": "tick.mp3",
   "timeUp": "time-up.mp3",
   "lock": "final-answer.mp3",
+  "suspense": "suspense.mp3",
   "correct": "correct.mp3",
   "wrong": "wrong.mp3",
   "reveal": "reveal.mp3",

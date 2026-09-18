@@ -9,7 +9,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { z } from 'zod'
 import { QuestionBank, Session, SessionIndex } from '../src/data/schema.ts'
-import { CUES, type Cue } from '../src/features/presenter/cues.ts'
+import { CUES, type Cue } from '../src/features/audio/cues.ts'
 
 const publicDir = join(import.meta.dirname, '..', 'public')
 /** --strict (event-day check) treats missing media as errors; otherwise they're warnings so work can continue. */

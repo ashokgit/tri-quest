@@ -1,9 +1,9 @@
 import confetti from 'canvas-confetti'
 import { useEffect, useRef } from 'react'
 import type { Session } from '@/data/schema'
+import { sfx } from '@/features/audio/sfx'
 import { correctOptionIndex, optionLabels, stagesFor, type Position, type Slide } from './deck'
 import { useTimeLeft } from './components/useTimeLeft'
-import { sfx } from './sfx'
 import { usePresenterStore } from './store'
 
 /** Delay between answer bars sliding in; matches the stagger in OptionTiles. */
@@ -15,12 +15,14 @@ const OPTION_STAGGER = 0.6
  */
 export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Position; session: Session }) {
   const muted = usePresenterStore((s) => s.muted)
+  const volume = usePresenterStore((s) => s.volume)
   const locked = usePresenterStore((s) => s.locked)
   const { timer, left, running } = useTimeLeft()
   const prevPos = useRef<Position | null>(null)
   const prevLeft = useRef(left)
 
   useEffect(() => sfx.setMuted(muted), [muted])
+  useEffect(() => sfx.setVolume(volume), [volume])
 
   // Stage transitions.
   useEffect(() => {
@@ -31,7 +33,8 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
     if (!forward) return
 
     const slide = deck[pos.slide]
-    if (pos.slide !== prev.slide && slide.kind === 'round') sfx.play('roundIntro')
+    // The opening theme plays once, leaving the welcome screen; later rounds get the shorter sting.
+    if (pos.slide !== prev.slide && slide.kind === 'round') sfx.play(prev.slide === 0 && slide.roundIndex === 0 ? 'theme' : 'roundIntro')
     if (pos.slide !== prev.slide && slide.kind === 'finale') {
       sfx.play('finale')
       celebrate()
@@ -53,22 +56,32 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
     }
   }, [deck, pos, session.defaults.optionReveal])
 
-  // Answer locked in.
+  const current = deck[pos.slide]
+  const stageKind = stagesFor(current)[pos.stage]
+
+  // Answer locked in: the "final answer" boom, then the suspense drone holds until the reveal.
   useEffect(() => {
     if (locked) sfx.play('lock')
   }, [locked])
+  const suspenseOn = locked?.key === pos.slide && stageKind !== 'answer'
+  useEffect(() => {
+    if (suspenseOn) sfx.startLoop('suspense')
+    else sfx.stopLoop('suspense')
+  }, [suspenseOn])
 
-  // Tension bed while the clock runs on the current question.
+  // Music bed while the clock runs, building as time runs out.
   const onQuestion = timer.key === pos.slide
-  const current = deck[pos.slide]
   // No bed under audio/video clips: the clip is the soundtrack.
   const clipQuestion = current.kind === 'question' && (current.question.media?.kind === 'audio' || current.question.media?.kind === 'video')
   const bedOn = onQuestion && running && left > 0 && !clipQuestion
   useEffect(() => {
-    if (bedOn) sfx.startBed()
-    else sfx.stopBed()
+    if (bedOn) sfx.startLoop('bed')
+    else sfx.stopLoop('bed')
   }, [bedOn])
-  useEffect(() => () => sfx.stopBed(), [])
+  useEffect(() => {
+    if (bedOn && timer.durationMs) sfx.setBedIntensity(1 - left / timer.durationMs)
+  }, [bedOn, left, timer.durationMs])
+  useEffect(() => () => sfx.stopAll(), [])
 
   // Countdown ticks for the last five seconds, then the buzzer.
   useEffect(() => {
@@ -78,7 +91,7 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
     const secsBefore = Math.ceil(before / 1000)
     const secsNow = Math.ceil(left / 1000)
     if (left === 0 && before > 0) sfx.play('timeUp')
-    else if (secsNow < secsBefore && secsNow <= 5 && secsNow > 0) sfx.play('tick')
+    else if (secsNow < secsBefore && secsNow <= 5 && secsNow > 0) sfx.play('tick', 0, secsNow)
   }, [left, onQuestion, running])
 
   return null

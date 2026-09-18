@@ -17,9 +17,14 @@ export function HomePage() {
 
   return (
     <main className="mx-auto flex h-full max-w-3xl flex-col justify-center gap-8 p-8">
-      <header>
-        <p className="font-display text-sm font-semibold tracking-[0.3em] text-white/50 uppercase">Quizzeria</p>
-        <h1 className="font-display text-5xl font-extrabold">Quiz sessions</h1>
+      <header className="flex items-end justify-between gap-4">
+        <div>
+          <p className="font-display text-sm font-semibold tracking-[0.3em] text-white/50 uppercase">Quizzeria</p>
+          <h1 className="font-display text-5xl font-extrabold">Quiz sessions</h1>
+        </div>
+        <Link to="/sounds" className="rounded-xl px-4 py-2 font-display font-semibold text-white/80 ring-1 ring-white/15 transition hover:bg-stage-700">
+          🔊 Sound check
+        </Link>
       </header>
       <ul className="space-y-3">
         {state.data.sessions.map((s) => (

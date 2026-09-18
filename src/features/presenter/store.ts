@@ -22,6 +22,8 @@ interface PresenterState {
   /** Question-draw seed per session. Persisted so a reload never changes the questions mid-show. */
   seeds: Record<string, number>
   muted: boolean
+  /** Master sound volume, 0 … 1 (set on the sound check page). */
+  volume: number
   blackout: boolean
   helpOpen: boolean
   timer: TimerState
@@ -34,6 +36,7 @@ interface PresenterState {
   /** Drop this browser's reshuffle and go back to the session file's draw. */
   resetDraw: (sessionId: string) => void
   toggleMuted: () => void
+  setVolume: (volume: number) => void
   toggleBlackout: () => void
   setHelpOpen: (open: boolean) => void
 
@@ -60,6 +63,7 @@ export const usePresenterStore = create<PresenterState>()(
       positions: {},
       seeds: {},
       muted: false,
+      volume: 0.9,
       blackout: false,
       helpOpen: false,
       timer: idleTimer,
@@ -78,6 +82,7 @@ export const usePresenterStore = create<PresenterState>()(
           positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } },
         })),
       toggleMuted: () => set((s) => ({ muted: !s.muted })),
+      setVolume: (volume) => set({ volume }),
       toggleBlackout: () => set((s) => ({ blackout: !s.blackout })),
       setHelpOpen: (helpOpen) => set({ helpOpen }),
 
@@ -117,7 +122,7 @@ export const usePresenterStore = create<PresenterState>()(
     }),
     {
       name: 'quizzeria-presenter',
-      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, muted: s.muted }),
+      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, muted: s.muted, volume: s.volume }),
     },
   ),
 )

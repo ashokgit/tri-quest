@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router'
 import { HomePage } from './HomePage'
+import { SoundCheckPage } from '@/features/audio/SoundCheckPage'
 import { PresenterPage } from '@/features/presenter/PresenterPage'
 import { ReviewPage } from '@/features/review/ReviewPage'
 
@@ -11,6 +12,7 @@ export function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/present/:sessionId" element={<PresenterPage />} />
         <Route path="/review/:sessionId" element={<ReviewPage />} />
+        <Route path="/sounds" element={<SoundCheckPage />} />
       </Routes>
     </HashRouter>
   )

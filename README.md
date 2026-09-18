@@ -57,18 +57,22 @@ Every question can also have `showcase` (big text on the stage, e.g. an emoji pu
 
 ## Sound effects
 
-Sounds are generated in the browser (Web Audio), so they work offline without any audio files. The first key press or click turns sound on, because browsers block audio until then. `M` mutes.
+All sounds are original and generated live in the browser (Web Audio: synthesised brass, timpani, bells, cymbals and a hall reverb), so they work offline without any audio files. The first key press or click turns sound on, because browsers block audio until then. `M` mutes.
 
-To replace any sound with your own recording, put the files in `public/media/sfx/` and create `public/media/sfx/sfx.json` mapping each cue to a file. `sfx.example.json` is a starting point. You don't have to list every cue; anything left out keeps its built-in sound. `npm run validate` checks that every listed file exists.
+**Sound check:** open `#/sounds` (the "🔊 Sound check" link on the home page) to audition every cue on the hall speakers and set the master volume. The volume is saved for the show.
+
+To replace any sound with your own recording, put the file in `public/media/sfx/` and map the cue to it in `public/media/sfx/sfx.json`. `sfx.example.json` is a starting point. Cues you leave out keep their built-in sound. `npm run validate` checks the listed files exist.
 
 | Cue | When it plays |
 |---|---|
-| `roundIntro` | Round title card appears |
-| `optionIn` | Each answer bar slides in |
-| `bed` | **Loops** while the clock runs (question tension music); fades out on lock-in, reveal or time-up |
-| `tick` | Each of the last 5 seconds |
+| `theme` | Leaving the welcome screen (opening theme) |
+| `roundIntro` | Each later round's title card |
+| `optionIn` | Each answer bar slides in (A/C panned left, B/D right) |
+| `bed` | **Loops** while the clock runs, building up as time runs out; stops on lock-in, reveal or time-up. Off for audio/video questions |
+| `tick` | Each of the last 5 seconds, rising in pitch |
 | `timeUp` | Clock hits zero ("Hands up!") |
 | `lock` | Host locks in an answer with A–D ("final answer") |
+| `suspense` | **Loops** from lock-in until the reveal |
 | `correct` | Reveal when the answer is right (or nothing was locked) |
 | `wrong` | Reveal when the locked answer was wrong |
 | `reveal` | Answer shown for an open question |
