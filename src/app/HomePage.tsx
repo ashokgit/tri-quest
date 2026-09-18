@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router'
 import { getSession, getSessionIndex } from '@/data/source'
 import type { RoundOrder } from '@/features/presenter/deck'
@@ -36,18 +37,27 @@ const ORDERS: { value: RoundOrder; label: string; hint: string }[] = [
   { value: 'difficulty', label: 'By difficulty', hint: 'A rising ladder: easiest first, mixed subjects, up to the Final Challenge' },
 ]
 
+type Pending = { kind: 'reshuffle' } | { kind: 'order'; order: RoundOrder } | null
+
 function SessionCard({ id, title, event }: { id: string; title: string; event?: string }) {
   const session = useAsync(() => getSession(id), id)
   const reshuffle = usePresenterStore((s) => s.reshuffle)
   const setOrder = usePresenterStore((s) => s.setOrder)
+  const inProgress = usePresenterStore((s) => (s.positions[id]?.slide ?? 0) > 0)
   const order = useSessionOrder(session.status === 'ready' ? session.data : { id, order: 'category' })
+  // In-page confirmations: native confirm() dialogs are blocked in some embedded browsers.
+  const [pending, setPending] = useState<Pending>(null)
 
-  const onReshuffle = () => {
-    if (window.confirm(`Draw a new random set of questions for "${title}"?\n\nThis also restarts it from the welcome screen.`)) reshuffle(id)
-  }
   const onOrder = (next: RoundOrder) => {
-    if (next === order) return
-    if (window.confirm(`Switch "${title}" to ${next === 'difficulty' ? 'a difficulty ladder' : 'category rounds'}?\n\nSame questions, new order. The show restarts from the welcome screen.`)) setOrder(id, next)
+    if (next === order) return setPending(null)
+    // Before the show starts, switching is harmless; mid-show it restarts, so ask first.
+    if (inProgress) setPending({ kind: 'order', order: next })
+    else setOrder(id, next)
+  }
+  const confirm = () => {
+    if (pending?.kind === 'reshuffle') reshuffle(id)
+    if (pending?.kind === 'order') setOrder(id, pending.order)
+    setPending(null)
   }
 
   return (
@@ -58,25 +68,31 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
           {event && <span className="text-white/60">{event}</span>}
         </span>
         <span className="flex shrink-0 items-center gap-2 font-display font-semibold">
-          <button type="button" onClick={onReshuffle} className="rounded-xl px-4 py-2 text-white/60 ring-1 ring-white/15 transition hover:bg-stage-700 hover:text-white">
+          <button
+            type="button"
+            onClick={() => setPending({ kind: 'reshuffle' })}
+            className="rounded-xl px-4 py-2 text-white/60 ring-1 ring-white/15 transition hover:bg-stage-700 hover:text-white"
+          >
             Reshuffle
           </button>
           <Link to={`/review/${id}`} className="rounded-xl px-4 py-2 text-white/80 ring-1 ring-white/15 transition hover:bg-stage-700">
             Review
           </Link>
           <Link to={`/present/${id}`} className="rounded-xl bg-niet-red px-5 py-2 text-white transition hover:brightness-110">
-            Present →
+            {inProgress ? 'Resume →' : 'Present →'}
           </Link>
         </span>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
         <span className="font-display text-sm font-semibold tracking-wider text-white/50 uppercase">Order</span>
-        <div className="inline-flex rounded-xl bg-stage-950/60 p-1 ring-1 ring-white/10">
+        <div className="inline-flex rounded-xl bg-stage-950/60 p-1 ring-1 ring-white/10" role="radiogroup" aria-label="Round order">
           {ORDERS.map((o) => (
             <button
               key={o.value}
               type="button"
+              role="radio"
+              aria-checked={order === o.value}
               onClick={() => onOrder(o.value)}
               className={`rounded-lg px-4 py-1.5 font-display text-sm font-semibold transition ${
                 order === o.value ? 'bg-gold text-stage-950' : 'text-white/70 hover:text-white'
@@ -88,6 +104,24 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
         </div>
         <span className="text-sm text-white/50">{ORDERS.find((o) => o.value === order)?.hint}</span>
       </div>
+
+      {pending && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-lock/10 px-4 py-3 ring-1 ring-lock/40" role="alert">
+          <p className="text-sm text-white/85">
+            {pending.kind === 'reshuffle'
+              ? 'Draw a new random set of questions? This also restarts the show from the welcome screen.'
+              : `The show is in progress. Switch to ${pending.order === 'difficulty' ? 'the difficulty ladder' : 'category rounds'} and restart from the welcome screen? (Same questions, new order.)`}
+          </p>
+          <span className="flex gap-2 font-display text-sm font-semibold">
+            <button type="button" onClick={() => setPending(null)} className="rounded-lg px-3 py-1.5 ring-1 ring-white/20 hover:bg-stage-700">
+              Cancel
+            </button>
+            <button type="button" onClick={confirm} className="rounded-lg bg-lock px-3 py-1.5 text-stage-950 hover:brightness-110">
+              {pending.kind === 'reshuffle' ? 'Reshuffle & restart' : 'Switch & restart'}
+            </button>
+          </span>
+        </div>
+      )}
     </li>
   )
 }
