@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "categories": [
+    { "id": "science", "name": "+2 Science", "icon": "🧬" },
+    { "id": "niet", "name": "Know Your NIET", "icon": "🏛️" },
+    { "id": "audio-visual", "name": "Audio-Visual", "icon": "🎧" },
+    { "id": "fun-tricky", "name": "Fun & Tricky", "icon": "🤹" },
+    { "id": "engineering", "name": "Engineering & Tech", "icon": "⚙️" },
+    { "id": "current-affairs", "name": "Current Affairs", "icon": "📰" },
+    { "id": "gk", "name": "General Knowledge", "icon": "🌏" }
+  ],
+  "questions": [
+    {
+      "id": "sample-science-1",
+      "category": "science",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is the SI unit of electric charge?",
+      "options": ["Ampere", "Coulomb", "Volt", "Ohm"],
+      "answerIndex": 1,
+      "explanation": "One coulomb is the charge moved by one ampere in one second."
+    },
+    {
+      "id": "sample-niet-1",
+      "category": "niet",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "In which year was NIET established?",
+      "options": ["2001", "2005", "2010", "2015"],
+      "answerIndex": 1,
+      "explanation": "It's right there on the seal: ESTD 2005.",
+      "verify": true
+    },
+    {
+      "id": "sample-fun-1",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "What has keys but can't open any locks?",
+      "answer": "A keyboard (or a piano!)"
+    },
+    {
+      "id": "sample-engineering-1",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "The first computer 'bug' was an actual moth found inside a computer.",
+      "answer": true,
+      "explanation": "In 1947, engineers working on the Harvard Mark II taped a moth into their logbook."
+    }
+  ]
+}

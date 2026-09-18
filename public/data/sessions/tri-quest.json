@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "tri-quest",
+  "title": "Tri-Quest",
+  "event": "NIET Orientation 2026",
+  "tagline": "Happy · Healthy · Learning",
+  "durationMinutes": 60,
+  "defaults": { "timerSeconds": 30, "optionReveal": "sequential" },
+  "rounds": [
+    { "id": "r1-science", "title": "Science Warm-up", "category": "science", "questionIds": ["sample-science-1"] },
+    { "id": "r2-niet", "title": "Know Your NIET", "category": "niet", "questionIds": ["sample-niet-1"] },
+    { "id": "r3-fun", "title": "Fun & Tricky", "category": "fun-tricky", "timerSeconds": 20, "questionIds": ["sample-fun-1"] },
+    { "id": "r4-engineering", "title": "Engineering & Tech", "category": "engineering", "questionIds": ["sample-engineering-1"] }
+  ]
+}

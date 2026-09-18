@@ -1,0 +1,45 @@
+@import '@fontsource-variable/montserrat';
+@import '@fontsource-variable/inter';
+@import 'tailwindcss';
+
+/*
+ * NIET brand tokens (sampled from the seal at niet.edu.np/logo.webp).
+ * Deep navy stage for projector contrast; red is reserved for key moments.
+ */
+@theme {
+  --color-niet-blue: #0c4e93;
+  --color-niet-blue-bright: #1a56db;
+  --color-niet-red: #c62b2f;
+
+  --color-stage-950: #040b1c;
+  --color-stage-900: #071430;
+  --color-stage-800: #0b1f47;
+  --color-stage-700: #12306a;
+
+  /* Answer option colours A–D: distinct on a navy stage, tuned around the brand. */
+  --color-opt-a: #2f7bff;
+  --color-opt-b: #e5484d;
+  --color-opt-c: #f5b82e;
+  --color-opt-d: #14b8a6;
+
+  --color-correct: #22c55e;
+  --color-gold: #f5c542;
+
+  --font-display: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-stage-950 font-sans text-white antialiased;
+    /* Presenter is a fixed 16:9-ish stage; never scroll or select text by accident. */
+    overflow: hidden;
+    user-select: none;
+  }
+}
