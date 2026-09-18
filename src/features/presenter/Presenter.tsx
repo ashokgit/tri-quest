@@ -51,7 +51,8 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
   )
 
   useTimerLifecycle(deck, pos)
-  useHostKeys(deck, session.id, go, session.rounds.length)
+  // Count rounds from the deck: the difficulty ladder can have more levels than the session has rounds.
+  useHostKeys(deck, session.id, go, ladder.length)
   const cursorHidden = useIdleCursor()
 
   return (

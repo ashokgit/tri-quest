@@ -49,7 +49,7 @@ export function OptionTiles({ options, correctIndex, revealed, lockedIndex, sequ
                       {plain ? '◆ ' : ''}
                       {optionLetter(i)}:
                     </span>
-                    <span className="font-display leading-[1.12] font-bold" style={{ fontSize: optionFontSize(options[i]) }}>
+                    <span data-option-text className="font-display leading-[1.12] font-bold" style={{ fontSize: optionFontSize(options[i]) }}>
                       {options[i]}
                     </span>
                   </Lozenge>

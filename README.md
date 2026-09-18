@@ -15,6 +15,17 @@ npm run build      # validate + typecheck + production build into dist/
 npm run preview    # serve dist/ locally (use this on event day, fully offline)
 ```
 
+## Prep pages
+
+| Page | Route | What it's for |
+|---|---|---|
+| Review | `#/review/<session>` | Host cheat sheet of the current draw, with answers (printable) |
+| Slide check | `#/slides/<session>` | Every question in the pools at its fullest state, measured for overflow |
+| Verification sheet | `#/verify` | Printable sign-off sheet of all questions flagged `verify` |
+| Sound check | `#/sounds` | Audition every sound and set the hall volume |
+
+On event day, follow [RUNBOOK.md](RUNBOOK.md).
+
 ## Layout
 
 ```

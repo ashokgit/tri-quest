@@ -47,7 +47,7 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
       </div>
 
       {/* Upper stage */}
-      <div className="relative flex min-h-0 flex-1 items-center justify-center px-40 pt-10 pb-8">
+      <div data-upper-stage className="relative flex min-h-0 flex-1 items-center justify-center px-40 pt-10 pb-8">
         {q.media ? (
           <motion.div
             className="relative h-full max-h-[520px] w-full max-w-[1100px]"
@@ -95,13 +95,13 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
         <Rail />
         <motion.div initial={{ opacity: 0, scaleX: 0.7 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.45, ease: 'easeOut' }}>
           <Lozenge tip={60} className="min-h-[190px] py-6">
-            <h2 className="w-full text-center font-display text-[54px] leading-[1.18] font-bold text-balance">{q.prompt}</h2>
+            <h2 data-prompt className="w-full text-center font-display text-[54px] leading-[1.18] font-bold text-balance">{q.prompt}</h2>
           </Lozenge>
         </motion.div>
       </div>
 
       {/* Answers */}
-      <div className="mt-6 min-h-[118px] shrink-0">
+      <div data-answers className="mt-6 min-h-[118px] shrink-0">
         {options && showOptions && (
           <OptionTiles
             options={options}

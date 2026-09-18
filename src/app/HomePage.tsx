@@ -23,6 +23,12 @@ export function HomePage() {
           🔊 Sound check
         </Link>
       </header>
+      <nav className="-mt-4 flex flex-wrap gap-2 font-display text-sm font-semibold text-white/60">
+        <span className="py-1.5 tracking-wider uppercase">Prep:</span>
+        <Link to="/verify" className="rounded-lg px-3 py-1.5 ring-1 ring-white/10 hover:bg-stage-700 hover:text-white">
+          Verification sheet
+        </Link>
+      </nav>
       <ul className="space-y-3">
         {state.data.sessions.map((s) => (
           <SessionCard key={s.id} id={s.id} title={s.title} event={s.event} />
@@ -102,7 +108,10 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
             </button>
           ))}
         </div>
-        <span className="text-sm text-white/50">{ORDERS.find((o) => o.value === order)?.hint}</span>
+        <span className="flex-1 text-sm text-white/50">{ORDERS.find((o) => o.value === order)?.hint}</span>
+        <Link to={`/slides/${id}`} className="font-display text-sm font-semibold text-white/60 hover:text-white">
+          Slide check →
+        </Link>
       </div>
 
       {pending && (
