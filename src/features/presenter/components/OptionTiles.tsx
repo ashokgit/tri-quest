@@ -1,61 +1,59 @@
 import { motion } from 'motion/react'
-import { optionColor, optionLetter } from './palette'
+import { Lozenge, Rail, type LozengeVariant } from './Lozenge'
+import { optionLetter } from './palette'
 
 interface Props {
   options: string[]
   correctIndex: number
   revealed: boolean
+  /** Answer the host locked in for the student (shown amber until the reveal). */
+  lockedIndex: number | null
   sequential: boolean
-  /** Compact layout when media shares the screen. */
-  compact?: boolean
 }
 
-/** A–D answer tiles. On reveal the correct tile glows and the rest fade back. */
-export function OptionTiles({ options, correctIndex, revealed, sequential, compact = false }: Props) {
-  const twoColumns = options.length > 2 || !compact
+/**
+ * Game-show answer rows: two lozenges per row on a rail. A locked answer turns
+ * amber; on reveal the correct one flashes green and a wrong lock turns red.
+ */
+export function OptionTiles({ options, correctIndex, revealed, lockedIndex, sequential }: Props) {
+  const rows: number[][] = []
+  for (let i = 0; i < options.length; i += 2) rows.push(options.slice(i, i + 2).map((_, j) => i + j))
+
+  const variantFor = (i: number): LozengeVariant => {
+    if (revealed && i === correctIndex) return 'correct'
+    if (revealed && i === lockedIndex) return 'wrong'
+    if (i === lockedIndex) return 'locked'
+    return 'idle'
+  }
 
   return (
-    <div className={`grid gap-6 ${twoColumns ? 'grid-cols-2' : 'grid-cols-1'}`}>
-      {options.map((text, i) => {
-        const correct = i === correctIndex
-        const color = optionColor(i)
-        return (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{
-              opacity: revealed && !correct ? 0.28 : 1,
-              y: 0,
-              scale: revealed && correct ? 1.04 : 1,
-            }}
-            transition={{
-              delay: revealed ? 0 : sequential ? i * 0.55 : 0,
-              type: 'spring',
-              stiffness: 260,
-              damping: 22,
-            }}
-            className="relative flex items-center gap-6 rounded-3xl bg-stage-800/90 px-7 ring-2"
-            style={{
-              minHeight: compact ? 104 : 136,
-              ['--tw-ring-color' as string]: revealed && correct ? 'var(--color-correct)' : 'rgb(255 255 255 / 0.1)',
-              boxShadow: revealed && correct ? '0 0 60px 0 rgb(34 197 94 / 0.55)' : undefined,
-            }}
-          >
-            <span
-              className="grid shrink-0 place-items-center rounded-2xl font-display font-extrabold text-stage-950"
-              style={{
-                width: compact ? 64 : 80,
-                height: compact ? 64 : 80,
-                fontSize: compact ? 36 : 44,
-                background: revealed && correct ? 'var(--color-correct)' : color,
-              }}
-            >
-              {revealed && correct ? '✓' : optionLetter(i)}
-            </span>
-            <span className={`font-display leading-tight font-bold ${compact ? 'text-4xl' : 'text-5xl'}`}>{text}</span>
-          </motion.div>
-        )
-      })}
+    <div className="space-y-6">
+      {rows.map((row, r) => (
+        <div key={r} className="relative px-16">
+          <Rail />
+          <div className="relative grid grid-cols-2 gap-x-24">
+            {row.map((i) => {
+              const variant = variantFor(i)
+              const faded = revealed && variant === 'idle'
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scaleX: 0.6 }}
+                  animate={{ opacity: faded ? 0.35 : 1, scaleX: 1 }}
+                  transition={{ delay: revealed ? 0 : sequential ? i * 0.6 : 0, duration: 0.35, ease: 'easeOut' }}
+                >
+                  <Lozenge variant={variant} flash={variant === 'correct'} className="h-[118px]">
+                    <span className={`mr-5 font-display text-[44px] font-black ${variant === 'idle' ? 'text-gold' : ''}`}>
+                      {variant === 'idle' ? '◆' : ''} {optionLetter(i)}:
+                    </span>
+                    <span className="font-display text-[44px] leading-tight font-bold">{options[i]}</span>
+                  </Lozenge>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 const SHORTCUTS: [string, string][] = [
   ['→  Space  PgDn', 'Next step'],
   ['←  PgUp', 'Previous step'],
+  ['A – D', "Lock in a student's answer (amber)"],
   ['R', 'Reveal answer'],
   ['N', 'Skip to next slide'],
   ['T', 'Start / pause timer'],
@@ -10,7 +11,7 @@ const SHORTCUTS: [string, string][] = [
   ['P', 'Play / pause audio or video'],
   ['1 – 9', 'Jump to round'],
   ['Home', 'Back to welcome'],
-  ['B', 'Blank the screen'],
+  ['.', 'Blank the screen'],
   ['M', 'Mute sounds'],
   ['F', 'Full screen'],
   ['H  ?', 'Show / hide this help'],
@@ -26,7 +27,7 @@ export function HelpOverlay() {
     >
       <div className="w-[960px] rounded-[40px] bg-stage-800 p-14 ring-2 ring-white/10">
         <h2 className="mb-8 font-display text-5xl font-extrabold">Host controls</h2>
-        <dl className="grid grid-cols-[auto_1fr] gap-x-10 gap-y-4 text-3xl">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-10 gap-y-3 text-[28px]">
           {SHORTCUTS.map(([keys, action]) => (
             <div key={keys} className="contents">
               <dt className="font-display font-bold text-gold">{keys}</dt>

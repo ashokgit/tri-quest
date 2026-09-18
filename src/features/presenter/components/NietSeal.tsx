@@ -8,3 +8,16 @@ export function NietSeal({ size, className = '' }: { size: number; className?: s
     </div>
   )
 }
+
+/** Broadcast-style corner "bug" shown on every slide after the welcome screen. */
+export function NietBug({ label }: { label?: string }) {
+  return (
+    <div className="absolute top-10 left-12 z-10 flex items-center gap-4 opacity-85">
+      <NietSeal size={84} className="ring-2" />
+      <div className="font-display leading-tight">
+        <p className="text-2xl font-black tracking-wider">NIET</p>
+        {label && <p className="text-lg font-semibold tracking-[0.2em] text-white/60 uppercase">{label}</p>}
+      </div>
+    </div>
+  )
+}

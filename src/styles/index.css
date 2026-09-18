@@ -24,6 +24,10 @@
 
   --color-correct: #22c55e;
   --color-gold: #f5c542;
+  --color-lock: #f59e0b;
+
+  --animate-spin-slow: spin 90s linear infinite;
+  --animate-spin-slower: spin 160s linear infinite reverse;
 
   --font-display: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;

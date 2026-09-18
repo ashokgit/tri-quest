@@ -35,7 +35,7 @@ scripts/validate-data.ts       pre-build data checks
 
 | `type` | Fields | Notes |
 |---|---|---|
-| `mcq` | `options[]`, `answerIndex` | 2–6 options |
+| `mcq` | `options[]`, `answerIndex` | 2–4 options (game-show 2×2 layout) |
 | `truefalse` | `answer: boolean` | |
 | `open` | `answer: string` | no options, answer shown on reveal |
 

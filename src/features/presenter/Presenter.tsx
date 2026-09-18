@@ -3,8 +3,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { LoadedSession } from '@/data/source'
 import { Backdrop } from './components/Backdrop'
 import { HelpOverlay } from './components/HelpOverlay'
-import { Hud } from './components/Hud'
 import { STAGE_MEDIA_ATTR } from './components/MediaView'
+import { NietBug } from './components/NietSeal'
 import {
   buildDeck,
   clampPosition,
@@ -39,8 +39,13 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
   const helpOpen = usePresenterStore((s) => s.helpOpen)
   const slide = deck[pos.slide]
 
+  const ladder = useMemo(
+    () => deck.flatMap((s) => (s.kind === 'round' ? [{ title: s.round.title, icon: s.category?.icon }] : [])),
+    [deck],
+  )
+
   useTimerLifecycle(deck, pos)
-  useHostKeys(deck, pos, go, session.rounds.length)
+  useHostKeys(deck, session.id, go, session.rounds.length)
   const cursorHidden = useIdleCursor()
 
   return (
@@ -65,6 +70,7 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
                 category={slide.category}
                 questionCount={slide.round.questionIds.length}
                 timerSeconds={slide.round.timerSeconds ?? session.defaults.timerSeconds}
+                ladder={ladder}
               />
             )}
             {slide.kind === 'question' && <QuestionSlide slide={slide} slideIndex={pos.slide} stage={pos.stage} session={session} />}
@@ -72,7 +78,7 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
           </motion.div>
         </AnimatePresence>
 
-        <Hud slide={slide} event={session.event} roundCount={session.rounds.length} />
+        {slide.kind !== 'welcome' && <NietBug label={session.event?.replace(/^NIET\s*/, '')} />}
 
         <AnimatePresence>{helpOpen && <HelpOverlay />}</AnimatePresence>
         {blackout && <div className="absolute inset-0 z-50 bg-black" />}
@@ -88,7 +94,8 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
  */
 function useTimerLifecycle(deck: ReturnType<typeof buildDeck>, pos: Position) {
   useEffect(() => {
-    const { timer, startTimer, stopTimer, resetTimer } = usePresenterStore.getState()
+    const { timer, locked, startTimer, stopTimer, resetTimer, clearLock } = usePresenterStore.getState()
+    if (locked && locked.key !== pos.slide) clearLock()
     const slide = deck[pos.slide]
     if (slide.kind !== 'question') {
       if (timer.key !== null) resetTimer()
@@ -104,11 +111,13 @@ function useTimerLifecycle(deck: ReturnType<typeof buildDeck>, pos: Position) {
   }, [deck, pos.slide, pos.stage])
 }
 
-function useHostKeys(deck: ReturnType<typeof buildDeck>, pos: Position, go: (p: Position) => void, roundCount: number) {
+function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: (p: Position) => void, roundCount: number) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return
       const store = usePresenterStore.getState()
+      // Read the position fresh from the store so rapid key presses (clicker double-taps) each count.
+      const pos = clampPosition(deck, store.positions[sessionId] ?? START)
 
       // While help is open, any key closes it.
       if (store.helpOpen && e.key !== 'h' && e.key !== '?') {
@@ -154,8 +163,6 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, pos: Position, go: (p: 
         case 'p':
         case 'P':
           return toggleStageMedia()
-        case 'b':
-        case 'B':
         case '.':
           return store.toggleBlackout()
         case 'm':
@@ -173,6 +180,17 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, pos: Position, go: (p: 
           return
       }
 
+      // A–D lock in the answer a student gave (amber), before the reveal.
+      if (/^[a-dA-D]$/.test(e.key)) {
+        const slide = deck[pos.slide]
+        const stage = stagesFor(slide)[pos.stage]
+        if (slide.kind !== 'question' || stage !== 'options') return
+        const count = slide.question.type === 'mcq' ? slide.question.options.length : slide.question.type === 'truefalse' ? 2 : 0
+        const index = e.key.toLowerCase().charCodeAt(0) - 97
+        if (index < count) store.lockAnswer(pos.slide, index)
+        return
+      }
+
       if (/^[1-9]$/.test(e.key)) {
         const roundIndex = Number(e.key) - 1
         if (roundIndex < roundCount) go({ slide: roundIntroIndex(deck, roundIndex), stage: 0 })
@@ -181,7 +199,7 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, pos: Position, go: (p: 
 
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [deck, pos, go, roundCount])
+  }, [deck, sessionId, go, roundCount])
 }
 
 function toggleStageMedia() {

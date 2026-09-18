@@ -22,6 +22,8 @@ interface PresenterState {
   blackout: boolean
   helpOpen: boolean
   timer: TimerState
+  /** Answer the host locked in for the current question (slide index + option index). */
+  locked: { key: number; index: number } | null
 
   setPosition: (sessionId: string, pos: Position) => void
   toggleMuted: () => void
@@ -33,6 +35,8 @@ interface PresenterState {
   addTime: (seconds: number) => void
   stopTimer: () => void
   resetTimer: () => void
+  lockAnswer: (key: number, index: number) => void
+  clearLock: () => void
 }
 
 const idleTimer: TimerState = { key: null, durationMs: 0, endsAt: null, remainingMs: 0 }
@@ -48,6 +52,7 @@ export const usePresenterStore = create<PresenterState>()(
       blackout: false,
       helpOpen: false,
       timer: idleTimer,
+      locked: null,
 
       setPosition: (sessionId, pos) => set((s) => ({ positions: { ...s.positions, [sessionId]: pos } })),
       toggleMuted: () => set((s) => ({ muted: !s.muted })),
@@ -79,6 +84,14 @@ export const usePresenterStore = create<PresenterState>()(
         }),
       stopTimer: () => set(({ timer }) => ({ timer: { ...timer, endsAt: null, remainingMs: remainingMs(timer) } })),
       resetTimer: () => set({ timer: idleTimer }),
+      // Locking in pauses the clock (the "final answer" moment); pressing the same letter again unlocks.
+      lockAnswer: (key, index) =>
+        set(({ locked, timer }) =>
+          locked?.key === key && locked.index === index
+            ? { locked: null }
+            : { locked: { key, index }, timer: { ...timer, endsAt: null, remainingMs: remainingMs(timer) } },
+        ),
+      clearLock: () => set({ locked: null }),
     }),
     {
       name: 'quizzeria-presenter',

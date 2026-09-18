@@ -62,7 +62,7 @@ export const McqQuestion = z
   .object({
     ...questionBase,
     type: z.literal('mcq'),
-    options: z.array(z.string().min(1)).min(2).max(6),
+    options: z.array(z.string().min(1)).min(2).max(4),
     answerIndex: z.number().int().nonnegative(),
   })
   .refine((q) => q.answerIndex < q.options.length, {
