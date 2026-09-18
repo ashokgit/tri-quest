@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { randomSeed } from '@/data/draw'
 import type { Position } from './deck'
 
 /**
@@ -18,6 +19,8 @@ export interface TimerState {
 interface PresenterState {
   /** Last position per session, persisted so a closed tab resumes where it was. */
   positions: Record<string, Position>
+  /** Question-draw seed per session. Persisted so a reload never changes the questions mid-show. */
+  seeds: Record<string, number>
   muted: boolean
   blackout: boolean
   helpOpen: boolean
@@ -26,6 +29,10 @@ interface PresenterState {
   locked: { key: number; index: number } | null
 
   setPosition: (sessionId: string, pos: Position) => void
+  /** New random draw for a session; restarts it from the welcome slide. */
+  reshuffle: (sessionId: string) => void
+  /** Drop this browser's reshuffle and go back to the session file's draw. */
+  resetDraw: (sessionId: string) => void
   toggleMuted: () => void
   toggleBlackout: () => void
   setHelpOpen: (open: boolean) => void
@@ -41,6 +48,9 @@ interface PresenterState {
 
 const idleTimer: TimerState = { key: null, durationMs: 0, endsAt: null, remainingMs: 0 }
 
+/** The session's draw number: the host's reshuffle if any, else the one pinned in the session file. */
+export const useSessionSeed = (session: { id: string; seed: number }) => usePresenterStore((s) => s.seeds[session.id] ?? session.seed)
+
 export const remainingMs = (t: TimerState, now = Date.now()) =>
   t.endsAt === null ? t.remainingMs : Math.max(0, t.endsAt - now)
 
@@ -48,6 +58,7 @@ export const usePresenterStore = create<PresenterState>()(
   persist(
     (set) => ({
       positions: {},
+      seeds: {},
       muted: false,
       blackout: false,
       helpOpen: false,
@@ -55,6 +66,17 @@ export const usePresenterStore = create<PresenterState>()(
       locked: null,
 
       setPosition: (sessionId, pos) => set((s) => ({ positions: { ...s.positions, [sessionId]: pos } })),
+      resetDraw: (sessionId) =>
+        set((s) => {
+          const seeds = { ...s.seeds }
+          delete seeds[sessionId]
+          return { seeds, positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
+        }),
+      reshuffle: (sessionId) =>
+        set((s) => ({
+          seeds: { ...s.seeds, [sessionId]: randomSeed() },
+          positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } },
+        })),
       toggleMuted: () => set((s) => ({ muted: !s.muted })),
       toggleBlackout: () => set((s) => ({ blackout: !s.blackout })),
       setHelpOpen: (helpOpen) => set({ helpOpen }),
@@ -95,7 +117,7 @@ export const usePresenterStore = create<PresenterState>()(
     }),
     {
       name: 'quizzeria-presenter',
-      partialize: (s) => ({ positions: s.positions, muted: s.muted }),
+      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, muted: s.muted }),
     },
   ),
 )

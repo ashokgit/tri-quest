@@ -5,8 +5,9 @@
   "event": "NIET Orientation 2026",
   "tagline": "Happy · Healthy · Learning",
   "durationMinutes": 60,
+  "seed": 2026,
   "defaults": {
-    "timerSeconds": 30,
+    "timerSeconds": 20,
     "optionReveal": "sequential"
   },
   "rounds": [
@@ -14,6 +15,7 @@
       "id": "r1-science",
       "title": "Science Warm-up",
       "category": "science",
+      "pick": 12,
       "questionIds": [
         "sci-force-unit",
         "sci-red-wavelength",
@@ -41,6 +43,7 @@
       "id": "r2-niet",
       "title": "Know Your NIET",
       "category": "niet",
+      "pick": 8,
       "questionIds": [
         "niet-full-form",
         "niet-principal",
@@ -61,6 +64,7 @@
       "title": "Audio-Visual",
       "category": "audio-visual",
       "timerSeconds": 30,
+      "pick": 9,
       "questionIds": [
         "av-boudhanath",
         "av-patan-durbar",
@@ -84,6 +88,7 @@
       "title": "Fun & Tricky",
       "category": "fun-tricky",
       "timerSeconds": 20,
+      "pick": 10,
       "questionIds": [
         "fun-keyboard",
         "fun-months-28",
@@ -107,6 +112,7 @@
       "id": "r5-engineering",
       "title": "Engineering & Tech",
       "category": "engineering",
+      "pick": 6,
       "questionIds": [
         "eng-moth-bug",
         "eng-cpu",
@@ -124,6 +130,7 @@
       "id": "r6-gk",
       "title": "General Knowledge",
       "category": "gk",
+      "pick": 8,
       "questionIds": [
         "gk-nepal-flag",
         "gk-national-flower",
@@ -146,6 +153,7 @@
       "id": "r7-current-affairs",
       "title": "Current Affairs",
       "category": "current-affairs",
+      "pick": 7,
       "questionIds": [
         "ca-nepal-pm",
         "ca-balen-rapper",

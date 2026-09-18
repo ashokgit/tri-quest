@@ -25,13 +25,14 @@ import { WelcomeSlide } from './slides/WelcomeSlide'
 import { sfx } from './sfx'
 import { SoundDirector } from './SoundDirector'
 import { Stage } from './Stage'
-import { usePresenterStore } from './store'
+import { usePresenterStore, useSessionSeed } from './store'
 
 const START: Position = { slide: 0, stage: 0 }
 
 export function Presenter({ loaded }: { loaded: LoadedSession }) {
   const { session } = loaded
-  const deck = useMemo(() => buildDeck(loaded), [loaded])
+  const seed = useSessionSeed(session)
+  const deck = useMemo(() => buildDeck(loaded, seed), [loaded, seed])
 
   const saved = usePresenterStore((s) => s.positions[session.id])
   const pos = clampPosition(deck, saved ?? START)

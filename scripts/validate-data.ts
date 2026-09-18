@@ -68,7 +68,8 @@ for (const file of sessionFiles) {
       used.add(qid)
     }
   }
-  console.log(`✔ ${session.id}: ${session.rounds.length} rounds, ${used.size} questions`)
+  const shown = session.rounds.reduce((n, r) => n + (r.pick ?? r.questionIds.length), 0)
+  console.log(`✔ ${session.id}: ${session.rounds.length} rounds, ${shown} shown from a pool of ${used.size}`)
 }
 // Optional sound overrides: every listed file must exist.
 const sfxManifest = join(publicDir, 'media/sfx/sfx.json')

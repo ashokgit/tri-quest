@@ -9,7 +9,8 @@ For now it's frontend only: questions and sessions are static JSON files in `pub
 ```bash
 npm install
 npm run dev        # local dev server at http://localhost:5173
-npm run validate   # check question/session JSON, ids and media files
+npm run validate   # check question/session JSON and ids (missing media = warning)
+npm run check:event  # same, but missing media files are errors: run before the event
 npm run build      # validate + typecheck + production build into dist/
 npm run preview    # serve dist/ locally (use this on event day, fully offline)
 ```
@@ -30,6 +31,19 @@ src/
   styles/index.css             Tailwind + NIET brand tokens
 scripts/validate-data.ts       pre-build data checks
 ```
+
+## Random draws (show 60 of 100)
+
+A round can show a random subset of its pool:
+
+```json
+{ "id": "r1-science", "title": "Science Warm-up", "pick": 12, "questionIds": ["…20 ids…"] }
+```
+
+- **Balanced:** the draw keeps the pool's easy/medium/hard mix and orders each round easy → hard.
+- **Stable:** the draw comes from the session's `seed` (the "draw number"), so the same seed always shows the same questions, on every device, after every reload.
+- **Reshuffle:** the home page's **Reshuffle** button draws a new set in *this browser* and restarts the show. To make it the draw everywhere, copy its number into `"seed"` in the session file.
+- **Review:** `#/review/<session>` is a printable host cheat sheet of the current draw, with answers, media and "verify" flags.
 
 ## Question types
 

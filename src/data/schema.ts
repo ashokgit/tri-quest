@@ -92,16 +92,26 @@ export const QuestionBank = z.object({
   questions: z.array(Question),
 })
 
-export const Round = z.object({
-  id,
-  title: z.string().min(1),
-  subtitle: z.string().optional(),
-  /** Category used for the round card's icon/colour. */
-  category: id.optional(),
-  /** Overrides the session's default timer for this round. */
-  timerSeconds: z.number().int().positive().optional(),
-  questionIds: z.array(id).min(1),
-})
+export const Round = z
+  .object({
+    id,
+    title: z.string().min(1),
+    subtitle: z.string().optional(),
+    /** Category used for the round card's icon/colour. */
+    category: id.optional(),
+    /** Overrides the session's default timer for this round. */
+    timerSeconds: z.number().int().positive().optional(),
+    /** The round's question pool, in order. */
+    questionIds: z.array(id).min(1),
+    /** Show only this many questions, drawn at random (balanced by difficulty) from the pool. */
+    pick: z.number().int().positive().optional(),
+    /** Randomise which questions appear even without `pick`. */
+    shuffle: z.boolean().default(false),
+  })
+  .refine((r) => r.pick === undefined || r.pick <= r.questionIds.length, {
+    message: 'pick is larger than the question pool',
+    path: ['pick'],
+  })
 
 export const Session = z.object({
   version: z.literal(1),
@@ -111,6 +121,8 @@ export const Session = z.object({
   tagline: z.string().optional(),
   /** Planned length, used for pacing hints only. */
   durationMinutes: z.number().int().positive().optional(),
+  /** Default draw number for rounds with `pick`, so every device shows the same questions until reshuffled. */
+  seed: z.number().int().positive().default(2026),
   defaults: z.object({
     timerSeconds: z.number().int().positive().default(30),
     /** Options appear all together or one by one (A → B → C → D). */

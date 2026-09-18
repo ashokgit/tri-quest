@@ -1,3 +1,4 @@
+import { drawRound, seededRandom } from '@/data/draw'
 import type { LoadedSession } from '@/data/source'
 import type { Category, Question, Round } from '@/data/schema'
 
@@ -30,15 +31,40 @@ export interface Position {
 /** Number of extra "clue" steps for a progressively revealed image. */
 export const IMAGE_CLUE_STEPS = 2
 
-export function buildDeck({ session, bank, questionsById }: LoadedSession): Slide[] {
+/** A round with its question pool resolved to the questions actually shown. */
+export interface DrawnRound {
+  round: Round
+  category?: Category
+  questions: Question[]
+}
+
+/**
+ * Resolves each round's draw. Rounds with `pick`/`shuffle` get a seeded random,
+ * difficulty-balanced selection; the same seed always gives the same questions.
+ */
+export function drawSession({ session, bank, questionsById }: LoadedSession, seed: number): DrawnRound[] {
+  const categories = new Map(bank.categories.map((c) => [c.id, c]))
+  const rng = seededRandom(seed)
+  return session.rounds.map((round) => {
+    const pool = round.questionIds.map((qid) => questionsById.get(qid)!)
+    const questions = drawRound(pool, round, rng)
+    return {
+      // Consumers read round.questionIds for counts, so it reflects the draw.
+      round: { ...round, questionIds: questions.map((q) => q.id) },
+      category: round.category ? categories.get(round.category) : undefined,
+      questions,
+    }
+  })
+}
+
+export function buildDeck(loaded: LoadedSession, seed: number): Slide[] {
+  const { session, bank } = loaded
   const categories = new Map(bank.categories.map((c) => [c.id, c]))
   const slides: Slide[] = [{ kind: 'welcome' }]
 
-  session.rounds.forEach((round, roundIndex) => {
-    const roundCategory = round.category ? categories.get(round.category) : undefined
-    slides.push({ kind: 'round', round, roundIndex, category: roundCategory })
-    round.questionIds.forEach((qid, indexInRound) => {
-      const question = questionsById.get(qid)!
+  drawSession(loaded, seed).forEach(({ round, category, questions }, roundIndex) => {
+    slides.push({ kind: 'round', round, roundIndex, category })
+    questions.forEach((question, indexInRound) => {
       slides.push({
         kind: 'question',
         question,
