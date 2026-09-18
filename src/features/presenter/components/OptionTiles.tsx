@@ -43,10 +43,13 @@ export function OptionTiles({ options, correctIndex, revealed, lockedIndex, sequ
                   transition={{ delay: revealed ? 0 : sequential ? i * 0.6 : 0, duration: 0.35, ease: 'easeOut' }}
                 >
                   <Lozenge variant={variant} flash={variant === 'correct'} className="h-[118px]">
-                    <span className={`mr-5 font-display text-[44px] font-black ${variant === 'idle' ? 'text-gold' : ''}`}>
-                      {variant === 'idle' ? '◆' : ''} {optionLetter(i)}:
+                    <span className={`mr-5 shrink-0 font-display text-[44px] font-black whitespace-nowrap ${variant === 'idle' ? 'text-gold' : ''}`}>
+                      {variant === 'idle' ? '◆ ' : ''}
+                      {optionLetter(i)}:
                     </span>
-                    <span className="font-display text-[44px] leading-tight font-bold">{options[i]}</span>
+                    <span className="font-display leading-[1.12] font-bold" style={{ fontSize: optionFontSize(options[i]) }}>
+                      {options[i]}
+                    </span>
                   </Lozenge>
                 </motion.div>
               )
@@ -56,4 +59,11 @@ export function OptionTiles({ options, correctIndex, revealed, lockedIndex, sequ
       ))}
     </div>
   )
+}
+
+/** Long answers shrink so they fit the bar in at most two lines. */
+function optionFontSize(text: string) {
+  if (text.length > 38) return 34
+  if (text.length > 26) return 38
+  return 44
 }

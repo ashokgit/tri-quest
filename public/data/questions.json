@@ -375,20 +375,192 @@
       ]
     },
     {
-      "id": "sample-niet-1",
+      "id": "niet-full-form",
       "category": "niet",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does NIET stand for?",
+      "options": [
+        "Nepal Institute of Engineering and Technology",
+        "National Institute of Engineering and Technology",
+        "National Institute of Education and Technology",
+        "National Institute of Electronics and Technology"
+      ],
+      "answerIndex": 1,
+      "explanation": "National Institute of Engineering and Technology. Say it three times fast!",
+      "tags": []
+    },
+    {
+      "id": "niet-principal",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Who is the Principal of NIET?",
+      "answer": "Surya Aryal",
+      "explanation": "Now you know who to thank for this orientation!",
+      "tags": []
+    },
+    {
+      "id": "niet-established",
+      "category": "niet",
+      "verify": true,
       "difficulty": "easy",
       "type": "mcq",
       "prompt": "In which year was NIET established?",
       "options": [
-        "2001",
         "2005",
+        "2001",
         "2010",
         "2015"
       ],
-      "answerIndex": 1,
+      "answerIndex": 0,
       "explanation": "It's right there on the seal: ESTD 2005.",
-      "verify": true
+      "tags": []
+    },
+    {
+      "id": "niet-university",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "NIET is affiliated with which university?",
+      "options": [
+        "Tribhuvan University",
+        "Purbanchal University",
+        "Kathmandu University",
+        "Pokhara University"
+      ],
+      "answerIndex": 1,
+      "explanation": "All BE and BTech programs at NIET are affiliated with Purbanchal University.",
+      "tags": []
+    },
+    {
+      "id": "niet-newest-program",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "NIET's newest program is the BTech in Artificial Intelligence.",
+      "answer": true,
+      "explanation": "It joins BE Biomedical and BE Computer Engineering as the third program.",
+      "tags": []
+    },
+    {
+      "id": "niet-river",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which river flows just north of the NIET campus?",
+      "options": [
+        "Bishnumati",
+        "Nakkhu",
+        "Manohara",
+        "Bagmati"
+      ],
+      "answerIndex": 3,
+      "explanation": "Kupondole sits on the south bank of the Bagmati. Cross the Thapathali bridge and you're in Kathmandu.",
+      "tags": [
+        "geography"
+      ]
+    },
+    {
+      "id": "niet-seal-words",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which three words appear on the NIET seal?",
+      "options": [
+        "Learn · Lead · Serve",
+        "Happy · Healthy · Learning",
+        "Innovate · Lead · Transform",
+        "Knowledge · Skill · Service"
+      ],
+      "answerIndex": 1,
+      "explanation": "Happy · Healthy · Learning. (Innovate · Lead · Transform are NIET's values, a sneaky trap!)",
+      "tags": []
+    },
+    {
+      "id": "niet-first-discipline",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "NIET began as Nepal's first college for which engineering discipline?",
+      "options": [
+        "Computer Engineering",
+        "Civil Engineering",
+        "Electrical Engineering",
+        "Biomedical Engineering"
+      ],
+      "answerIndex": 3,
+      "explanation": "NIET pioneered Biomedical Engineering education in Nepal.",
+      "tags": []
+    },
+    {
+      "id": "niet-tagline",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Complete NIET's tagline: \"Where innovation begins and …\"",
+      "answer": "evolves",
+      "explanation": "\"Where innovation begins and evolves.\"",
+      "tags": []
+    },
+    {
+      "id": "niet-original-name",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "When it started in 2005, what was NIET called?",
+      "options": [
+        "Biomedical Institute of Nepal",
+        "College of Applied Engineering Sciences",
+        "College of Biomedical Engineering and Applied Sciences",
+        "Institute of Medical Technology"
+      ],
+      "answerIndex": 2,
+      "explanation": "CBEAS: the College of Biomedical Engineering and Applied Sciences.",
+      "tags": []
+    },
+    {
+      "id": "niet-qaa",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "NIET was the first engineering college in Kathmandu Valley to receive QAA accreditation from which body?",
+      "options": [
+        "University Grants Commission (UGC)",
+        "Nepal Engineering Council",
+        "Ministry of Education",
+        "CTEVT"
+      ],
+      "answerIndex": 0,
+      "explanation": "UGC Nepal awarded NIET its QAA Institutional Accreditation.",
+      "tags": []
+    },
+    {
+      "id": "niet-best-college-year",
+      "category": "niet",
+      "verify": true,
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In which year did Nepal's Ministry of Education name NIET the Best Private Engineering College?",
+      "options": [
+        "2010",
+        "2013",
+        "2016",
+        "2019"
+      ],
+      "answerIndex": 2,
+      "explanation": "In 2016 (2073/74 BS).",
+      "tags": []
     },
     {
       "id": "sample-fun-1",
