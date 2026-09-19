@@ -37,6 +37,17 @@ export const CUE_SYNTHS: Record<OneShotCue, (e: AudioEngine, at: number, variant
     brass(e, hit2, A_MAJOR, 1.6, 0.09, 0.03, { reverb: 0.3 })
   },
 
+  /** A new question lands: a quick swell into a soft boom and a bright two-note chime. */
+  questionIn(e, at) {
+    noise(e, { at, dur: 0.35, gain: 0.08, filter: 'bandpass', freq: 400, toFreq: 4000, q: 1.2, attack: 0.3, reverb: 0.2 })
+    const hit = at + 0.32
+    kick(e, hit, 0.6, 120, 45, 0.5)
+    tone(e, { at: hit, freq: midi(38), dur: 1.2, gain: 0.18, attack: 0.01 })
+    bell(e, hit, 81, 0.12, 1.4, { pan: -0.3 })
+    bell(e, hit + 0.09, 86, 0.12, 1.6, { pan: 0.3 })
+    noise(e, { at: hit, dur: 0.9, gain: 0.03, filter: 'highpass', freq: 8000, attack: 0.05, reverb: 0.4 })
+  },
+
   /** Answer bar sliding in: whoosh plus a chime, panned to its side of the screen (A/C left, B/D right). */
   optionIn(e, at, i) {
     const pan = i % 2 === 0 ? -0.5 : 0.5

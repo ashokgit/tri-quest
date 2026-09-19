@@ -7,6 +7,7 @@ import { sfx } from './sfx'
 const ONE_SHOTS: { cue: OneShotCue; label: string; when: string; variant?: number }[] = [
   { cue: 'theme', label: 'Round 1 theme', when: 'Leaving the welcome screen' },
   { cue: 'roundIntro', label: 'Round intro', when: 'Each round title card' },
+  { cue: 'questionIn', label: 'Question in', when: 'Each new question lands' },
   { cue: 'optionIn', label: 'Answer slides in', when: 'Each answer bar (A/C left, B/D right)' },
   { cue: 'tick', label: 'Countdown tick', when: 'Last 5 seconds, rising in pitch', variant: 3 },
   { cue: 'timeUp', label: 'Time up', when: 'Clock hits zero: "Hands up!"' },

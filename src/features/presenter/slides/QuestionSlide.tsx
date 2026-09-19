@@ -80,7 +80,7 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
         )}
 
         {/* A clip's clock starts on P, so it shows from then on, even before the options. */}
-        <TimerSlot slideIndex={slideIndex} visible={(stage >= timerStageIndex(slide) || hasClip(q)) && !revealed} />
+        <TimerSlot slideIndex={slideIndex} visible={(stage >= timerStageIndex(slide) || hasClip(q)) && !revealed} beside={Boolean(q.media)} />
 
         <AnimatePresence>
           {revealed && q.explanation && (
@@ -120,6 +120,24 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
             sequential={session.defaults.optionReveal === 'sequential'}
           />
         )}
+        {/* Open questions have no tiles: hold the answer's place so everyone knows the next step is the reveal. */}
+        {q.type === 'open' && !revealed && (
+          <div className="relative px-16">
+            <Rail />
+            <motion.div
+              className="relative mx-auto w-[70%]"
+              initial={{ opacity: 0, scaleX: 0.5 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+            >
+              <Lozenge variant="idle" className="h-[118px]">
+                <span className="w-full text-center font-display text-[40px] font-extrabold tracking-wide text-white/70">
+                  🎤 No options — answer from memory
+                </span>
+              </Lozenge>
+            </motion.div>
+          </div>
+        )}
         {q.type === 'open' && revealed && (
           <div className="relative px-16">
             <Rail />
@@ -142,14 +160,15 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
   )
 }
 
-function TimerSlot({ slideIndex, visible }: { slideIndex: number; visible: boolean }) {
+/** `beside`: a picture or clip fills the middle, so the clock moves into the left margin instead of covering it. */
+function TimerSlot({ slideIndex, visible, beside }: { slideIndex: number; visible: boolean; beside: boolean }) {
   const { timer, left } = useTimeLeft()
   // At zero the "Hands up!" badge takes the clock's place.
   return (
     <AnimatePresence>
       {visible && timer.key === slideIndex && left > 0 && (
         <motion.div
-          className="absolute top-10 left-1/2 -translate-x-1/2"
+          className={beside ? 'absolute top-[230px] left-[110px]' : 'absolute top-10 left-1/2 -translate-x-1/2'}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}

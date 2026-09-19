@@ -40,6 +40,7 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
       celebrate()
     }
     if (slide.kind !== 'question') return
+    if (pos.slide !== prev.slide) sfx.play('questionIn')
 
     const q = slide.question
     const stage = stagesFor(slide)[pos.stage]

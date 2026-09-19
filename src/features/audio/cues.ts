@@ -2,6 +2,7 @@
 export const CUES = [
   'theme',
   'roundIntro',
+  'questionIn',
   'optionIn',
   'tick',
   'timeUp',

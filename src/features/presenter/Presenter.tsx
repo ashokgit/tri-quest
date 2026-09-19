@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { LoadedSession } from '@/data/source'
 import { sfx } from '@/features/audio/sfx'
 import { toggleFullscreen } from '@/lib/fullscreen'
@@ -54,6 +54,7 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
   )
 
   useTimerLifecycle(deck, pos)
+  useAutoOptions(deck, pos, go)
   // Count rounds from the deck: the difficulty ladder can have more levels than the session has rounds.
   useHostKeys(deck, session.id, go, ladder.length)
   const cursorHidden = useIdleCursor()
@@ -125,6 +126,31 @@ function useTimerLifecycle(deck: ReturnType<typeof buildDeck>, pos: Position) {
       stopTimer()
     }
   }, [deck, pos.slide, pos.stage])
+}
+
+/** Pause between a question landing and its options sliding in. */
+const AUTO_OPTIONS_MS = 1500
+
+/**
+ * Moving forward onto a question brings its options in by themselves after a beat.
+ * Only when options come straight after the prompt (clue pictures stay manual),
+ * and not when stepping back to re-read the prompt.
+ */
+function useAutoOptions(deck: ReturnType<typeof buildDeck>, pos: Position, go: (p: Position) => void) {
+  const { slide: slideIndex, stage } = pos
+  const wantsAuto = stagesFor(deck[slideIndex])[1] === 'options'
+  /** The last slide whose options have been shown; back on its prompt, the host wants to re-read. */
+  const shown = useRef<number | null>(null)
+  useEffect(() => {
+    if (stage !== 0) {
+      shown.current = slideIndex
+      return
+    }
+    if (!wantsAuto || shown.current === slideIndex) return
+    // Any key the host presses first moves the position, which cancels this.
+    const id = window.setTimeout(() => go({ slide: slideIndex, stage: 1 }), AUTO_OPTIONS_MS)
+    return () => window.clearTimeout(id)
+  }, [slideIndex, stage, wantsAuto, go])
 }
 
 function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: (p: Position) => void, roundCount: number) {

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import type { Media } from '@/data/schema'
 import { mediaUrl } from '@/data/source'
 import { usePresenterStore } from '../store'
@@ -51,23 +51,49 @@ function ImageMedia({ media, obscurity }: { media: Extract<Media, { kind: 'image
 }
 
 /**
- * Only the top strip of the image shows; on the answer the rest drops into view.
- * The image is sized to its own box (not object-contain) so the crop is a share of the photo, not of the frame.
+ * Only the top strip of the image shows, enlarged to fill the frame; on the answer the
+ * window opens out to the whole photo. Sizes are computed from the frame and the photo,
+ * since the strip has to be scaled as a share of the photo, not of the frame.
  */
 function PeekImage({ media, hidden, onError }: { media: Extract<Media, { kind: 'image' }>; hidden: boolean; onError: () => void }) {
-  const cut = 100 - (media.peek ?? 30)
+  const frame = useRef<HTMLDivElement>(null)
+  const [box, setBox] = useState<{ w: number; h: number } | null>(null)
+  const [photo, setPhoto] = useState<{ w: number; h: number } | null>(null)
+  useLayoutEffect(() => {
+    const el = frame.current
+    if (!el) return
+    const measure = () => setBox({ w: el.clientWidth, h: el.clientHeight })
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const shown = hidden ? (media.peek ?? 30) / 100 : 1
+  // Scale that fits the visible part of the photo (full width × `shown` of its height) inside the frame.
+  const scale = box && photo ? Math.min(box.w / photo.w, box.h / (photo.h * shown)) : 0
+  const ease = { duration: 1.1, ease: [0.22, 1, 0.36, 1] as const }
+
   return (
-    <div className="relative grid h-full w-full place-items-center overflow-hidden rounded-3xl bg-black/40 ring-2 ring-white/10">
-      <motion.img
-        src={mediaUrl(media.src)}
-        alt={media.alt ?? ''}
-        draggable={false}
-        onError={onError}
-        className="max-h-full max-w-full"
+    <div ref={frame} className="relative grid h-full w-full place-items-center overflow-hidden rounded-3xl bg-black/40 ring-2 ring-white/10">
+      <motion.div
+        className="relative overflow-hidden"
         initial={false}
-        animate={{ clipPath: `inset(0% 0% ${hidden ? cut : 0}% 0%)` }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-      />
+        animate={photo && scale ? { width: photo.w * scale, height: photo.h * shown * scale } : { width: 0, height: 0 }}
+        transition={ease}
+      >
+        <motion.img
+          src={mediaUrl(media.src)}
+          alt={media.alt ?? ''}
+          draggable={false}
+          onError={onError}
+          onLoad={(e) => setPhoto({ w: e.currentTarget.naturalWidth, h: e.currentTarget.naturalHeight })}
+          className="absolute top-0 left-0 max-w-none"
+          initial={false}
+          animate={photo && scale ? { width: photo.w * scale } : { width: 0 }}
+          transition={ease}
+        />
+      </motion.div>
     </div>
   )
 }

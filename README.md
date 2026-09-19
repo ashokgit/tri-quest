@@ -88,6 +88,7 @@ To replace any sound with your own recording, put the file in `public/media/sfx/
 | `lobby` | **Loops** on the welcome screen: an opening fanfare, then faint music the host can talk over. Starts on the Present click; press **I** to replay the fanfare. A file override just loops |
 | `theme` | Leaving the welcome screen (opening theme) |
 | `roundIntro` | Each later round's title card |
+| `questionIn` | Each new question lands (its options follow on their own 1.5 s later) |
 | `optionIn` | Each answer bar slides in (A/C panned left, B/D right) |
 | `bed` | **Loops** while the clock runs, building up as time runs out; stops on lock-in, reveal or time-up. Off for audio/video questions |
 | `tick` | Each of the last 5 seconds, rising in pitch |
