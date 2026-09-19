@@ -1,6 +1,6 @@
-# Tri-Quest media checklist
+# NIET-Quest media checklist
 
-✅ **All 13 files are in place** (sourced from Wikimedia Commons; authors and licences are in [CREDITS.md](CREDITS.md)). `npm run check:event` passes.
+✅ **All 28 files are in place** (sourced from Wikimedia Commons; authors and licences are in [CREDITS.md](CREDITS.md)). `npm run check:event` passes.
 ⚠️ **Listen to `av-sarangi.mp3` before the event**: the source video is a Gandharva musician who may also sing, and it was clipped without listening.
 
 To replace any file, keep **exactly** this name and path, update CREDITS.md, and re-run `npm run check:event`.
@@ -13,7 +13,9 @@ Good free sources: **Wikimedia Commons** (check each file's licence), **Unsplash
 |---|---|---|---|
 | `av-boudhanath.jpg` | Boudhanath Stupa, the classic front view with the eyes | blur → clear | Landscape, well lit |
 | `av-patan-durbar.jpg` | Patan Durbar Square | starts zoomed in 4× at the centre | Keep the telltale temples **off-centre**, so the zoomed-in start doesn't give it away |
-| `av-einstein.jpg` | Portrait of Albert Einstein | none | A public-domain 1921 portrait is on Wikimedia |
+| `av-kid-*.jpg`, `av-young-*.jpg` | Childhood / young photos of famous people | none | Only public-domain photos. To use a modern celebrity, drop in your own photo under a new name and add a question |
+| `av-tilicho.jpg`, `av-rara.jpg`, `av-phoksundo.jpg` | Nepal's lakes (Know Your Nepal round) | none | |
+| `av-nyatapola.jpg`, `av-janaki-mandir.jpg`, `av-xray-hand.jpg`, `av-ram-module.jpg`, `av-pacemaker.jpg`, `av-deep-blue.jpg` | Landmarks, tech and biomedical | none | |
 | `av-eiffel-tower.jpg` | Eiffel Tower | starts zoomed in 4× | Use a **daytime** photo (photos of the night lighting are copyrighted). A close-up of the iron lattice at the centre is ideal |
 | `av-marie-curie.jpg` | Portrait of Marie Curie | blur → clear | Public-domain portraits are on Wikimedia |
 | `av-resistor.jpg` | A single resistor with visible colour bands | starts zoomed in 4× | A plain background works best |
@@ -29,6 +31,8 @@ Keep clips to **5–15 seconds**. Trim any silence at the start, because `P` sta
 | `av-heartbeat.mp3` | A heartbeat heard through a stethoscope (lub-dub) |
 | `av-dolphin.mp3` | Dolphin clicks and whistles |
 | `av-sarangi.mp3` | Nepali sarangi solo, no singing (so the lyrics don't give it away) |
+| `av-singing-bowl.mp3` | A Himalayan singing bowl |
+| `av-sos-morse.mp3` | SOS in Morse code |
 | `av-dial-up.mp3` | A dial-up modem connecting, from the handshake screech onwards |
 
 ## Video: `public/media/video/`

@@ -2,7 +2,7 @@
  * Show logo: gold rings around the NIET triangle (split into four, like the seal),
  * with a slowly turning outer ring.
  */
-export function TriQuestEmblem({ size = 520, glow = true }: { size?: number; glow?: boolean }) {
+export function NietQuestEmblem({ size = 520, glow = true }: { size?: number; glow?: boolean }) {
   // Equilateral triangle centred in a 400×400 box.
   const top = [200, 92]
   const left = [106.5, 254]
@@ -78,7 +78,7 @@ export function TriQuestEmblem({ size = 520, glow = true }: { size?: number; glo
           stroke="#3a2600"
           strokeWidth="1"
         >
-          TRI-QUEST
+          NIET-QUEST
         </text>
       </svg>
     </div>

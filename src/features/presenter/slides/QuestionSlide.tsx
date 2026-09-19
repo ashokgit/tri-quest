@@ -5,7 +5,7 @@ import { Lozenge, Rail } from '../components/Lozenge'
 import { MediaView } from '../components/MediaView'
 import { OptionTiles } from '../components/OptionTiles'
 import { TimerRing } from '../components/TimerRing'
-import { TriQuestEmblem } from '../components/TriQuestEmblem'
+import { NietQuestEmblem } from '../components/NietQuestEmblem'
 import { useTimeLeft } from '../components/useTimeLeft'
 import { usePresenterStore } from '../store'
 
@@ -76,7 +76,7 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
           </motion.p>
         ) : (
           <div className="opacity-25">
-            <TriQuestEmblem size={380} glow={false} />
+            <NietQuestEmblem size={380} glow={false} />
           </div>
         )}
 

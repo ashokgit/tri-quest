@@ -25,7 +25,7 @@ function VerifySheet({ bank }: { bank: QuestionBank }) {
         <header className="space-y-3">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="font-display text-sm font-semibold tracking-[0.3em] text-stage-950/50 uppercase">Tri-Quest · NIET Orientation 2026</p>
+              <p className="font-display text-sm font-semibold tracking-[0.3em] text-stage-950/50 uppercase">NIET-Quest · NIET Orientation 2026</p>
               <h1 className="font-display text-3xl font-extrabold">Question verification sheet</h1>
             </div>
             <div className="flex gap-2 font-display text-sm font-semibold print:hidden">

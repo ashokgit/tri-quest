@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import type { Session } from '@/data/schema'
 import { Lozenge, Rail } from '../components/Lozenge'
 import { NietSeal } from '../components/NietSeal'
-import { TriQuestEmblem } from '../components/TriQuestEmblem'
+import { NietQuestEmblem } from '../components/NietQuestEmblem'
 
 const MOTTO = ['Happy', 'Healthy', 'Learning']
 
@@ -36,7 +36,7 @@ export function WelcomeSlide({ session }: { session: Session }) {
         animate={{ scale: 1, opacity: 1, rotate: 0 }}
         transition={{ type: 'spring', stiffness: 70, damping: 13 }}
       >
-        <TriQuestEmblem size={560} />
+        <NietQuestEmblem size={560} />
       </motion.div>
 
       <motion.div

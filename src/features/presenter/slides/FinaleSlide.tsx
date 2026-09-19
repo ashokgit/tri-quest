@@ -2,13 +2,13 @@ import { motion } from 'motion/react'
 import type { Session } from '@/data/schema'
 import { Lozenge, Rail } from '../components/Lozenge'
 import { NietSeal } from '../components/NietSeal'
-import { TriQuestEmblem } from '../components/TriQuestEmblem'
+import { NietQuestEmblem } from '../components/NietQuestEmblem'
 
 export function FinaleSlide({ session }: { session: Session }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-10">
       <motion.div initial={{ scale: 0, rotate: 90 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 80, damping: 12 }}>
-        <TriQuestEmblem size={400} />
+        <NietQuestEmblem size={400} />
       </motion.div>
 
       <motion.div

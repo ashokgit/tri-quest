@@ -1,6 +1,6 @@
 # Quizzeria
 
-A reusable quiz platform for NIET events and classes. The first session is **Tri-Quest**, the quiz for NIET Orientation 2026.
+A reusable quiz platform for NIET events and classes. The first session is **NIET-Quest**, the quiz for NIET Orientation 2026.
 
 For now it's frontend only: questions and sessions are static JSON files in `public/data`. Supabase will replace them later, and only `src/data/source.ts` will need to change.
 

@@ -12,6 +12,11 @@
       "icon": "🏛️"
     },
     {
+      "id": "nepal-geo",
+      "name": "Know Your Nepal",
+      "icon": "🏔️"
+    },
+    {
       "id": "audio-visual",
       "name": "Audio-Visual",
       "icon": "🎧"
@@ -44,24 +49,6 @@
   ],
   "questions": [
     {
-      "id": "sci-force-unit",
-      "category": "science",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What is the SI unit of force?",
-      "options": [
-        "Joule",
-        "Watt",
-        "Pascal",
-        "Newton"
-      ],
-      "answerIndex": 3,
-      "explanation": "1 newton is the force that accelerates 1 kg at 1 m/s².",
-      "tags": [
-        "physics"
-      ]
-    },
-    {
       "id": "sci-red-wavelength",
       "category": "science",
       "difficulty": "easy",
@@ -80,42 +67,6 @@
       ]
     },
     {
-      "id": "sci-gold-symbol",
-      "category": "science",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What is the chemical symbol for gold?",
-      "options": [
-        "Ag",
-        "Au",
-        "Gd",
-        "Go"
-      ],
-      "answerIndex": 1,
-      "explanation": "From the Latin \"aurum\". Ag is silver, from \"argentum\".",
-      "tags": [
-        "chemistry"
-      ]
-    },
-    {
-      "id": "sci-atmosphere-gas",
-      "category": "science",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Which gas makes up most of Earth's atmosphere?",
-      "options": [
-        "Nitrogen",
-        "Oxygen",
-        "Carbon dioxide",
-        "Argon"
-      ],
-      "answerIndex": 0,
-      "explanation": "About 78% nitrogen and 21% oxygen.",
-      "tags": [
-        "chemistry"
-      ]
-    },
-    {
       "id": "sci-diamond-graphite",
       "category": "science",
       "difficulty": "easy",
@@ -125,60 +76,6 @@
       "explanation": "Both are pure carbon (allotropes). Only the way the atoms bond is different.",
       "tags": [
         "chemistry"
-      ]
-    },
-    {
-      "id": "sci-powerhouse",
-      "category": "science",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Which organelle is called the \"powerhouse of the cell\"?",
-      "options": [
-        "Nucleus",
-        "Ribosome",
-        "Mitochondria",
-        "Golgi apparatus"
-      ],
-      "answerIndex": 2,
-      "explanation": "Mitochondria make most of the cell's ATP through cellular respiration.",
-      "tags": [
-        "biology"
-      ]
-    },
-    {
-      "id": "sci-heart-chambers",
-      "category": "science",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "How many chambers does the human heart have?",
-      "options": [
-        "Two",
-        "Four",
-        "Three",
-        "Six"
-      ],
-      "answerIndex": 1,
-      "explanation": "Two atria and two ventricles.",
-      "tags": [
-        "biology"
-      ]
-    },
-    {
-      "id": "sci-derivative-x2",
-      "category": "science",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What is the derivative of x² with respect to x?",
-      "options": [
-        "2x",
-        "x",
-        "x³/3",
-        "2"
-      ],
-      "answerIndex": 0,
-      "explanation": "Power rule: d/dx (xⁿ) = n·xⁿ⁻¹.",
-      "tags": [
-        "maths"
       ]
     },
     {
@@ -380,34 +277,6 @@
       ]
     },
     {
-      "id": "niet-full-form",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What does NIET stand for?",
-      "options": [
-        "Nepal Institute of Engineering and Technology",
-        "National Institute of Engineering and Technology",
-        "National Institute of Education and Technology",
-        "National Institute of Electronics and Technology"
-      ],
-      "answerIndex": 1,
-      "explanation": "National Institute of Engineering and Technology. Say it three times fast!",
-      "tags": []
-    },
-    {
-      "id": "niet-principal",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "Who is the Principal of NIET?",
-      "answer": "Surya Aryal",
-      "explanation": "Now you know who to thank for this orientation!",
-      "tags": []
-    },
-    {
       "id": "niet-established",
       "category": "niet",
       "verify": true,
@@ -423,161 +292,6 @@
       "answerIndex": 0,
       "explanation": "It's right there on the seal: ESTD 2005.",
       "tags": []
-    },
-    {
-      "id": "niet-university",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "NIET is affiliated with which university?",
-      "options": [
-        "Tribhuvan University",
-        "Purbanchal University",
-        "Kathmandu University",
-        "Pokhara University"
-      ],
-      "answerIndex": 1,
-      "explanation": "All BE and BTech programs at NIET are affiliated with Purbanchal University.",
-      "tags": []
-    },
-    {
-      "id": "niet-newest-program",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "easy",
-      "type": "truefalse",
-      "prompt": "NIET's newest program is the BTech in Artificial Intelligence.",
-      "answer": true,
-      "explanation": "It joins BE Biomedical and BE Computer Engineering as the third program.",
-      "tags": []
-    },
-    {
-      "id": "niet-river",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "medium",
-      "type": "mcq",
-      "prompt": "Which river flows just north of the NIET campus?",
-      "options": [
-        "Bishnumati",
-        "Nakkhu",
-        "Manohara",
-        "Bagmati"
-      ],
-      "answerIndex": 3,
-      "explanation": "Kupondole sits on the south bank of the Bagmati. Cross the Thapathali bridge and you're in Kathmandu.",
-      "tags": [
-        "geography"
-      ]
-    },
-    {
-      "id": "niet-seal-words",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "medium",
-      "type": "mcq",
-      "prompt": "Which three words appear on the NIET seal?",
-      "options": [
-        "Learn · Lead · Serve",
-        "Happy · Healthy · Learning",
-        "Innovate · Lead · Transform",
-        "Knowledge · Skill · Service"
-      ],
-      "answerIndex": 1,
-      "explanation": "Happy · Healthy · Learning. (Innovate · Lead · Transform are NIET's values, a sneaky trap!)",
-      "tags": []
-    },
-    {
-      "id": "niet-first-discipline",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "medium",
-      "type": "mcq",
-      "prompt": "NIET began as Nepal's first college for which engineering discipline?",
-      "options": [
-        "Computer Engineering",
-        "Civil Engineering",
-        "Electrical Engineering",
-        "Biomedical Engineering"
-      ],
-      "answerIndex": 3,
-      "explanation": "NIET pioneered Biomedical Engineering education in Nepal.",
-      "tags": []
-    },
-    {
-      "id": "niet-tagline",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "medium",
-      "type": "open",
-      "prompt": "Complete NIET's tagline: \"Where innovation begins and …\"",
-      "answer": "evolves",
-      "explanation": "\"Where innovation begins and evolves.\"",
-      "tags": []
-    },
-    {
-      "id": "niet-original-name",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "hard",
-      "type": "mcq",
-      "prompt": "When it started in 2005, what was NIET called?",
-      "options": [
-        "Biomedical Institute of Nepal",
-        "College of Applied Engineering Sciences",
-        "College of Biomedical Engineering and Applied Sciences",
-        "Institute of Medical Technology"
-      ],
-      "answerIndex": 2,
-      "explanation": "CBEAS: the College of Biomedical Engineering and Applied Sciences.",
-      "tags": []
-    },
-    {
-      "id": "niet-qaa",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "hard",
-      "type": "mcq",
-      "prompt": "NIET was the first engineering college in Kathmandu Valley to receive QAA accreditation from which body?",
-      "options": [
-        "University Grants Commission (UGC)",
-        "Nepal Engineering Council",
-        "Ministry of Education",
-        "CTEVT"
-      ],
-      "answerIndex": 0,
-      "explanation": "UGC Nepal awarded NIET its QAA Institutional Accreditation.",
-      "tags": []
-    },
-    {
-      "id": "niet-best-college-year",
-      "category": "niet",
-      "verify": true,
-      "difficulty": "hard",
-      "type": "mcq",
-      "prompt": "In which year did Nepal's Ministry of Education name NIET the Best Private Engineering College?",
-      "options": [
-        "2010",
-        "2013",
-        "2016",
-        "2019"
-      ],
-      "answerIndex": 2,
-      "explanation": "In 2016 (2073/74 BS).",
-      "tags": []
-    },
-    {
-      "id": "fun-keyboard",
-      "category": "fun-tricky",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "What has keys but can't open any locks?",
-      "answer": "A keyboard (or a piano!)",
-      "explanation": "You probably touched one today already.",
-      "tags": [
-        "riddle"
-      ]
     },
     {
       "id": "fun-months-28",
@@ -598,18 +312,6 @@
       ]
     },
     {
-      "id": "fun-towel",
-      "category": "fun-tricky",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "What gets wetter the more it dries?",
-      "answer": "A towel",
-      "explanation": "It dries you, and gets wetter doing it.",
-      "tags": [
-        "riddle"
-      ]
-    },
-    {
       "id": "fun-second-place",
       "category": "fun-tricky",
       "difficulty": "easy",
@@ -625,18 +327,6 @@
       "explanation": "You took their spot, so you're 2nd. First place is still ahead of you!",
       "tags": [
         "trick"
-      ]
-    },
-    {
-      "id": "fun-clock",
-      "category": "fun-tricky",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "What has hands but can't clap?",
-      "answer": "A clock",
-      "explanation": "Two hands, zero applause.",
-      "tags": [
-        "riddle"
       ]
     },
     {
@@ -810,42 +500,6 @@
       ]
     },
     {
-      "id": "eng-cpu",
-      "category": "engineering",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What does CPU stand for?",
-      "options": [
-        "Central Processing Unit",
-        "Computer Personal Unit",
-        "Central Program Utility",
-        "Core Processing Unit"
-      ],
-      "answerIndex": 0,
-      "explanation": "The CPU is the computer's brain: it carries out the instructions of a program.",
-      "tags": [
-        "computer"
-      ]
-    },
-    {
-      "id": "eng-chatgpt",
-      "category": "engineering",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Which company created ChatGPT?",
-      "options": [
-        "Google",
-        "Meta",
-        "Microsoft",
-        "OpenAI"
-      ],
-      "answerIndex": 3,
-      "explanation": "OpenAI released ChatGPT in November 2022.",
-      "tags": [
-        "ai"
-      ]
-    },
-    {
       "id": "eng-ecg",
       "category": "engineering",
       "difficulty": "easy",
@@ -970,102 +624,6 @@
       "explanation": "Dr Christiaan Barnard performed it in Cape Town, South Africa.",
       "tags": [
         "biomedical"
-      ]
-    },
-    {
-      "id": "gk-nepal-flag",
-      "category": "gk",
-      "difficulty": "easy",
-      "type": "truefalse",
-      "prompt": "Nepal's flag is the only national flag in the world that isn't a rectangle.",
-      "answer": true,
-      "explanation": "Its two stacked pennants make it unique among national flags.",
-      "tags": [
-        "nepal"
-      ]
-    },
-    {
-      "id": "gk-national-flower",
-      "category": "gk",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What is the national flower of Nepal?",
-      "options": [
-        "Lotus",
-        "Marigold",
-        "Rhododendron",
-        "Rose"
-      ],
-      "answerIndex": 2,
-      "explanation": "Lali Gurans (rhododendron) turns the hills red every spring.",
-      "tags": [
-        "nepal"
-      ]
-    },
-    {
-      "id": "gk-buddha-birthplace",
-      "category": "gk",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Where was Gautama Buddha born?",
-      "options": [
-        "Lumbini",
-        "Bodh Gaya",
-        "Kapilvastu",
-        "Sarnath"
-      ],
-      "answerIndex": 0,
-      "explanation": "Lumbini, in Nepal, is a UNESCO World Heritage Site.",
-      "tags": [
-        "nepal"
-      ]
-    },
-    {
-      "id": "gk-national-bird",
-      "category": "gk",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What is the national bird of Nepal?",
-      "options": [
-        "Peacock",
-        "Danphe",
-        "Kalij pheasant",
-        "Crane"
-      ],
-      "answerIndex": 1,
-      "explanation": "The Danphe (Himalayan monal) is famous for its shimmering rainbow feathers.",
-      "tags": [
-        "nepal"
-      ]
-    },
-    {
-      "id": "gk-largest-ocean",
-      "category": "gk",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Which is the largest ocean on Earth?",
-      "options": [
-        "Atlantic",
-        "Indian",
-        "Arctic",
-        "Pacific"
-      ],
-      "answerIndex": 3,
-      "explanation": "The Pacific covers about a third of Earth's surface, more than all the land combined.",
-      "tags": [
-        "world"
-      ]
-    },
-    {
-      "id": "gk-mona-lisa",
-      "category": "gk",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "Who painted the Mona Lisa?",
-      "answer": "Leonardo da Vinci",
-      "explanation": "It hangs in the Louvre in Paris, behind bulletproof glass.",
-      "tags": [
-        "world"
       ]
     },
     {
@@ -1196,24 +754,6 @@
       ]
     },
     {
-      "id": "gk-constitution-year",
-      "category": "gk",
-      "difficulty": "hard",
-      "type": "mcq",
-      "prompt": "In which year was the current Constitution of Nepal promulgated?",
-      "options": [
-        "2006",
-        "2008",
-        "2012",
-        "2015"
-      ],
-      "answerIndex": 3,
-      "explanation": "It was promulgated on 20 September 2015 (Asoj 3, 2072 BS).",
-      "tags": [
-        "nepal"
-      ]
-    },
-    {
       "id": "gk-most-time-zones",
       "category": "gk",
       "difficulty": "hard",
@@ -1230,39 +770,6 @@
       "tags": [
         "world",
         "trick"
-      ]
-    },
-    {
-      "id": "ca-nepal-pm",
-      "category": "current-affairs",
-      "verify": true,
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Who is the current Prime Minister of Nepal?",
-      "options": [
-        "Sushila Karki",
-        "K.P. Sharma Oli",
-        "Balen Shah",
-        "Pushpa Kamal Dahal"
-      ],
-      "answerIndex": 2,
-      "explanation": "Balen Shah was sworn in on 27 March 2026, becoming Nepal's youngest Prime Minister.",
-      "tags": [
-        "nepal",
-        "politics"
-      ]
-    },
-    {
-      "id": "ca-balen-rapper",
-      "category": "current-affairs",
-      "verify": true,
-      "difficulty": "easy",
-      "type": "truefalse",
-      "prompt": "Before politics, Nepal's Prime Minister Balen Shah was known as a rapper.",
-      "answer": true,
-      "explanation": "He was a rapper, then Mayor of Kathmandu (2022–2026), before becoming Prime Minister.",
-      "tags": [
-        "nepal"
       ]
     },
     {
@@ -1323,46 +830,6 @@
       "tags": [
         "sport",
         "world"
-      ]
-    },
-    {
-      "id": "ca-first-female-pm",
-      "category": "current-affairs",
-      "verify": true,
-      "difficulty": "medium",
-      "type": "mcq",
-      "prompt": "Who became Nepal's first female Prime Minister in September 2025?",
-      "options": [
-        "Bidya Devi Bhandari",
-        "Sushila Karki",
-        "Onsari Gharti Magar",
-        "Sujata Koirala"
-      ],
-      "answerIndex": 1,
-      "explanation": "Sushila Karki, also Nepal's first female Chief Justice, led the interim government after the Gen Z protests.",
-      "tags": [
-        "nepal",
-        "politics"
-      ]
-    },
-    {
-      "id": "ca-election-2026-party",
-      "category": "current-affairs",
-      "verify": true,
-      "difficulty": "medium",
-      "type": "mcq",
-      "prompt": "Which party won a majority in Nepal's March 2026 general election?",
-      "options": [
-        "Nepali Congress",
-        "CPN-UML",
-        "CPN (Maoist Centre)",
-        "Rastriya Swatantra Party"
-      ],
-      "answerIndex": 3,
-      "explanation": "The RSP won 182 of the 275 seats in the House of Representatives.",
-      "tags": [
-        "nepal",
-        "politics"
       ]
     },
     {
@@ -1495,45 +962,6 @@
         "reveal": "zoom",
         "alt": "Patan Durbar Square"
       }
-    },
-    {
-      "id": "av-einstein",
-      "category": "audio-visual",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Who is this famous scientist?",
-      "options": [
-        "Isaac Newton",
-        "Albert Einstein",
-        "Nikola Tesla",
-        "Stephen Hawking"
-      ],
-      "answerIndex": 1,
-      "explanation": "Albert Einstein: relativity, E = mc², and the 1921 Nobel Prize in Physics.",
-      "tags": [
-        "image",
-        "science"
-      ],
-      "media": {
-        "kind": "image",
-        "src": "media/images/av-einstein.jpg",
-        "reveal": "none",
-        "alt": "Albert Einstein"
-      }
-    },
-    {
-      "id": "av-emoji-titanic",
-      "category": "audio-visual",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "Guess the movie!",
-      "showcase": "🚢 🧊 💔",
-      "answer": "Titanic",
-      "explanation": "\"I'm the king of the world!\" (1997)",
-      "tags": [
-        "emoji",
-        "movie"
-      ]
     },
     {
       "id": "av-emoji-lion-king",
@@ -1883,24 +1311,6 @@
       ]
     },
     {
-      "id": "gz-goat",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What does \"GOAT\" stand for?",
-      "options": [
-        "Good On All Tasks",
-        "Game Over, All Time",
-        "Greatest Of All Time",
-        "Genius Of All Teams"
-      ],
-      "answerIndex": 2,
-      "explanation": "Messi or Ronaldo? The debate never ends.",
-      "tags": [
-        "slang"
-      ]
-    },
-    {
       "id": "gz-404",
       "category": "gen-z",
       "difficulty": "easy",
@@ -1958,24 +1368,6 @@
       ]
     },
     {
-      "id": "gz-snapchat-ghost",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Which app has a ghost as its logo?",
-      "options": [
-        "Telegram",
-        "Discord",
-        "Snapchat",
-        "Threads"
-      ],
-      "answerIndex": 2,
-      "explanation": "Snapchat's ghost is nicknamed \"Ghostface Chillah\".",
-      "tags": [
-        "apps"
-      ]
-    },
-    {
       "id": "gz-tiktok-bytedance",
       "category": "gen-z",
       "difficulty": "medium",
@@ -1989,18 +1381,6 @@
       ],
       "answerIndex": 3,
       "explanation": "ByteDance launched it in China as Douyin in 2016, then TikTok worldwide.",
-      "tags": [
-        "apps"
-      ]
-    },
-    {
-      "id": "gz-twitter-x",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "truefalse",
-      "prompt": "In 2023, Twitter was renamed \"X\".",
-      "answer": true,
-      "explanation": "Elon Musk rebranded it in July 2023, and the blue bird logo was retired.",
       "tags": [
         "apps"
       ]
@@ -2040,18 +1420,6 @@
       "explanation": "Invented in Japan in 1994 to track car parts. Now it's how we pay for momo.",
       "tags": [
         "tech"
-      ]
-    },
-    {
-      "id": "gz-pubg-chicken",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "Finish the PUBG victory line: \"Winner winner…\"",
-      "answer": "Chicken dinner!",
-      "explanation": "Every PUBG player's favourite screen.",
-      "tags": [
-        "gaming"
       ]
     },
     {
@@ -2109,24 +1477,6 @@
       ]
     },
     {
-      "id": "gz-mario-plumber",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "What is Super Mario's job?",
-      "options": [
-        "Carpenter",
-        "Plumber",
-        "Chef",
-        "Electrician"
-      ],
-      "answerIndex": 1,
-      "explanation": "Fun twist: in his first game, Donkey Kong (1981), Mario was a carpenter!",
-      "tags": [
-        "gaming"
-      ]
-    },
-    {
       "id": "gz-bts-members",
       "category": "gen-z",
       "difficulty": "easy",
@@ -2164,24 +1514,6 @@
       ]
     },
     {
-      "id": "gz-squid-game",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "mcq",
-      "prompt": "Squid Game was made in which country?",
-      "options": [
-        "Japan",
-        "South Korea",
-        "China",
-        "Thailand"
-      ],
-      "answerIndex": 1,
-      "explanation": "Red light, green light!",
-      "tags": [
-        "series"
-      ]
-    },
-    {
       "id": "gz-luffy-dream",
       "category": "gen-z",
       "difficulty": "medium",
@@ -2216,26 +1548,6 @@
       "tags": [
         "nepal",
         "sports"
-      ]
-    },
-    {
-      "id": "gz-balen-peek",
-      "category": "gen-z",
-      "difficulty": "easy",
-      "type": "open",
-      "prompt": "You only get the top of this photo. Who is he?",
-      "media": {
-        "kind": "image",
-        "src": "media/images/av-balen-shah.jpg",
-        "alt": "Balen Shah",
-        "reveal": "peek",
-        "peek": 30
-      },
-      "answer": "Balen Shah (Balendra Shah)",
-      "explanation": "Rapper, structural engineer, Mayor of Kathmandu, and now Prime Minister of Nepal!",
-      "tags": [
-        "image",
-        "nepal"
       ]
     },
     {
@@ -2352,6 +1664,1315 @@
         "alt": "The “One does not simply” meme",
         "reveal": "none"
       }
+    },
+    {
+      "id": "geo-tilicho-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Tilicho Lake, one of the highest lakes in the world, lies in which district?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-tilicho.jpg",
+        "alt": "Tilicho Lake",
+        "reveal": "none"
+      },
+      "options": [
+        "Mustang",
+        "Manang",
+        "Dolpa",
+        "Mugu"
+      ],
+      "answerIndex": 1,
+      "explanation": "Tilicho sits at 4,919 m in Manang, below Tilicho Peak in the Annapurna range.",
+      "tags": [
+        "image",
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-rara-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Rara, Nepal's largest lake, is in which district?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-rara.jpg",
+        "alt": "Rara Lake",
+        "reveal": "none"
+      },
+      "options": [
+        "Jumla",
+        "Humla",
+        "Mugu",
+        "Dolpa"
+      ],
+      "answerIndex": 2,
+      "explanation": "Rara Lake lies inside Rara National Park, Mugu, in Karnali Province.",
+      "tags": [
+        "image",
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-phoksundo-district",
+      "category": "nepal-geo",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Shey Phoksundo, Nepal's deepest lake, is in which district?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-phoksundo.jpg",
+        "alt": "Shey Phoksundo Lake",
+        "reveal": "none"
+      },
+      "options": [
+        "Dolpa",
+        "Mustang",
+        "Manang",
+        "Rasuwa"
+      ],
+      "answerIndex": 0,
+      "explanation": "Its turquoise water sits inside Shey Phoksundo National Park, Dolpa.",
+      "tags": [
+        "image",
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-gosaikunda-district",
+      "category": "nepal-geo",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Gosaikunda, the holy lake that pilgrims visit on Janai Purnima, is in which district?",
+      "options": [
+        "Nuwakot",
+        "Sindhupalchok",
+        "Rasuwa",
+        "Dhading"
+      ],
+      "answerIndex": 2,
+      "explanation": "Gosaikunda lies in Langtang National Park, Rasuwa.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-lowest-point",
+      "category": "nepal-geo",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Nepal's lowest point, Kechana Kalan (about 60 m above sea level), is in which district?",
+      "options": [
+        "Morang",
+        "Jhapa",
+        "Saptari",
+        "Kanchanpur"
+      ],
+      "answerIndex": 1,
+      "explanation": "From about 60 m in Jhapa to 8,849 m on Everest: all within about 200 km.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-kanchenjunga-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Kanchenjunga, the world's third-highest mountain, lies in which Nepali district?",
+      "options": [
+        "Sankhuwasabha",
+        "Ilam",
+        "Taplejung",
+        "Solukhumbu"
+      ],
+      "answerIndex": 2,
+      "explanation": "Kanchenjunga (8,586 m) stands on the Nepal–Sikkim border, in Taplejung.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-everest-district",
+      "category": "nepal-geo",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Mount Everest lies in which district of Nepal?",
+      "options": [
+        "Dolakha",
+        "Solukhumbu",
+        "Sankhuwasabha",
+        "Rasuwa"
+      ],
+      "answerIndex": 1,
+      "explanation": "Everest is in Sagarmatha National Park, Solukhumbu.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-largest-district",
+      "category": "nepal-geo",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Which is the largest district of Nepal by area?",
+      "options": [
+        "Humla",
+        "Mustang",
+        "Dolpa",
+        "Taplejung"
+      ],
+      "answerIndex": 2,
+      "explanation": "Dolpa covers about 7,900 km², more than 60 times the size of Bhaktapur.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-smallest-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which is the smallest district of Nepal by area?",
+      "options": [
+        "Kathmandu",
+        "Lalitpur",
+        "Bhaktapur",
+        "Parsa"
+      ],
+      "answerIndex": 2,
+      "explanation": "Bhaktapur covers only about 119 km².",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-districts-count",
+      "category": "nepal-geo",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "How many districts does Nepal have?",
+      "options": [
+        "75",
+        "77",
+        "72",
+        "79"
+      ],
+      "answerIndex": 1,
+      "explanation": "Nepal went from 75 to 77 districts when the 2015 constitution split Nawalparasi and Rukum.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-muktinath-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "The Muktinath temple, sacred to both Hindus and Buddhists, is in which district?",
+      "options": [
+        "Manang",
+        "Myagdi",
+        "Mustang",
+        "Dolpa"
+      ],
+      "answerIndex": 2,
+      "explanation": "Muktinath sits at about 3,800 m in Mustang, north of Jomsom.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-first-national-park",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which was Nepal's first national park, set up in 1973?",
+      "options": [
+        "Sagarmatha",
+        "Chitwan",
+        "Bardiya",
+        "Langtang"
+      ],
+      "answerIndex": 1,
+      "explanation": "Chitwan National Park, home of the one-horned rhino, is a UNESCO World Heritage Site.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-kali-gandaki-gorge",
+      "category": "nepal-geo",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "The Kali Gandaki cuts one of the world's deepest gorges between Dhaulagiri and which other 8,000 m peak?",
+      "options": [
+        "Manaslu",
+        "Annapurna",
+        "Makalu",
+        "Cho Oyu"
+      ],
+      "answerIndex": 1,
+      "explanation": "The river runs between Dhaulagiri and Annapurna I, both over 8,000 m.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-bandipur-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "The hilltop town of Bandipur is in which district?",
+      "options": [
+        "Gorkha",
+        "Lamjung",
+        "Tanahun",
+        "Syangja"
+      ],
+      "answerIndex": 2,
+      "explanation": "Bandipur is an old Newar trading town in Tanahun.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-lumbini-district",
+      "category": "nepal-geo",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Lumbini, the birthplace of the Buddha, is in which district?",
+      "options": [
+        "Kapilvastu",
+        "Rupandehi",
+        "Nawalparasi",
+        "Dang"
+      ],
+      "answerIndex": 1,
+      "explanation": "Many people guess Kapilvastu, but Lumbini is in Rupandehi.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "fun-survivors",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "A plane crashes exactly on the Nepal–India border. Where do they bury the survivors?",
+      "answer": "Nowhere: you don't bury survivors!",
+      "explanation": "Did you start working out which country?",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-moses-ark",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "How many animals of each kind did Moses take on the ark?",
+      "answer": "None: it was Noah's ark, not Moses'.",
+      "explanation": "Your brain fills in the story and skips the wrong name.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-forty",
+      "category": "fun-tricky",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Which number, spelled out in English, has all its letters in alphabetical order?",
+      "options": [
+        "Four",
+        "Forty",
+        "Eight",
+        "Sixty"
+      ],
+      "answerIndex": 1,
+      "explanation": "F-O-R-T-Y: every letter comes later in the alphabet than the one before.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-pills",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "A doctor gives you 3 pills and says, \"Take one every half hour.\" How many minutes until they are all gone?",
+      "options": [
+        "30",
+        "60",
+        "90",
+        "120"
+      ],
+      "answerIndex": 1,
+      "explanation": "Take one now, one at 30 minutes and the last at 60.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-count-fs",
+      "category": "fun-tricky",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Count the letter F in this sentence. One read only!",
+      "showcase": "FINISHED FILES ARE THE RESULT OF YEARS OF SCIENTIFIC STUDY COMBINED WITH THE EXPERIENCE OF YEARS.",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answerIndex": 3,
+      "explanation": "Most people miss the F in each \"OF\", which sounds like a V.",
+      "tags": [
+        "trick",
+        "showcase"
+      ]
+    },
+    {
+      "id": "fun-paris-the",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Read this out loud. What does it say, exactly?",
+      "showcase": "PARIS\nIN THE\nTHE SPRING",
+      "answer": "\"Paris in the THE spring\": \"the\" is written twice!",
+      "explanation": "Your brain skips the repeated word.",
+      "tags": [
+        "trick",
+        "showcase"
+      ]
+    },
+    {
+      "id": "fun-divide-half",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Divide 30 by half, then add 10. What do you get?",
+      "options": [
+        "25",
+        "40",
+        "55",
+        "70"
+      ],
+      "answerIndex": 3,
+      "explanation": "Dividing by ½ is the same as multiplying by 2: 30 ÷ ½ = 60, and 60 + 10 = 70.",
+      "tags": [
+        "trick",
+        "math"
+      ]
+    },
+    {
+      "id": "fun-count-nines",
+      "category": "fun-tricky",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "If you write all the numbers from 1 to 100, how many times do you write the digit 9?",
+      "options": [
+        "10",
+        "11",
+        "19",
+        "20"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ten times in the units place (9, 19 … 99) and ten times in the tens place (90 … 99).",
+      "tags": [
+        "trick",
+        "math"
+      ]
+    },
+    {
+      "id": "fun-rooster-egg",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "A rooster lays an egg on the top of a sloping roof. Which side does the egg roll down?",
+      "answer": "Neither: roosters don't lay eggs!",
+      "explanation": "Only hens lay eggs.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-first-match",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "You walk into a dark room with one match. There is a candle, a lantern and a gas stove. What do you light first?",
+      "answer": "The match!",
+      "explanation": "You have to light the match before anything else.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-seven-even",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "I am an odd number. Take away one letter and I become even. What number am I?",
+      "answer": "Seven (s-even)",
+      "explanation": "Take the S away from SEVEN and you get EVEN.",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "fun-yolk",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Which is correct: \"The yolk of an egg IS white\" or \"The yolk of an egg ARE white\"?",
+      "answer": "Neither: egg yolk is yellow!",
+      "explanation": "The grammar question is only there to distract you.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-electric-train",
+      "category": "fun-tricky",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "An electric train heads north at 100 km/h. The wind blows west. Which way does the smoke go?",
+      "answer": "There's no smoke: it's an electric train!",
+      "explanation": "Electric trains have no smoke.",
+      "tags": [
+        "trick"
+      ]
+    },
+    {
+      "id": "fun-shorter",
+      "category": "fun-tricky",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Which 5-letter word gets shorter when you add two letters to it?",
+      "answer": "SHORT (+ ER = SHORTER)",
+      "explanation": "A classic word-play riddle.",
+      "tags": [
+        "riddle"
+      ]
+    },
+    {
+      "id": "eng-kilobyte",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "In computing, 1 kilobyte (KB) is traditionally how many bytes?",
+      "options": [
+        "1000",
+        "1024",
+        "1048",
+        "512"
+      ],
+      "answerIndex": 1,
+      "explanation": "2¹⁰ = 1024. (Strictly, 1024 bytes is now called a kibibyte, KiB.)",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-https-s",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does the \"S\" in HTTPS stand for?",
+      "options": [
+        "Server",
+        "Speed",
+        "Secure",
+        "System"
+      ],
+      "answerIndex": 2,
+      "explanation": "HTTPS encrypts the connection between your browser and the website.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-www-inventor",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Who invented the World Wide Web?",
+      "options": [
+        "Bill Gates",
+        "Tim Berners-Lee",
+        "Steve Jobs",
+        "Vint Cerf"
+      ],
+      "answerIndex": 1,
+      "explanation": "He invented it at CERN in 1989. The internet itself is older.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-linux",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Who created the Linux kernel in 1991, as a student?",
+      "options": [
+        "Richard Stallman",
+        "Dennis Ritchie",
+        "Linus Torvalds",
+        "Ken Thompson"
+      ],
+      "answerIndex": 2,
+      "explanation": "Linux, named after Linus, now runs most servers and every Android phone.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-not-an-os",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which of these is NOT an operating system?",
+      "options": [
+        "Android",
+        "Ubuntu",
+        "Python",
+        "macOS"
+      ],
+      "answerIndex": 2,
+      "explanation": "Python is a programming language.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-ctrl-shift-t",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In most web browsers, what does Ctrl + Shift + T do?",
+      "options": [
+        "Opens a new tab",
+        "Reopens the tab you just closed",
+        "Opens the task manager",
+        "Translates the page"
+      ],
+      "answerIndex": 1,
+      "explanation": "It rescues a tab you closed by accident, and you can press it again for older ones.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-hex-ff",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the hexadecimal number FF in decimal?",
+      "options": [
+        "256",
+        "255",
+        "15",
+        "100"
+      ],
+      "answerIndex": 1,
+      "explanation": "F = 15, so FF = 15 × 16 + 15 = 255, the largest value one byte can hold.",
+      "tags": [
+        "computer",
+        "math"
+      ]
+    },
+    {
+      "id": "eng-captcha",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is a CAPTCHA trying to find out?",
+      "options": [
+        "Your password",
+        "Your location",
+        "Whether you are a human or a bot",
+        "Your internet speed"
+      ],
+      "answerIndex": 2,
+      "explanation": "CAPTCHA stands for \"Completely Automated Public Turing test to tell Computers and Humans Apart\".",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-ram-volatile",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Everything stored in RAM is lost when the computer is switched off.",
+      "answer": true,
+      "explanation": "RAM is volatile memory. Files are kept safe on the SSD or hard disk.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-ipv4-bits",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "How many bits long is an IPv4 address?",
+      "options": [
+        "16",
+        "32",
+        "64",
+        "128"
+      ],
+      "answerIndex": 1,
+      "explanation": "That allows about 4.3 billion addresses, which is why IPv6 (128 bits) was needed.",
+      "tags": [
+        "computer"
+      ]
+    },
+    {
+      "id": "eng-ai-coined",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Who coined the term \"artificial intelligence\" in the 1950s?",
+      "options": [
+        "Alan Turing",
+        "John McCarthy",
+        "Marvin Minsky",
+        "Geoffrey Hinton"
+      ],
+      "answerIndex": 1,
+      "explanation": "He used it in the proposal for the 1956 Dartmouth workshop, the birth of AI as a field.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-deep-blue",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In 1997, this IBM computer beat world chess champion Garry Kasparov. What was it called?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-deep-blue.jpg",
+        "alt": "IBM Deep Blue computer",
+        "reveal": "none"
+      },
+      "options": [
+        "Watson",
+        "Deep Blue",
+        "AlphaZero",
+        "Big Blue"
+      ],
+      "answerIndex": 1,
+      "explanation": "It was the first time a computer beat a reigning world champion in a match.",
+      "tags": [
+        "image",
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-lee-sedol",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In 2016, an AI from Google DeepMind beat world champion Lee Sedol 4–1 at which board game?",
+      "options": [
+        "Chess",
+        "Go",
+        "Ludo",
+        "Checkers"
+      ],
+      "answerIndex": 1,
+      "explanation": "The AI, AlphaGo, played \"move 37\", which experts first thought was a mistake.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-llm",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "In AI, what does \"LLM\" stand for?",
+      "options": [
+        "Large Language Model",
+        "Long Learning Machine",
+        "Linked Logic Module",
+        "Low Latency Memory"
+      ],
+      "answerIndex": 0,
+      "explanation": "ChatGPT, Claude and Gemini are all built on LLMs.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-hallucination",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "When an AI chatbot confidently makes up false facts, what is it called?",
+      "options": [
+        "Dreaming",
+        "Hallucination",
+        "Glitching",
+        "Overfitting"
+      ],
+      "answerIndex": 1,
+      "explanation": "Always double-check what AI tells you!",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-ai-gpus",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which company makes the GPUs that train most of today's AI models?",
+      "options": [
+        "Intel",
+        "NVIDIA",
+        "Qualcomm",
+        "Samsung"
+      ],
+      "answerIndex": 1,
+      "explanation": "NVIDIA started out making graphics cards for games.",
+      "tags": [
+        "ai"
+      ]
+    },
+    {
+      "id": "eng-pacemaker",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "This small device is implanted under the skin of the chest. What is it?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-pacemaker.jpg",
+        "alt": "An artificial pacemaker",
+        "reveal": "none"
+      },
+      "options": [
+        "Insulin pump",
+        "Pacemaker",
+        "Hearing aid",
+        "Cochlear implant"
+      ],
+      "answerIndex": 1,
+      "explanation": "It sends small electrical pulses to keep the heart beating at a steady rate.",
+      "tags": [
+        "image",
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-dialysis",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "A dialysis machine does the job of which organ?",
+      "options": [
+        "Liver",
+        "Kidneys",
+        "Lungs",
+        "Heart"
+      ],
+      "answerIndex": 1,
+      "explanation": "It filters waste and extra water from the blood when the kidneys fail.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-stethoscope",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Who invented the stethoscope, in 1816?",
+      "options": [
+        "Louis Pasteur",
+        "René Laennec",
+        "Joseph Lister",
+        "William Harvey"
+      ],
+      "answerIndex": 1,
+      "explanation": "His first stethoscope was a rolled-up tube of paper.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-penicillin",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Penicillin, the first antibiotic, was discovered in 1928. What did it come from?",
+      "options": [
+        "A mould",
+        "A snake venom",
+        "A plant root",
+        "Sea water"
+      ],
+      "answerIndex": 0,
+      "explanation": "Alexander Fleming noticed that a Penicillium mould was killing the bacteria on his plate.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-insulin",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Insulin, which controls blood sugar, is made by which organ?",
+      "options": [
+        "Liver",
+        "Pancreas",
+        "Kidneys",
+        "Thyroid"
+      ],
+      "answerIndex": 1,
+      "explanation": "In type 1 diabetes, the pancreas stops making insulin.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-ct-scan",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What does \"CT\" stand for in a CT scan?",
+      "options": [
+        "Cardiac Test",
+        "Computed Tomography",
+        "Cell Tracking",
+        "Contrast Technique"
+      ],
+      "answerIndex": 1,
+      "explanation": "A computer combines many X-ray images into cross-sections (\"slices\") of the body.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-universal-donor",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which blood group is called the universal donor?",
+      "options": [
+        "AB positive",
+        "O negative",
+        "A positive",
+        "B negative"
+      ],
+      "answerIndex": 1,
+      "explanation": "O-negative red cells can be given to almost anyone in an emergency.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-dolly",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Dolly (1996), the first mammal cloned from an adult cell, was a…",
+      "options": [
+        "Cow",
+        "Sheep",
+        "Monkey",
+        "Dog"
+      ],
+      "answerIndex": 1,
+      "explanation": "She was cloned in Scotland and named after the singer Dolly Parton.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-ivf-baby",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In which year was the world's first \"test-tube baby\" (IVF), Louise Brown, born?",
+      "options": [
+        "1958",
+        "1978",
+        "1990",
+        "2001"
+      ],
+      "answerIndex": 1,
+      "explanation": "She was born in England. Robert Edwards later won the Nobel Prize for IVF.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-ultrasound",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Ultrasound scans use sound waves too high-pitched for humans to hear.",
+      "answer": true,
+      "explanation": "Ultrasound is above 20,000 Hz. Medical scanners use millions of hertz.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "av-kid-einstein",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "This 3-year-old grew up to change physics forever. Who is he?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-kid-einstein.jpg",
+        "alt": "Albert Einstein aged three",
+        "reveal": "none"
+      },
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Nikola Tesla",
+        "Niels Bohr"
+      ],
+      "answerIndex": 1,
+      "explanation": "Einstein in 1882: the oldest known photo of him.",
+      "tags": [
+        "image",
+        "childhood",
+        "science"
+      ]
+    },
+    {
+      "id": "av-kid-darwin",
+      "category": "audio-visual",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "The boy in this 1816 picture later sailed around the world on HMS Beagle. Who is he?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-kid-darwin.jpg",
+        "alt": "Charles Darwin as a child, with his sister",
+        "reveal": "none"
+      },
+      "options": [
+        "Isaac Newton",
+        "Charles Dickens",
+        "Charles Darwin",
+        "Gregor Mendel"
+      ],
+      "answerIndex": 2,
+      "explanation": "Charles Darwin with his sister Catherine. The Beagle voyage led to his theory of evolution.",
+      "tags": [
+        "image",
+        "childhood",
+        "science"
+      ]
+    },
+    {
+      "id": "av-kid-elizabeth",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "This little girl was on the cover of TIME in 1929. She grew up to reign for 70 years. Who is she?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-kid-elizabeth.jpg",
+        "alt": "Princess Elizabeth aged three",
+        "reveal": "none"
+      },
+      "options": [
+        "Queen Victoria",
+        "Princess Diana",
+        "Queen Elizabeth II",
+        "Queen Mary"
+      ],
+      "answerIndex": 2,
+      "explanation": "\"Princess Lilibet\", aged 3. She reigned from 1952 to 2022.",
+      "tags": [
+        "image",
+        "childhood",
+        "world"
+      ]
+    },
+    {
+      "id": "av-young-bill-gates",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In 1977, this 22-year-old was stopped for speeding in New Mexico. Two years earlier he had co-founded a small software company. Who is he?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-young-bill-gates.jpg",
+        "alt": "A young man in a 1977 police photo",
+        "reveal": "none"
+      },
+      "options": [
+        "Steve Jobs",
+        "Paul Allen",
+        "Bill Gates",
+        "Steve Wozniak"
+      ],
+      "answerIndex": 2,
+      "explanation": "That small company was Microsoft, founded in 1975.",
+      "tags": [
+        "image",
+        "childhood",
+        "computer"
+      ]
+    },
+    {
+      "id": "av-young-mozart",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "This 13-year-old (painted in 1770) had already been writing music for about eight years. Who is he?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-young-mozart.jpg",
+        "alt": "Portrait of a boy at a harpsichord, 1770",
+        "reveal": "none"
+      },
+      "options": [
+        "Beethoven",
+        "Mozart",
+        "Bach",
+        "Chopin"
+      ],
+      "answerIndex": 1,
+      "explanation": "Mozart wrote his first pieces at age 5.",
+      "tags": [
+        "image",
+        "childhood",
+        "music"
+      ]
+    },
+    {
+      "id": "av-singing-bowl",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Listen. What is making this sound?",
+      "media": {
+        "kind": "audio",
+        "src": "media/audio/av-singing-bowl.mp3"
+      },
+      "options": [
+        "Temple bell",
+        "Singing bowl",
+        "Conch shell",
+        "Wind chime"
+      ],
+      "answerIndex": 1,
+      "explanation": "A Himalayan singing bowl, played by rubbing or striking its rim.",
+      "tags": [
+        "audio",
+        "nepal"
+      ]
+    },
+    {
+      "id": "av-sos-morse",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "These beeps spell a famous message in Morse code. What is it?",
+      "media": {
+        "kind": "audio",
+        "src": "media/audio/av-sos-morse.mp3"
+      },
+      "options": [
+        "HELP",
+        "SOS",
+        "HELLO",
+        "OK"
+      ],
+      "answerIndex": 1,
+      "explanation": "Three short, three long, three short: · · · — — — · · ·",
+      "tags": [
+        "audio",
+        "computer"
+      ]
+    },
+    {
+      "id": "av-nyatapola",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "This five-storey temple is Nepal's tallest pagoda. Which city is it in?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-nyatapola.jpg",
+        "alt": "Nyatapola temple",
+        "reveal": "none"
+      },
+      "options": [
+        "Patan",
+        "Kathmandu",
+        "Bhaktapur",
+        "Kirtipur"
+      ],
+      "answerIndex": 2,
+      "explanation": "Nyatapola, built in 1702, survived both the 1934 and 2015 earthquakes.",
+      "tags": [
+        "image",
+        "nepal"
+      ]
+    },
+    {
+      "id": "av-janaki-mandir",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which city is home to this temple?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-janaki-mandir.jpg",
+        "alt": "Janaki Mandir",
+        "reveal": "none"
+      },
+      "options": [
+        "Birgunj",
+        "Lumbini",
+        "Janakpur",
+        "Biratnagar"
+      ],
+      "answerIndex": 2,
+      "explanation": "Janaki Mandir, dedicated to Sita, is also called the \"Nau Lakha Mandir\".",
+      "tags": [
+        "image",
+        "nepal"
+      ]
+    },
+    {
+      "id": "av-xray-hand",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "This is one of the first X-ray images ever made (1895): the scientist's wife's hand, with her ring. Who made it?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-xray-hand.jpg",
+        "alt": "Early X-ray of a hand with a ring",
+        "reveal": "none"
+      },
+      "options": [
+        "Marie Curie",
+        "Wilhelm Röntgen",
+        "Thomas Edison",
+        "Nikola Tesla"
+      ],
+      "answerIndex": 1,
+      "explanation": "Röntgen discovered X-rays in 1895 and won the first Nobel Prize in Physics (1901).",
+      "tags": [
+        "image",
+        "biomedical"
+      ]
+    },
+    {
+      "id": "av-ram-module",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Name this computer part.",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-ram-module.jpg",
+        "alt": "A computer memory module",
+        "reveal": "none"
+      },
+      "options": [
+        "Graphics card",
+        "RAM",
+        "SSD",
+        "Power supply"
+      ],
+      "answerIndex": 1,
+      "explanation": "A DDR4 RAM stick: the short-term working memory of a computer.",
+      "tags": [
+        "image",
+        "computer"
+      ]
+    },
+    {
+      "id": "av-hajar-sapana",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Listen. Who is the singer of this song?",
+      "media": {
+        "kind": "youtube",
+        "id": "coNs0wSvovk",
+        "start": 20,
+        "end": 45,
+        "audioOnly": true
+      },
+      "options": [
+        "Narayan Gopal",
+        "Bhakta Raj Acharya",
+        "Deep Shrestha",
+        "Ram Krishna Dhakal"
+      ],
+      "answerIndex": 1,
+      "explanation": "\"Hajar Sapana\", sung by Bhakta Raj Acharya.",
+      "tags": [
+        "audio",
+        "music",
+        "nepal"
+      ]
+    },
+    {
+      "id": "av-top-gun-maverick",
+      "category": "audio-visual",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Name the movie!",
+      "media": {
+        "kind": "youtube",
+        "id": "IXbnzEHZDPg",
+        "start": 10,
+        "end": 35
+      },
+      "options": [
+        "Iron Man",
+        "Interstellar",
+        "Top Gun: Maverick",
+        "Fast & Furious 7"
+      ],
+      "answerIndex": 2,
+      "explanation": "Top Gun: Maverick (2022): Tom Cruise pushes the Darkstar test plane to Mach 10.",
+      "tags": [
+        "video",
+        "movie"
+      ]
     }
   ]
 }

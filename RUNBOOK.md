@@ -1,4 +1,4 @@
-# Tri-Quest event-day runbook
+# NIET-Quest event-day runbook
 
 **NIET Orientation 2026 · Sunday 20 September · about 60 minutes · 60 questions in 8 levels**
 
@@ -10,7 +10,7 @@ The show runs **offline from the host laptop**, mirrored to the projector. The G
 
 - [ ] **Media:** put all files from [MEDIA.md](MEDIA.md) in place, then run `npm run check:event`. It must show no ✖.
 - [ ] **Verification:** get the signed-off sheet back (home page → Verification sheet) and fix any corrections in `public/data/questions.json`.
-- [ ] **Slide check:** home page → Tri-Quest → *Slide check*. It should read "0 with errors". Look through the media questions by eye too.
+- [ ] **Slide check:** home page → NIET-Quest → *Slide check*. It should read "0 with errors". Look through the media questions by eye too.
 - [ ] **Review the draw:** home page → *Review* shows the 60 questions that will appear. If you reshuffle, copy the new draw number into `"seed"` in `public/data/sessions/tri-quest.json`, so every device agrees.
 - [ ] **Build the offline copy:** `npm run build`, then commit and push, so the backup site matches.
 - [ ] **Rehearsal on the real projector and speakers**, if you can get into the hall:
@@ -92,7 +92,7 @@ The show runs **offline from the host laptop**, mirrored to the projector. The G
 
 ## Clicker test
 
-Most presentation clickers send **Page Down / Page Up**, which Tri-Quest treats as next/back. Some also have a "blank" button: if it sends **.**, it blanks the screen. If it sends **B**, it will **lock answer B**, so avoid that button. Test every button during the rehearsal.
+Most presentation clickers send **Page Down / Page Up**, which NIET-Quest treats as next/back. Some also have a "blank" button: if it sends **.**, it blanks the screen. If it sends **B**, it will **lock answer B**, so avoid that button. Test every button during the rehearsal.
 
 ## After the show
 

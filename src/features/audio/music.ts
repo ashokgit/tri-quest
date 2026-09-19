@@ -1,5 +1,5 @@
 /**
- * The Tri-Quest sound design: one-shot cues, the ticking-clock music bed and
+ * The NIET-Quest sound design: one-shot cues, the ticking-clock music bed and
  * the "final answer" suspense drone. Home key is D minor; wins resolve to D major.
  */
 import { bell, brass, crash, kick, midi, noise, pad, riser, snareRoll, supersaw, timpani, tone, whoosh, woodblock, type AudioEngine } from './engine'

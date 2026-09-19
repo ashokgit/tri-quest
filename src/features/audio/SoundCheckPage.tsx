@@ -55,7 +55,7 @@ export function SoundCheckPage() {
         <header className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-display text-sm font-semibold tracking-[0.3em] text-white/50 uppercase">Sound check</p>
-            <h1 className="font-display text-4xl font-extrabold">Tri-Quest sounds</h1>
+            <h1 className="font-display text-4xl font-extrabold">NIET-Quest sounds</h1>
             <p className="mt-2 text-white/60">Test every cue on the hall speakers and set the volume. It's saved for the show.</p>
           </div>
           <Link to="/" className="rounded-xl px-4 py-2 font-display font-semibold ring-1 ring-white/15 hover:bg-stage-700">
