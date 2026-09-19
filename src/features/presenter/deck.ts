@@ -89,13 +89,19 @@ const DEFAULT_LEVEL_TITLES = [
 /** Target questions per ladder level. */
 const LEVEL_SIZE = 8
 
+/** Questions with this tag make up the ladder's last level, whatever their difficulty. */
+export const FINAL_TAG = 'final'
+
 /**
  * Regroups drawn questions into levels of rising difficulty: all the easy ones
  * first (split into a few levels), then medium, then hard. Categories are dealt
- * round-robin so every level is a mix.
+ * round-robin so every level is a mix. Questions tagged `final` form the top level
+ * on their own, and the other hard questions sit below them.
  */
 function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): DrawnRound[] {
-  const entries = rounds.flatMap((r) => r.questions.map((q, i) => ({ q, timer: r.timers[i], cat: r.round.id })))
+  const all = rounds.flatMap((r) => r.questions.map((q, i) => ({ q, timer: r.timers[i], cat: r.round.id })))
+  const finals = all.filter((e) => e.q.tags.includes(FINAL_TAG))
+  const entries = all.filter((e) => !e.q.tags.includes(FINAL_TAG))
   const levels: { difficulty: keyof typeof DIFFICULTY_LABEL; items: typeof entries }[] = []
 
   for (const difficulty of ['easy', 'medium', 'hard'] as const) {
@@ -107,15 +113,17 @@ function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): 
     while (queues.some((q) => q.length)) for (const q of queues) if (q.length) dealt.push(q.shift()!)
     if (!dealt.length) continue
 
-    // Split evenly into levels of about LEVEL_SIZE. Hard questions always get at least
-    // two levels, so the show ends on a short, punchy Final Challenge.
-    const minLevels = difficulty === 'hard' && dealt.length >= 6 ? 2 : 1
-    const count = Math.max(minLevels, Math.round(dealt.length / LEVEL_SIZE))
+    // Split evenly into levels of about LEVEL_SIZE. With `final` questions (the Final Challenge),
+    // the other hard ones share a single level below it; without them, hard questions get at
+    // least two levels so the show still ends on a short, punchy Final Challenge.
+    const minLevels = difficulty === 'hard' && !finals.length && dealt.length >= 6 ? 2 : 1
+    const count = difficulty === 'hard' && finals.length ? 1 : Math.max(minLevels, Math.round(dealt.length / LEVEL_SIZE))
     for (let i = 0; i < count; i++) {
       const items = dealt.slice(Math.floor((i * dealt.length) / count), Math.floor(((i + 1) * dealt.length) / count))
       levels.push({ difficulty, items: items.sort((a, b) => TYPE_EASE[a.q.type] - TYPE_EASE[b.q.type]) })
     }
   }
+  if (finals.length) levels.push({ difficulty: 'hard', items: finals })
 
   return levels.map(({ difficulty, items }, i) => {
     // The top rungs always get the last titles ("Brain Burner", "Final Challenge"), however many

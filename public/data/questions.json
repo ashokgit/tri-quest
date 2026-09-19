@@ -145,19 +145,19 @@
       ]
     },
     {
-      "id": "sci-largest-organ",
+      "id": "sci-largest-internal-organ",
       "category": "science",
       "difficulty": "medium",
       "type": "mcq",
-      "prompt": "What is the largest organ of the human body?",
+      "prompt": "What is the largest internal organ of the human body?",
       "options": [
-        "Liver",
-        "Brain",
         "Lungs",
-        "Skin"
+        "Brain",
+        "Liver",
+        "Heart"
       ],
-      "answerIndex": 3,
-      "explanation": "The skin covers about 2 m² in an adult. The liver is the largest internal organ.",
+      "answerIndex": 2,
+      "explanation": "The liver weighs about 1.5 kg in an adult. (Counting the outside too, the skin is the largest organ overall.)",
       "tags": [
         "biology"
       ]
@@ -202,6 +202,25 @@
       "explanation": "2¹⁰ = 1024.",
       "tags": [
         "maths"
+      ]
+    },
+    {
+      "id": "sci-sum-1-to-100",
+      "category": "science",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the sum 1 + 2 + 3 + … + 100?",
+      "options": [
+        "5000",
+        "5050",
+        "4950",
+        "10100"
+      ],
+      "answerIndex": 1,
+      "explanation": "An arithmetic series: n(n + 1)/2 = 100 × 101 / 2 = 5050. Young Gauss is said to have spotted it in seconds.",
+      "tags": [
+        "maths",
+        "series"
       ]
     },
     {
@@ -355,24 +374,6 @@
       ],
       "answerIndex": 0,
       "explanation": "\"All but 9\" means 9 stayed behind.",
-      "tags": [
-        "trick"
-      ]
-    },
-    {
-      "id": "fun-kg-iron-cotton",
-      "category": "fun-tricky",
-      "difficulty": "medium",
-      "type": "mcq",
-      "prompt": "Which is heavier: 1 kg of iron or 1 kg of cotton?",
-      "options": [
-        "Iron",
-        "Cotton",
-        "They weigh the same",
-        "Depends on the weather"
-      ],
-      "answerIndex": 2,
-      "explanation": "A kilogram is a kilogram!",
       "tags": [
         "trick"
       ]
@@ -920,6 +921,25 @@
       ]
     },
     {
+      "id": "ca-oscar-nepal-entry",
+      "category": "current-affairs",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which Nepali film was chosen as Nepal's official entry for the Oscars (99th Academy Awards, 2027)?",
+      "options": [
+        "Gauthali",
+        "Shambhala",
+        "Elephants in the Fog",
+        "Pooja, Sir"
+      ],
+      "answerIndex": 2,
+      "explanation": "Abinash Bikram Shah's Elephants in the Fog (Tiniharu) also won the Jury Prize in Cannes' Un Certain Regard section in 2026.",
+      "tags": [
+        "nepal",
+        "film"
+      ]
+    },
+    {
       "id": "av-boudhanath",
       "category": "audio-visual",
       "difficulty": "easy",
@@ -934,7 +954,7 @@
       "media": {
         "kind": "image",
         "src": "media/images/av-boudhanath.jpg",
-        "reveal": "blur",
+        "reveal": "none",
         "alt": "Boudhanath Stupa"
       }
     },
@@ -959,7 +979,7 @@
       "media": {
         "kind": "image",
         "src": "media/images/av-patan-durbar.jpg",
-        "reveal": "zoom",
+        "reveal": "none",
         "alt": "Patan Durbar Square"
       }
     },
@@ -999,7 +1019,7 @@
       "category": "audio-visual",
       "difficulty": "medium",
       "type": "open",
-      "prompt": "We've zoomed right in. Which famous landmark is this?",
+      "prompt": "Which famous landmark is this?",
       "answer": "The Eiffel Tower",
       "explanation": "Paris, 1889: once the tallest structure in the world.",
       "tags": [
@@ -1009,13 +1029,8 @@
       "media": {
         "kind": "image",
         "src": "media/images/av-eiffel-tower.jpg",
-        "reveal": "zoom",
-        "alt": "Eiffel Tower",
-        "zoom": 12,
-        "focus": [
-          50,
-          38
-        ]
+        "reveal": "none",
+        "alt": "Eiffel Tower"
       }
     },
     {
@@ -1039,7 +1054,7 @@
       "media": {
         "kind": "image",
         "src": "media/images/av-marie-curie.jpg",
-        "reveal": "blur",
+        "reveal": "none",
         "alt": "Marie Curie"
       }
     },
@@ -1064,7 +1079,7 @@
       "media": {
         "kind": "image",
         "src": "media/images/av-resistor.jpg",
-        "reveal": "zoom",
+        "reveal": "none",
         "alt": "Resistor"
       }
     },
@@ -1089,7 +1104,7 @@
       "media": {
         "kind": "image",
         "src": "media/images/av-flag-bhutan.png",
-        "reveal": "blur",
+        "reveal": "none",
         "alt": "Flag of Bhutan"
       }
     },
@@ -1692,11 +1707,11 @@
       ]
     },
     {
-      "id": "geo-rara-district",
+      "id": "geo-rara-largest",
       "category": "nepal-geo",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "type": "mcq",
-      "prompt": "Rara, Nepal's largest lake, is in which district?",
+      "prompt": "This is Nepal's largest lake. What is it called?",
       "media": {
         "kind": "image",
         "src": "media/images/av-rara.jpg",
@@ -1704,13 +1719,13 @@
         "reveal": "none"
       },
       "options": [
-        "Jumla",
-        "Humla",
-        "Mugu",
-        "Dolpa"
+        "Phewa",
+        "Rara",
+        "Begnas",
+        "Tilicho"
       ],
-      "answerIndex": 2,
-      "explanation": "Rara Lake lies inside Rara National Park, Mugu, in Karnali Province.",
+      "answerIndex": 1,
+      "explanation": "Rara Lake (about 10 km²) sits inside Rara National Park, Mugu.",
       "tags": [
         "image",
         "nepal",
@@ -1718,11 +1733,11 @@
       ]
     },
     {
-      "id": "geo-phoksundo-district",
+      "id": "geo-phoksundo-deepest",
       "category": "nepal-geo",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
-      "prompt": "Shey Phoksundo, Nepal's deepest lake, is in which district?",
+      "prompt": "Shey Phoksundo in Dolpa holds which record among Nepal's lakes?",
       "media": {
         "kind": "image",
         "src": "media/images/av-phoksundo.jpg",
@@ -1730,13 +1745,13 @@
         "reveal": "none"
       },
       "options": [
-        "Dolpa",
-        "Mustang",
-        "Manang",
-        "Rasuwa"
+        "Largest",
+        "Highest",
+        "Deepest",
+        "Oldest"
       ],
-      "answerIndex": 0,
-      "explanation": "Its turquoise water sits inside Shey Phoksundo National Park, Dolpa.",
+      "answerIndex": 2,
+      "explanation": "About 145 m deep: Nepal's deepest lake. Rara is the largest; Tilicho is among the highest in the world.",
       "tags": [
         "image",
         "nepal",
@@ -1744,22 +1759,23 @@
       ]
     },
     {
-      "id": "geo-gosaikunda-district",
+      "id": "geo-gosaikunda-festival",
       "category": "nepal-geo",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
-      "prompt": "Gosaikunda, the holy lake that pilgrims visit on Janai Purnima, is in which district?",
+      "prompt": "Thousands of pilgrims climb to Gosaikunda lake in Rasuwa during which festival?",
       "options": [
-        "Nuwakot",
-        "Sindhupalchok",
-        "Rasuwa",
-        "Dhading"
+        "Dashain",
+        "Janai Purnima",
+        "Tihar",
+        "Holi"
       ],
-      "answerIndex": 2,
-      "explanation": "Gosaikunda lies in Langtang National Park, Rasuwa.",
+      "answerIndex": 1,
+      "explanation": "On Janai Purnima pilgrims bathe in the holy lake, which legend says Shiva made with his trident.",
       "tags": [
         "nepal",
-        "geography"
+        "geography",
+        "culture"
       ]
     },
     {
@@ -1782,19 +1798,19 @@
       ]
     },
     {
-      "id": "geo-kanchenjunga-district",
+      "id": "geo-kanchenjunga-sikkim",
       "category": "nepal-geo",
       "difficulty": "medium",
       "type": "mcq",
-      "prompt": "Kanchenjunga, the world's third-highest mountain, lies in which Nepali district?",
+      "prompt": "Nepal shares Kanchenjunga, the world's third-highest mountain, with which Indian state?",
       "options": [
-        "Sankhuwasabha",
-        "Ilam",
-        "Taplejung",
-        "Solukhumbu"
+        "Uttarakhand",
+        "Sikkim",
+        "West Bengal",
+        "Arunachal Pradesh"
       ],
-      "answerIndex": 2,
-      "explanation": "Kanchenjunga (8,586 m) stands on the Nepal–Sikkim border, in Taplejung.",
+      "answerIndex": 1,
+      "explanation": "Kanchenjunga (8,586 m) stands on the border of Taplejung, Nepal, and Sikkim, India.",
       "tags": [
         "nepal",
         "geography"
@@ -1877,22 +1893,23 @@
       ]
     },
     {
-      "id": "geo-muktinath-district",
+      "id": "geo-muktinath-spouts",
       "category": "nepal-geo",
       "difficulty": "medium",
       "type": "mcq",
-      "prompt": "The Muktinath temple, sacred to both Hindus and Buddhists, is in which district?",
+      "prompt": "Pilgrims at the Muktinath temple in Mustang run under how many stone water spouts?",
       "options": [
-        "Manang",
-        "Myagdi",
-        "Mustang",
-        "Dolpa"
+        "12",
+        "51",
+        "108",
+        "365"
       ],
       "answerIndex": 2,
-      "explanation": "Muktinath sits at about 3,800 m in Mustang, north of Jomsom.",
+      "explanation": "108 spouts, a sacred number in both Hinduism and Buddhism, at about 3,800 m.",
       "tags": [
         "nepal",
-        "geography"
+        "geography",
+        "culture"
       ]
     },
     {
@@ -1934,19 +1951,19 @@
       ]
     },
     {
-      "id": "geo-bandipur-district",
+      "id": "geo-largest-province",
       "category": "nepal-geo",
       "difficulty": "medium",
       "type": "mcq",
-      "prompt": "The hilltop town of Bandipur is in which district?",
+      "prompt": "Which is the largest of Nepal's seven provinces by area?",
       "options": [
-        "Gorkha",
-        "Lamjung",
-        "Tanahun",
-        "Syangja"
+        "Koshi",
+        "Bagmati",
+        "Gandaki",
+        "Karnali"
       ],
-      "answerIndex": 2,
-      "explanation": "Bandipur is an old Newar trading town in Tanahun.",
+      "answerIndex": 3,
+      "explanation": "Karnali covers about 27,900 km², nearly a fifth of Nepal, but has the fewest people.",
       "tags": [
         "nepal",
         "geography"
@@ -1966,6 +1983,37 @@
       ],
       "answerIndex": 1,
       "explanation": "Many people guess Kapilvastu, but Lumbini is in Rupandehi.",
+      "tags": [
+        "nepal",
+        "geography"
+      ]
+    },
+    {
+      "id": "geo-flag-shape",
+      "category": "nepal-geo",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "Nepal is the only country whose national flag is not a rectangle.",
+      "answer": true,
+      "explanation": "Two stacked triangles (pennants), with the moon and the sun.",
+      "tags": [
+        "nepal"
+      ]
+    },
+    {
+      "id": "geo-phewa-barahi",
+      "category": "nepal-geo",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "The Tal Barahi temple stands on an island in which lake?",
+      "options": [
+        "Begnas",
+        "Rara",
+        "Phewa",
+        "Rupa"
+      ],
+      "answerIndex": 2,
+      "explanation": "Phewa Lake in Pokhara: you reach the temple by boat.",
       "tags": [
         "nepal",
         "geography"
@@ -2052,20 +2100,6 @@
       ]
     },
     {
-      "id": "fun-paris-the",
-      "category": "fun-tricky",
-      "difficulty": "medium",
-      "type": "open",
-      "prompt": "Read this out loud. What does it say, exactly?",
-      "showcase": "PARIS\nIN THE\nTHE SPRING",
-      "answer": "\"Paris in the THE spring\": \"the\" is written twice!",
-      "explanation": "Your brain skips the repeated word.",
-      "tags": [
-        "trick",
-        "showcase"
-      ]
-    },
-    {
       "id": "fun-divide-half",
       "category": "fun-tricky",
       "difficulty": "medium",
@@ -2120,9 +2154,9 @@
       "category": "fun-tricky",
       "difficulty": "easy",
       "type": "open",
-      "prompt": "You walk into a dark room with one match. There is a candle, a lantern and a gas stove. What do you light first?",
-      "answer": "The match!",
-      "explanation": "You have to light the match before anything else.",
+      "prompt": "You walk into a dark room with one matchstick. There is a candle, a lantern and a gas stove. What do you light first?",
+      "answer": "The matchstick!",
+      "explanation": "You have to light the matchstick before anything else.",
       "tags": [
         "trick"
       ]
@@ -2495,15 +2529,51 @@
       "category": "engineering",
       "difficulty": "easy",
       "type": "mcq",
-      "prompt": "A dialysis machine does the job of which organ?",
+      "prompt": "Which of these machines is used to replace kidney function?",
       "options": [
-        "Liver",
-        "Kidneys",
-        "Lungs",
-        "Heart"
+        "Ventilator",
+        "Dialysis machine",
+        "Defibrillator",
+        "Pacemaker"
       ],
       "answerIndex": 1,
-      "explanation": "It filters waste and extra water from the blood when the kidneys fail.",
+      "explanation": "Dialysis filters waste and extra water out of the blood when the kidneys fail, usually 3 times a week, about 4 hours each time.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-ventilator",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which machine breathes for a patient who can't breathe on their own?",
+      "options": [
+        "Nebuliser",
+        "Ventilator",
+        "Dialysis machine",
+        "Pulse oximeter"
+      ],
+      "answerIndex": 1,
+      "explanation": "A ventilator pushes air (often extra oxygen) into the lungs through a tube. Most ICU beds have one.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-insulin-pump",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which device does part of the pancreas's job for people with diabetes?",
+      "options": [
+        "Insulin pump",
+        "Glucometer",
+        "Inhaler",
+        "Pacemaker"
+      ],
+      "answerIndex": 0,
+      "explanation": "The pump delivers small doses of insulin all day. A glucometer only measures blood sugar; it does not treat it.",
       "tags": [
         "biomedical"
       ]
@@ -2637,11 +2707,108 @@
     {
       "id": "eng-ultrasound",
       "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Ultrasound scans use sound waves too high-pitched for humans to hear. Above roughly what frequency does sound become \"ultrasound\"?",
+      "options": [
+        "20 Hz",
+        "2,000 Hz",
+        "20,000 Hz (20 kHz)",
+        "2 million Hz (2 MHz)"
+      ],
+      "answerIndex": 2,
+      "explanation": "Human hearing tops out near 20 kHz. Medical scanners actually use about 2–15 MHz, far above that.",
+      "tags": [
+        "biomedical",
+        "physics"
+      ]
+    },
+    {
+      "id": "eng-pulse-oximeter",
+      "category": "engineering",
       "difficulty": "easy",
-      "type": "truefalse",
-      "prompt": "Ultrasound scans use sound waves too high-pitched for humans to hear.",
-      "answer": true,
-      "explanation": "Ultrasound is above 20,000 Hz. Medical scanners use millions of hertz.",
+      "type": "mcq",
+      "prompt": "A pulse oximeter clipped on your finger shows your pulse and which other reading?",
+      "options": [
+        "Blood sugar",
+        "Blood oxygen level (SpO₂)",
+        "Blood pressure",
+        "Body temperature"
+      ],
+      "answerIndex": 1,
+      "explanation": "It shines red and infrared light through the finger: oxygen-rich and oxygen-poor haemoglobin absorb them differently. A healthy SpO₂ is 95–100%.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-sphygmomanometer",
+      "category": "engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does a sphygmomanometer measure?",
+      "options": [
+        "Blood pressure",
+        "Lung capacity",
+        "Blood sugar",
+        "Heart rhythm"
+      ],
+      "answerIndex": 0,
+      "explanation": "The inflatable cuff you see at every check-up. Blood pressure is measured in mmHg.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-bp-diastolic",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Normal adult blood pressure is about 120/80 mmHg. What does the 80 stand for?",
+      "options": [
+        "Systolic pressure",
+        "Diastolic pressure",
+        "Pulse rate",
+        "Oxygen level"
+      ],
+      "answerIndex": 1,
+      "explanation": "Diastolic: the pressure while the heart relaxes between beats. 120 is systolic, when it contracts.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-eeg",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "An ECG records the heart's electrical activity. What does an EEG record?",
+      "options": [
+        "The brain",
+        "The eyes",
+        "The muscles",
+        "The lungs"
+      ],
+      "answerIndex": 0,
+      "explanation": "ElectroEncephaloGram: electrodes on the scalp pick up brain waves. EMG does the muscles.",
+      "tags": [
+        "biomedical"
+      ]
+    },
+    {
+      "id": "eng-spirometer",
+      "category": "engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which organ does a doctor test by asking you to blow hard into a spirometer?",
+      "options": [
+        "Heart",
+        "Kidneys",
+        "Lungs",
+        "Liver"
+      ],
+      "answerIndex": 2,
+      "explanation": "A spirometer measures how much air you can breathe out and how fast: used to diagnose asthma and COPD.",
       "tags": [
         "biomedical"
       ]
@@ -2972,6 +3139,358 @@
       "tags": [
         "video",
         "movie"
+      ]
+    },
+    {
+      "id": "av-frozen-fever",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Name the movie!",
+      "media": {
+        "kind": "youtube",
+        "id": "Zfj1ACkjAJc",
+        "start": 5,
+        "end": 35
+      },
+      "options": [
+        "Tangled",
+        "Frozen Fever",
+        "Moana",
+        "Encanto"
+      ],
+      "answerIndex": 1,
+      "explanation": "Frozen Fever (2015), the Disney short in which Elsa throws Anna a birthday surprise.",
+      "tags": [
+        "video",
+        "movie"
+      ]
+    },
+    {
+      "id": "fin-satellite-period",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A satellite's orbit radius is doubled. Its period of revolution becomes…",
+      "options": [
+        "2 times",
+        "2√2 times",
+        "4 times",
+        "√2 times"
+      ],
+      "answerIndex": 1,
+      "explanation": "Kepler's third law: T² ∝ r³, so T ∝ r^(3/2) and 2^(3/2) = 2√2 ≈ 2.83.",
+      "tags": [
+        "final",
+        "physics"
+      ]
+    },
+    {
+      "id": "fin-photoelectric-double",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In the photoelectric effect, the frequency of the light is doubled. The maximum kinetic energy of the emitted electrons…",
+      "options": [
+        "Stays the same",
+        "Exactly doubles",
+        "More than doubles",
+        "Less than doubles"
+      ],
+      "answerIndex": 2,
+      "explanation": "KEmax = hf − φ. Doubling f gives 2hf − φ, which is more than 2(hf − φ) = 2hf − 2φ.",
+      "tags": [
+        "final",
+        "physics"
+      ]
+    },
+    {
+      "id": "fin-stretched-wire",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A wire is stretched to twice its original length. Its resistance becomes…",
+      "options": [
+        "2 times",
+        "4 times",
+        "Half",
+        "Unchanged"
+      ],
+      "answerIndex": 1,
+      "explanation": "R = ρL/A. The volume stays the same, so the area halves as the length doubles: 2 × 2 = 4 times.",
+      "tags": [
+        "final",
+        "physics"
+      ]
+    },
+    {
+      "id": "fin-half-life",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A radioactive sample falls to 1/16 of its activity in 20 days. What is its half-life?",
+      "options": [
+        "1.25 days",
+        "4 days",
+        "5 days",
+        "10 days"
+      ],
+      "answerIndex": 2,
+      "explanation": "1/16 = (1/2)⁴: four half-lives in 20 days, so 5 days each.",
+      "tags": [
+        "final",
+        "physics"
+      ]
+    },
+    {
+      "id": "fin-bohr-n2",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is the energy of the electron in the n = 2 orbit of a hydrogen atom?",
+      "options": [
+        "−13.6 eV",
+        "−6.8 eV",
+        "−3.4 eV",
+        "−1.51 eV"
+      ],
+      "answerIndex": 2,
+      "explanation": "Eₙ = −13.6 / n² eV, so −13.6 / 4 = −3.4 eV (not −13.6 / 2).",
+      "tags": [
+        "final",
+        "physics"
+      ]
+    },
+    {
+      "id": "fin-capacitors-ratio",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Two identical capacitors are joined first in series, then in parallel. What is the ratio of the series to the parallel capacitance?",
+      "options": [
+        "1 : 2",
+        "2 : 1",
+        "1 : 4",
+        "4 : 1"
+      ],
+      "answerIndex": 2,
+      "explanation": "Series gives C/2, parallel gives 2C: (C/2) : 2C = 1 : 4.",
+      "tags": [
+        "final",
+        "physics"
+      ]
+    },
+    {
+      "id": "fin-ph-dilute-hcl",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is the pH of a 10⁻⁸ M HCl solution?",
+      "options": [
+        "8",
+        "About 6.98",
+        "Exactly 7",
+        "6"
+      ],
+      "answerIndex": 1,
+      "explanation": "An acid can't have a pH above 7. Water's own 10⁻⁷ M of H⁺ matters here: [H⁺] ≈ 1.05 × 10⁻⁷ M, so pH ≈ 6.98.",
+      "tags": [
+        "final",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "fin-fe3-unpaired",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "How many unpaired electrons does the Fe³⁺ ion have?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answerIndex": 2,
+      "explanation": "Fe is [Ar] 3d⁶ 4s². Fe³⁺ loses both 4s electrons and one 3d: 3d⁵, all five unpaired.",
+      "tags": [
+        "final",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "fin-o2-paramagnetic",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Liquid oxygen sticks to a magnet. By molecular orbital theory, how many unpaired electrons does an O₂ molecule have?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "4"
+      ],
+      "answerIndex": 2,
+      "explanation": "Two, one in each π*2p antibonding orbital. The Lewis structure (all paired) can't explain it; MOT can. Bond order: 2.",
+      "tags": [
+        "final",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "fin-rate-constant-units",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A rate constant has units of mol⁻¹ L s⁻¹. What is the order of the reaction?",
+      "options": [
+        "Zero order",
+        "First order",
+        "Second order",
+        "Third order"
+      ],
+      "answerIndex": 2,
+      "explanation": "Units of k are (mol L⁻¹)^(1−n) s⁻¹. For n = 2 that is mol⁻¹ L s⁻¹.",
+      "tags": [
+        "final",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "fin-cannizzaro",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Formaldehyde (no α-hydrogen) in concentrated NaOH gives methanol and sodium formate. Which reaction is this?",
+      "options": [
+        "Aldol condensation",
+        "Cannizzaro reaction",
+        "Clemmensen reduction",
+        "Reimer–Tiemann reaction"
+      ],
+      "answerIndex": 1,
+      "explanation": "A disproportionation: one molecule is reduced to the alcohol, the other oxidised to the acid salt. Aldol needs an α-hydrogen.",
+      "tags": [
+        "final",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "fin-blood-group-o",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Father is blood group A (IᴬIᴼ), mother is group B (IᴮIᴼ). What is the chance their child has blood group O?",
+      "options": [
+        "0 (impossible)",
+        "1/4",
+        "1/2",
+        "3/4"
+      ],
+      "answerIndex": 1,
+      "explanation": "Each parent passes on Iᴼ half the time: ½ × ½ = ¼. Their children could be A, B, AB or O.",
+      "tags": [
+        "final",
+        "biology"
+      ]
+    },
+    {
+      "id": "fin-crossing-over",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Crossing over takes place in which sub-stage of Prophase I of meiosis?",
+      "options": [
+        "Leptotene",
+        "Zygotene",
+        "Pachytene",
+        "Diplotene"
+      ],
+      "answerIndex": 2,
+      "explanation": "Homologues pair in zygotene, cross over in pachytene, and the chiasmata become visible in diplotene.",
+      "tags": [
+        "final",
+        "biology"
+      ]
+    },
+    {
+      "id": "fin-derivative-x-to-x",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is d/dx (xˣ)?",
+      "options": [
+        "x · xˣ⁻¹",
+        "xˣ ln x",
+        "xˣ (1 + ln x)",
+        "xˣ⁻¹ ln x"
+      ],
+      "answerIndex": 2,
+      "explanation": "Neither the power rule nor the exponential rule works. Take logs: ln y = x ln x, so y′/y = ln x + 1.",
+      "tags": [
+        "final",
+        "maths"
+      ]
+    },
+    {
+      "id": "fin-i-to-the-i",
+      "category": "science",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What kind of number is iⁱ?",
+      "options": [
+        "Imaginary",
+        "Real (about 0.208)",
+        "Undefined",
+        "Complex, both parts non-zero"
+      ],
+      "answerIndex": 1,
+      "explanation": "i = e^(iπ/2), so iⁱ = e^(i · iπ/2) = e^(−π/2) ≈ 0.208 (principal value).",
+      "tags": [
+        "final",
+        "maths"
+      ]
+    },
+    {
+      "id": "fin-c-for-semicolon",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What does this C program print?",
+      "showcase": "int i;\nfor (i = 0; i < 5; i++);\nprintf(\"%d\", i);",
+      "options": [
+        "01234",
+        "4",
+        "5",
+        "Nothing: it loops forever"
+      ],
+      "answerIndex": 2,
+      "explanation": "Spot the semicolon after for(…): the loop has an empty body and just counts i up to 5. Then printf runs once and prints 5.",
+      "tags": [
+        "final",
+        "programming",
+        "code"
+      ]
+    },
+    {
+      "id": "fin-c-sizeof-string",
+      "category": "engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What does this C program print?",
+      "showcase": "char s[] = \"NIET\";\nprintf(\"%d\", sizeof(s));",
+      "options": [
+        "4",
+        "5",
+        "8",
+        "1"
+      ],
+      "answerIndex": 1,
+      "explanation": "Four letters plus the hidden '\\0' that ends every C string: 5 bytes. (strlen(s) would give 4.)",
+      "tags": [
+        "final",
+        "programming",
+        "code"
       ]
     }
   ]

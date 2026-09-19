@@ -32,6 +32,8 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
   const options = optionLabels(q)
   // Short showcases (emoji, an equation) are huge; longer text such as a verse is set like a quote.
   const verse = Boolean(q.showcase && q.showcase.length > 16)
+  // A `code` showcase is a program listing: monospace, left-aligned, indentation kept.
+  const code = q.tags.includes('code')
   const correctIndex = correctOptionIndex(q)
 
   return (
@@ -64,7 +66,9 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
         ) : q.showcase ? (
           <motion.p
             className={
-              verse
+              code
+                ? 'rounded-3xl bg-stage-950/80 px-14 py-10 text-left font-mono text-[64px] leading-[1.4] font-semibold whitespace-pre text-white ring-2 ring-white/10'
+                : verse
                 ? 'max-w-[1500px] text-center text-[52px] leading-[1.45] font-bold whitespace-pre-line text-white drop-shadow-[0_0_30px_rgb(245_197_66/0.25)]'
                 : 'text-center font-display text-[200px] leading-none font-black tracking-wide drop-shadow-[0_0_50px_rgb(245_197_66/0.35)]'
             }

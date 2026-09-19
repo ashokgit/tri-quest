@@ -25,10 +25,11 @@
         "sci-feather-hammer",
         "sci-electronegativity",
         "sci-laughing-gas",
-        "sci-largest-organ",
+        "sci-largest-internal-organ",
         "sci-rbc-nucleus",
         "sci-zero-factorial",
         "sci-log2-1024",
+        "sci-sum-1-to-100",
         "sci-escape-velocity",
         "sci-ethyne-hybridisation",
         "sci-helicase",
@@ -79,20 +80,22 @@
       "questionIds": [
         "niet-established",
         "geo-tilicho-district",
-        "geo-rara-district",
-        "geo-phoksundo-district",
-        "geo-gosaikunda-district",
+        "geo-rara-largest",
+        "geo-phoksundo-deepest",
+        "geo-gosaikunda-festival",
         "geo-lowest-point",
-        "geo-kanchenjunga-district",
+        "geo-kanchenjunga-sikkim",
         "geo-everest-district",
         "geo-largest-district",
         "geo-smallest-district",
         "geo-districts-count",
-        "geo-muktinath-district",
+        "geo-muktinath-spouts",
         "geo-first-national-park",
         "geo-kali-gandaki-gorge",
-        "geo-bandipur-district",
-        "geo-lumbini-district"
+        "geo-largest-province",
+        "geo-lumbini-district",
+        "geo-flag-shape",
+        "geo-phewa-barahi"
       ],
       "subtitle": "Geography, from Kechana to Tilicho",
       "keep": [
@@ -133,14 +136,16 @@
         "av-xray-hand",
         "av-ram-module",
         "av-hajar-sapana",
-        "av-top-gun-maverick"
+        "av-top-gun-maverick",
+        "av-frozen-fever"
       ],
       "keep": [
         "av-sarangi",
         "av-floppy-disk",
         "av-kid-einstein",
         "av-hajar-sapana",
-        "av-top-gun-maverick"
+        "av-top-gun-maverick",
+        "av-frozen-fever"
       ]
     },
     {
@@ -154,7 +159,6 @@
         "fun-second-place",
         "fun-banana-berry",
         "fun-sheep",
-        "fun-kg-iron-cotton",
         "fun-catch-cold",
         "fun-venus-day",
         "fun-subtract-5",
@@ -168,7 +172,6 @@
         "fun-forty",
         "fun-pills",
         "fun-count-fs",
-        "fun-paris-the",
         "fun-divide-half",
         "fun-count-nines",
         "fun-rooster-egg",
@@ -218,7 +221,14 @@
         "eng-universal-donor",
         "eng-dolly",
         "eng-ivf-baby",
-        "eng-ultrasound"
+        "eng-ultrasound",
+        "eng-pulse-oximeter",
+        "eng-sphygmomanometer",
+        "eng-bp-diastolic",
+        "eng-eeg",
+        "eng-spirometer",
+        "eng-ventilator",
+        "eng-insulin-pump"
       ],
       "subtitle": "Computers, AI & biomedical"
     },
@@ -255,7 +265,38 @@
         "ca-winter-olympics-top",
         "ca-artemis-apollo",
         "ca-artemis-canada",
-        "ca-pope"
+        "ca-pope",
+        "ca-oscar-nepal-entry"
+      ],
+      "keep": [
+        "ca-oscar-nepal-entry"
+      ]
+    },
+    {
+      "id": "r8-final",
+      "title": "Final Challenge",
+      "subtitle": "NEB +2 science, the tough ones",
+      "category": "science",
+      "timerSeconds": 30,
+      "pick": 6,
+      "questionIds": [
+        "fin-satellite-period",
+        "fin-photoelectric-double",
+        "fin-stretched-wire",
+        "fin-half-life",
+        "fin-bohr-n2",
+        "fin-capacitors-ratio",
+        "fin-ph-dilute-hcl",
+        "fin-fe3-unpaired",
+        "fin-o2-paramagnetic",
+        "fin-rate-constant-units",
+        "fin-cannizzaro",
+        "fin-blood-group-o",
+        "fin-crossing-over",
+        "fin-derivative-x-to-x",
+        "fin-i-to-the-i",
+        "fin-c-for-semicolon",
+        "fin-c-sizeof-string"
       ]
     }
   ]

@@ -3,11 +3,11 @@ import { StatusScreen } from '@/app/StatusScreen'
 import { loadSession, type LoadedSession } from '@/data/source'
 import { correctOptionIndex, drawSession, optionLabels } from '@/features/presenter/deck'
 import { optionLetter } from '@/features/presenter/components/palette'
-import { usePresenterStore, useSessionCount, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
+import { useSessionCount, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
 import { useAsync } from '@/lib/useAsync'
 import { mediaLocation, type Question } from '@/data/schema'
 
-/** Host cheat sheet: the questions in the current draw, in show order, with answers. Printable. */
+/** Host cheat sheet: every question in the session's pools, by round, with answers. Printable. */
 export function ReviewPage() {
   const { sessionId = '' } = useParams()
   const state = useAsync(() => loadSession(sessionId), sessionId)
@@ -18,16 +18,17 @@ export function ReviewPage() {
 }
 
 function Review({ loaded }: { loaded: LoadedSession }) {
-  const { session } = loaded
+  const { session, bank, questionsById } = loaded
   const seed = useSessionSeed(session)
-  const pinned = seed === session.seed
-  const resetDraw = usePresenterStore((s) => s.resetDraw)
   const order = useSessionOrder(session)
   const count = useSessionCount(session)
-  const rounds = drawSession(loaded, seed, order, count)
-  const total = rounds.reduce((n, r) => n + r.questions.length, 0)
-  const toVerify = rounds.flatMap((r) => r.questions).filter((q) => q.verify).length
-  const withMedia = rounds.flatMap((r) => r.questions).filter((q) => q.media).length
+  const categories = new Map(bank.categories.map((c) => [c.id, c]))
+  // Every question in the session's pools, grouped by round; the current draw is only marked.
+  const drawn = new Set(drawSession(loaded, seed, order, count).flatMap((r) => r.questions.map((q) => q.id)))
+  const rounds = session.rounds.map((round) => ({ round, questions: round.questionIds.map((id) => questionsById.get(id)!) }))
+  const all = rounds.flatMap((r) => r.questions)
+  const toVerify = all.filter((q) => q.verify).length
+  const withMedia = all.filter((q) => q.media).length
 
   return (
     <div className="h-full overflow-y-auto select-text print:h-auto print:overflow-visible print:bg-white print:text-black">
@@ -39,21 +40,7 @@ function Review({ loaded }: { loaded: LoadedSession }) {
               {session.title} <span className="text-white/40 print:text-black/40">· {session.event}</span>
             </h1>
             <p className="mt-2 text-white/60 print:text-black/60">
-              {total} questions in {rounds.length} {order === 'difficulty' ? 'levels (by difficulty)' : 'rounds (by category)'} · draw #{seed} · {withMedia} with media · {toVerify} flagged to verify
-            </p>
-            <p className="mt-1 text-sm text-white/45 print:hidden">
-              {pinned ? (
-                'This is the draw pinned in the session file, so every device shows the same questions.'
-              ) : (
-                <>
-                  Reshuffled in this browser only. To use it on every device, set <code className="text-gold">"seed": {seed}</code> in the
-                  session file, or{' '}
-                  <button type="button" className="underline hover:text-white" onClick={() => resetDraw(session.id)}>
-                    go back to the pinned draw #{session.seed}
-                  </button>
-                  .
-                </>
-              )}
+              All {all.length} questions in {rounds.length} rounds · {drawn.size} in the current draw (#{seed}) · {withMedia} with media · {toVerify} flagged to verify
             </p>
           </div>
           <div className="flex gap-2 font-display font-semibold print:hidden">
@@ -66,27 +53,30 @@ function Review({ loaded }: { loaded: LoadedSession }) {
           </div>
         </header>
 
-        {rounds.map(({ round, category, questions, timers }, r) => (
-          <section key={round.id} className="break-inside-avoid-page">
-            <h2 className="mb-3 border-b border-white/15 pb-2 font-display text-2xl font-bold print:border-black/20">
-              {order === 'difficulty' ? 'Level' : 'Round'} {r + 1}: {category?.icon} {round.title}
-              <span className="ml-2 text-base font-semibold text-white/50 print:text-black/50">
-                {round.subtitle ?? `${questions.length} questions`} · {timerRange(timers)}
-              </span>
-            </h2>
-            <ol className="space-y-3">
-              {questions.map((q, i) => (
-                <ReviewItem key={q.id} q={q} n={i + 1} />
-              ))}
-            </ol>
-          </section>
-        ))}
+        {rounds.map(({ round, questions }, r) => {
+          const category = categories.get(round.category ?? '')
+          return (
+            <section key={round.id} className="break-inside-avoid-page">
+              <h2 className="mb-3 border-b border-white/15 pb-2 font-display text-2xl font-bold print:border-black/20">
+                Round {r + 1}: {category?.icon} {round.title}
+                <span className="ml-2 text-base font-semibold text-white/50 print:text-black/50">
+                  {questions.length} questions · {round.timerSeconds ?? session.defaults.timerSeconds}s each
+                </span>
+              </h2>
+              <ol className="space-y-3">
+                {questions.map((q, i) => (
+                  <ReviewItem key={q.id} q={q} n={i + 1} drawn={drawn.has(q.id)} />
+                ))}
+              </ol>
+            </section>
+          )
+        })}
       </main>
     </div>
   )
 }
 
-function ReviewItem({ q, n }: { q: Question; n: number }) {
+function ReviewItem({ q, n, drawn }: { q: Question; n: number; drawn: boolean }) {
   const options = optionLabels(q)
   const correct = correctOptionIndex(q)
   return (
@@ -100,6 +90,7 @@ function ReviewItem({ q, n }: { q: Question; n: number }) {
           {q.difficulty} · {q.type}
           {q.media && ` · ${q.media.kind}`}
         </span>
+        {drawn && <span className="rounded bg-gold/20 px-2 text-xs font-bold text-gold print:text-black">IN DRAW</span>}
         {q.verify && <span className="rounded bg-lock/20 px-2 text-xs font-bold text-lock print:text-black">VERIFY</span>}
       </div>
       {options ? (
@@ -118,9 +109,3 @@ function ReviewItem({ q, n }: { q: Question; n: number }) {
   )
 }
 
-/** "20s each" or "20–30s" when a level mixes timers. */
-function timerRange(timers: number[]) {
-  const lo = Math.min(...timers)
-  const hi = Math.max(...timers)
-  return lo === hi ? `${lo}s each` : `${lo}–${hi}s`
-}
