@@ -2287,7 +2287,6 @@
       "category": "gk",
       "difficulty": "medium",
       "type": "mcq",
-      "verify": true,
       "prompt": "These are the closing lines of a poem by Mahakavi Laxmi Prasad Devkota. What is the poem called?",
       "showcase": "फर्क फर्क हे ! जाऊ समाऊ, मानिसहरूको पाउ !\nमलम लगाऊ आर्तहरूको, चहराइरहेको घाउ\nमानिस भइ ईश्वरको त्यो, दिव्य मुहार हँसाऊ",
       "options": [
