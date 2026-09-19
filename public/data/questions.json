@@ -2301,6 +2301,31 @@
         "nepal",
         "literature"
       ]
+    },
+    {
+      "id": "av-floppy-disk",
+      "category": "audio-visual",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Your parents used these every day. What are they called?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-floppy-disks.jpg",
+        "alt": "A box of floppy disks",
+        "reveal": "none"
+      },
+      "options": [
+        "Fluffy Disk",
+        "Floppy Disk",
+        "Flappy Disk",
+        "Frisbee Disk"
+      ],
+      "answerIndex": 1,
+      "explanation": "A 3.5-inch floppy held just 1.44 MB. It lives on as the 💾 Save icon!",
+      "tags": [
+        "image",
+        "tech"
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 The Audio-Visual round uses these files from [Wikimedia Commons](https://commons.wikimedia.org). Thank you to their authors.
 Files marked CC BY / CC BY-SA are used under those licences with the changes noted. The adapted CC BY-SA files are shared under the same licence.
-`images/av-balen-shah.jpg` was supplied by the event host.
+`images/av-balen-shah.jpg` and `images/av-floppy-disks.jpg` were supplied by the event host.
 Everything else in this repository (code, questions, synthesised sounds) is original to this project.
 
 | File (in `public/media/`) | Source | Author | Licence | Changes |

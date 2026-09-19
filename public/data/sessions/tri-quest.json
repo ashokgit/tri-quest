@@ -109,6 +109,7 @@
       "timerSeconds": 30,
       "pick": 9,
       "questionIds": [
+        "av-floppy-disk",
         "av-boudhanath",
         "av-patan-durbar",
         "av-einstein",
@@ -126,7 +127,8 @@
         "av-red-blood-cells"
       ],
       "keep": [
-        "av-sarangi"
+        "av-sarangi",
+        "av-floppy-disk"
       ]
     },
     {
