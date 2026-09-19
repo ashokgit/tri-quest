@@ -27,8 +27,13 @@ export const Media = z.discriminatedUnion('kind', [
     kind: z.literal('image'),
     src: mediaPath,
     alt: z.string().optional(),
-    /** How the image is uncovered before the answer: progressively unblurred or zoomed out. */
-    reveal: z.enum(['none', 'blur', 'zoom']).default('none'),
+    /**
+     * How the image is uncovered before the answer: progressively unblurred or zoomed out,
+     * or `peek`: only a top strip shows until the answer drops the rest into view.
+     */
+    reveal: z.enum(['none', 'blur', 'zoom', 'peek']).default('none'),
+    /** For `peek`: how much of the image, from the top, shows before the answer (percent, default 30). */
+    peek: z.number().min(5).max(95).optional(),
     /** For `zoom`: how far in the opening close-up is (default 4×). */
     zoom: z.number().min(1.5).max(16).optional(),
     /** For `zoom`: the point to zoom into, as [x%, y%] of the media frame (default centre). */
@@ -47,7 +52,27 @@ export const Media = z.discriminatedUnion('kind', [
     start: z.number().nonnegative().optional(),
     end: z.number().positive().optional(),
   }),
+  /** A YouTube clip, streamed on the day (needs internet in the hall). */
+  z.object({
+    kind: z.literal('youtube'),
+    /** The 11-character video id, e.g. "WwNk-zjdAqc" from youtu.be/WwNk-zjdAqc. */
+    id: z.string().regex(/^[A-Za-z0-9_-]{11}$/, 'a YouTube video id is 11 characters'),
+    start: z.number().nonnegative().optional(),
+    end: z.number().positive().optional(),
+    /** Play the clip silently for the question; the reveal replays it with sound. */
+    muted: z.boolean().default(false),
+    /** Show only this much of the frame (percent) until the reveal. */
+    peek: z.number().min(5).max(95).optional(),
+    /** Which edge the `peek` strip is taken from (default bottom). */
+    peekFrom: z.enum(['top', 'bottom']).default('bottom'),
+  }),
 ])
+
+/** Where a media item lives: a path under public/ or, for YouTube, its link. */
+export function mediaLocation(media: z.infer<typeof Media>): string {
+  if (media.kind !== 'youtube') return media.src
+  return `https://youtu.be/${media.id}${media.start ? `?t=${media.start}` : ''}`
+}
 
 const questionBase = {
   id,
@@ -109,12 +134,22 @@ export const Round = z
     questionIds: z.array(id).min(1),
     /** Show only this many questions, drawn at random (balanced by difficulty) from the pool. */
     pick: z.number().int().positive().optional(),
+    /** Questions always included in a `pick` draw; the rest of the pick is drawn as usual. */
+    keep: z.array(id).default([]),
     /** Randomise which questions appear even without `pick`. */
     shuffle: z.boolean().default(false),
   })
   .refine((r) => r.pick === undefined || r.pick <= r.questionIds.length, {
     message: 'pick is larger than the question pool',
     path: ['pick'],
+  })
+  .refine((r) => r.keep.every((k) => r.questionIds.includes(k)), {
+    message: 'keep lists a question that is not in this round',
+    path: ['keep'],
+  })
+  .refine((r) => r.pick === undefined || r.keep.length <= r.pick, {
+    message: 'keep has more questions than pick',
+    path: ['keep'],
   })
 
 export const Session = z.object({

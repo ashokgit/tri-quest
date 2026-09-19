@@ -8,7 +8,9 @@
 import { mediaUrl } from '@/data/source'
 import { CUES, type Cue, type LoopCue, type OneShotCue } from './cues'
 import { AudioEngine } from './engine'
-import { CUE_SYNTHS, startBed, startSuspense, type Loop } from './music'
+import { CUE_SYNTHS, startBed, startLobby, startSuspense, type Loop } from './music'
+
+const LOOP_SYNTHS = { bed: startBed, suspense: startSuspense, lobby: startLobby }
 
 class SoundBoard {
   private engine: AudioEngine | null = null
@@ -16,19 +18,32 @@ class SoundBoard {
   private loops = new Map<LoopCue, Loop>()
   private muted = false
   private volume = 0.9
+  private listeners = new Set<() => void>()
 
   /** Must be called from a user gesture (key press/click) before sound can play. */
   unlock() {
     if (!this.engine) {
       this.engine = new AudioEngine()
+      this.engine.ctx.addEventListener('statechange', () => this.listeners.forEach((l) => l()))
       this.applyVolume()
       void this.loadOverrides()
+      this.listeners.forEach((l) => l())
     }
     if (this.engine.ctx.state === 'suspended') void this.engine.ctx.resume()
   }
 
   get ready() {
     return this.engine?.ctx.state === 'running'
+  }
+
+  /** Notifies when `ready` may have changed (for useSyncExternalStore). */
+  subscribe = (listener: () => void) => {
+    this.listeners.add(listener)
+    return () => void this.listeners.delete(listener)
+  }
+
+  isPlaying(cue: LoopCue) {
+    return this.loops.has(cue)
   }
 
   setMuted(muted: boolean) {
@@ -64,7 +79,7 @@ class SoundBoard {
     const e = this.engine
     if (!e || !this.ready || this.loops.has(cue)) return
     const file = this.overrides.get(cue)
-    this.loops.set(cue, file ? this.playBuffer(file, e.now, true) : cue === 'bed' ? startBed(e) : startSuspense(e))
+    this.loops.set(cue, file ? this.playBuffer(file, e.now, true) : LOOP_SYNTHS[cue](e))
   }
 
   stopLoop(cue: LoopCue, fade?: number) {

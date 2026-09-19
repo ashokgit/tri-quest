@@ -12,6 +12,7 @@ const SHORTCUTS: [string, string][] = [
   ['1 – 9', 'Jump to round'],
   ['Home', 'Back to welcome'],
   ['.', 'Blank the screen'],
+  ['I', 'Replay the intro music (welcome screen)'],
   ['M', 'Mute sounds'],
   ['F', 'Full screen'],
   ['H  ?', 'Show / hide this help'],

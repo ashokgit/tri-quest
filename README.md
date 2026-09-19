@@ -73,7 +73,7 @@ Each question keeps its own timer (e.g. 30s for Audio-Visual) in either order.
 | `truefalse` | `answer: boolean` | |
 | `open` | `answer: string` | no options, answer shown on reveal |
 
-Every question can also have `showcase` (big text on the stage, e.g. an emoji puzzle), `media` (`image` with `reveal: blur \| zoom`, `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
+Every question can also have `showcase` (big text on the stage, e.g. an emoji puzzle), `media` (`image` with `reveal: blur \| zoom \| peek`, where `peek` shows only the top `peek`% (default 30) until the answer, `youtube` with an `id`, `start`/`end`, `muted` (silent for the question, replayed with sound on the reveal) and an optional `peek`/`peekFrom` strip (needs internet on the day), `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
 
 ## Sound effects
 
@@ -85,6 +85,7 @@ To replace any sound with your own recording, put the file in `public/media/sfx/
 
 | Cue | When it plays |
 |---|---|
+| `lobby` | **Loops** on the welcome screen: an opening fanfare, then faint music the host can talk over. Starts on the Present click; press **I** to replay the fanfare. A file override just loops |
 | `theme` | Leaving the welcome screen (opening theme) |
 | `roundIntro` | Each later round's title card |
 | `optionIn` | Each answer bar slides in (A/C panned left, B/D right) |

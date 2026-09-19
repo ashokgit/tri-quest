@@ -192,11 +192,11 @@ export function kick(e: AudioEngine, at: number, gain = 0.8, from = 110, to = 38
 }
 
 /** Timpani: pitched boom with a skin "thwack". */
-export function timpani(e: AudioEngine, at: number, note: number, gain = 0.5) {
+export function timpani(e: AudioEngine, at: number, note: number, gain = 0.5, place: Placement = {}) {
   const f = midi(note)
-  tone(e, { at, freq: f * 1.03, toFreq: f, dur: 2.2, gain, attack: 0.004, reverb: 0.35 })
-  tone(e, { at, freq: f * 1.5, dur: 0.6, gain: gain * 0.3, attack: 0.004, reverb: 0.2 })
-  noise(e, { at, dur: 0.18, gain: gain * 0.35, filter: 'lowpass', freq: 900, reverb: 0.3 })
+  tone(e, { at, freq: f * 1.03, toFreq: f, dur: 2.2, gain, attack: 0.004, reverb: 0.35, ...place })
+  tone(e, { at, freq: f * 1.5, dur: 0.6, gain: gain * 0.3, attack: 0.004, reverb: 0.2, ...place })
+  noise(e, { at, dur: 0.18, gain: gain * 0.35, filter: 'lowpass', freq: 900, reverb: 0.3, ...place })
 }
 
 /** FM bell / chime. */
@@ -221,24 +221,24 @@ export function bell(e: AudioEngine, at: number, note: number, gain = 0.12, dur 
 }
 
 /** Cymbal crash. */
-export function crash(e: AudioEngine, at: number, gain = 0.2, dur = 2.6) {
-  noise(e, { at, dur, gain, filter: 'highpass', freq: 5500, reverb: 0.4, pan: -0.3 })
-  noise(e, { at, dur: dur * 0.8, gain: gain * 0.7, filter: 'bandpass', freq: 8500, q: 0.6, reverb: 0.4, pan: 0.3 })
+export function crash(e: AudioEngine, at: number, gain = 0.2, dur = 2.6, place: Placement = {}) {
+  noise(e, { at, dur, gain, filter: 'highpass', freq: 5500, reverb: 0.4, pan: -0.3, ...place })
+  noise(e, { at, dur: dur * 0.8, gain: gain * 0.7, filter: 'bandpass', freq: 8500, q: 0.6, reverb: 0.4, pan: 0.3, ...place })
 }
 
 /** Snare roll that swells from `from` to `to` volume. */
-export function snareRoll(e: AudioEngine, at: number, dur: number, from = 0.02, to = 0.18) {
+export function snareRoll(e: AudioEngine, at: number, dur: number, from = 0.02, to = 0.18, place: Placement = {}) {
   const hits = Math.floor(dur * 28)
   for (let i = 0; i < hits; i++) {
     const t = i / hits
-    noise(e, { at: at + i / 28, dur: 0.07, gain: from + (to - from) * t * t, filter: 'bandpass', freq: 2200, q: 0.8, reverb: 0.2, pan: (i % 2) * 0.3 - 0.15 })
+    noise(e, { at: at + i / 28, dur: 0.07, gain: from + (to - from) * t * t, filter: 'bandpass', freq: 2200, q: 0.8, reverb: 0.2, pan: (i % 2) * 0.3 - 0.15, ...place })
   }
 }
 
 /** Rising whoosh that builds into a hit at `at + dur`. */
-export function riser(e: AudioEngine, at: number, dur: number, gain = 0.15) {
-  noise(e, { at, dur: dur + 0.05, gain, filter: 'bandpass', freq: 300, toFreq: 7000, q: 1.5, attack: dur * 0.9, reverb: 0.3 })
-  tone(e, { at, freq: 180, toFreq: 900, dur: dur + 0.05, type: 'sawtooth', gain: gain * 0.25, attack: dur * 0.9, lowpass: 1500 })
+export function riser(e: AudioEngine, at: number, dur: number, gain = 0.15, place: Placement = {}) {
+  noise(e, { at, dur: dur + 0.05, gain, filter: 'bandpass', freq: 300, toFreq: 7000, q: 1.5, attack: dur * 0.9, reverb: 0.3, ...place })
+  tone(e, { at, freq: 180, toFreq: 900, dur: dur + 0.05, type: 'sawtooth', gain: gain * 0.25, attack: dur * 0.9, lowpass: 1500, ...place })
 }
 
 /** Short air swoosh, e.g. an answer bar sliding in. */

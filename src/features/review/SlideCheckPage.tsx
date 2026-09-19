@@ -1,11 +1,14 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-import { Link, useParams } from 'react-router'
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router'
 import { StatusScreen } from '@/app/StatusScreen'
 import type { Question, Session } from '@/data/schema'
 import { loadSession, type LoadedSession } from '@/data/source'
-import { stagesFor, type Slide } from '@/features/presenter/deck'
+import { sfx } from '@/features/audio/sfx'
+import { buildDeck, stagesFor, type Slide } from '@/features/presenter/deck'
 import { QuestionSlide } from '@/features/presenter/slides/QuestionSlide'
 import { STAGE_HEIGHT, STAGE_WIDTH } from '@/features/presenter/Stage'
+import { usePresenterStore, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
+import { enterFullscreen } from '@/lib/fullscreen'
 import { useAsync } from '@/lib/useAsync'
 
 const THUMB_SCALE = 0.25
@@ -45,6 +48,26 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
         timerSeconds: round.timerSeconds ?? session.defaults.timerSeconds,
       }
     }),
+  )
+
+  // Where each question sits in the show as currently drawn, so a slide can be presented directly.
+  const seed = useSessionSeed(session)
+  const order = useSessionOrder(session)
+  const deckIndex = useMemo(() => {
+    const index = new Map<string, number>()
+    buildDeck(loaded, seed, order).forEach((s, i) => s.kind === 'question' && index.set(s.question.id, i))
+    return index
+  }, [loaded, seed, order])
+  const setPosition = usePresenterStore((s) => s.setPosition)
+  const navigate = useNavigate()
+  const presentFrom = useCallback(
+    (slide: number) => {
+      enterFullscreen()
+      sfx.unlock()
+      setPosition(session.id, { slide, stage: 0 })
+      void navigate(`/present/${session.id}`)
+    },
+    [navigate, setPosition, session.id],
   )
 
   const report = useCallback((id: string, found: Issue[]) => setIssues((prev) => (prev[id] ? prev : { ...prev, [id]: found })), [])
@@ -90,7 +113,16 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(480px,1fr))] gap-6">
           {slides.map((slide) => (
-            <Thumb key={slide.question.id} slide={slide} session={session} moment={moment} issues={issues[slide.question.id]} onMeasured={report} />
+            <Thumb
+              key={slide.question.id}
+              slide={slide}
+              session={session}
+              moment={moment}
+              issues={issues[slide.question.id]}
+              onMeasured={report}
+              deckIndex={deckIndex.get(slide.question.id)}
+              onPresent={presentFrom}
+            />
           ))}
         </div>
       </main>
@@ -104,12 +136,17 @@ function Thumb({
   moment,
   issues,
   onMeasured,
+  deckIndex,
+  onPresent,
 }: {
   slide: Extract<Slide, { kind: 'question' }>
   session: Session
   moment: 'final' | 'opening'
   issues?: Issue[]
   onMeasured: (id: string, issues: Issue[]) => void
+  /** Slide number in the current draw, or undefined when this draw doesn't include the question. */
+  deckIndex?: number
+  onPresent: (slide: number) => void
 }) {
   const root = useRef<HTMLDivElement>(null)
   const q = slide.question
@@ -130,14 +167,28 @@ function Thumb({
           <QuestionSlide slide={slide} slideIndex={-1} stage={moment === 'final' ? lastStage : 0} session={session} />
         </div>
       </div>
-      <figcaption className="text-xs">
+      <figcaption className="flex flex-wrap items-center gap-x-2 text-xs">
+        {deckIndex !== undefined ? (
+          <button
+            type="button"
+            onClick={() => onPresent(deckIndex)}
+            title="Open the show at this question"
+            className="rounded-md bg-niet-red px-2 py-0.5 font-display font-semibold text-white hover:brightness-110"
+          >
+            ▶ Go to
+          </button>
+        ) : (
+          <span className="rounded-md px-2 py-0.5 text-white/35 ring-1 ring-white/10" title="Reshuffle or change the order to draw it">
+            not in this draw
+          </span>
+        )}
         <span className="font-mono text-white/50">{q.id}</span>
         {issues?.map((i, k) => (
-          <span key={k} className={`ml-2 font-semibold ${i.level === 'error' ? 'text-niet-red' : 'text-lock'}`}>
+          <span key={k} className={`font-semibold ${i.level === 'error' ? 'text-niet-red' : 'text-lock'}`}>
             {i.level === 'error' ? '✖' : '⚠'} {i.text}
           </span>
         ))}
-        {issues && !issues.length && <span className="ml-2 text-correct">✔ fits</span>}
+        {issues && !issues.length && <span className="text-correct">✔ fits</span>}
       </figcaption>
     </figure>
   )

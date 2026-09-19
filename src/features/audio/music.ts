@@ -131,9 +131,9 @@ export interface Loop {
 }
 
 /** Lookahead scheduler: calls `schedule(step, time)` for each 16th note just before it's due. */
-function sequencer(e: AudioEngine, stepSeconds: number, schedule: (step: number, time: number) => void) {
+function sequencer(e: AudioEngine, stepSeconds: number, schedule: (step: number, time: number) => void, startAt = e.now + 0.05) {
   let step = 0
-  let next = e.now + 0.05
+  let next = startAt
   const id = window.setInterval(() => {
     while (next < e.now + 0.15) {
       schedule(step++, next)
@@ -277,4 +277,121 @@ export function startSuspense(e: AudioEngine): Loop {
       window.setTimeout(() => bus.disconnect(), (fade + 2) * 1000)
     },
   }
+}
+
+/** Length of the welcome fanfare, in seconds, before the lobby music takes over. */
+const INTRO_SECONDS = 9.5
+/** The lobby music sits well under speech so the host can talk over it. */
+const LOBBY_LEVEL = 0.75
+
+/**
+ * Welcome screen: the opening fanfare, then a faint lobby loop while the hall settles.
+ * Everything runs through one bus (reverb included), so stopping it silences any
+ * fanfare notes that are still to come.
+ */
+export function startLobby(e: AudioEngine): Loop {
+  const { ctx } = e
+  const bus = ctx.createGain()
+  bus.connect(e.out)
+  const send = ctx.createGain()
+  send.gain.value = 0.4
+  bus.connect(send).connect(e.reverb)
+  const t0 = e.now + 0.1
+  playIntro(e, t0, { dest: bus, reverb: 0 })
+
+  // The lobby loop fades in under the fanfare's last chord.
+  const loopStart = t0 + INTRO_SECONDS
+  const lobby = ctx.createGain()
+  lobby.gain.setValueAtTime(0, loopStart - 2)
+  lobby.gain.linearRampToValueAtTime(LOBBY_LEVEL, loopStart + 1.5)
+  lobby.connect(bus)
+  const stopSeq = lobbyLoop(e, { dest: lobby, reverb: 0 }, loopStart - 2)
+
+  return {
+    stop: (fade = 1.2) => {
+      stopSeq()
+      bus.gain.cancelScheduledValues(e.now)
+      bus.gain.setTargetAtTime(0.0001, e.now, fade / 3)
+      window.setTimeout(() => bus.disconnect(), (fade + 1) * 1000)
+    },
+  }
+}
+
+/** Opening fanfare (~11 s): a swell into a big hit, a da-da-DAAA brass motif twice, then D major. */
+function playIntro(e: AudioEngine, t: number, p: { dest: AudioNode; reverb: 0 }) {
+  // Swell: low strings open up under a riser and a building drum roll.
+  for (const n of [38, 50, 57]) supersaw(e, { at: t, freq: midi(n), dur: 2.6, gain: 0.05, attack: 2.2, lowpass: 400, voices: 4, ...p })
+  riser(e, t, 2.5, 0.13, p)
+  snareRoll(e, t + 0.8, 1.7, 0.01, 0.15, p)
+
+  // First hit.
+  const h = t + 2.5
+  kick(e, h, 1, 100, 32, 1.2, p)
+  timpani(e, h, 38, 0.6, p)
+  crash(e, h, 0.22, 2.5, p)
+  brass(e, h, D_MINOR, 1.1, 0.09, 0.03, p)
+  tone(e, { at: h, freq: midi(26), dur: 1.4, gain: 0.3, ...p })
+  ;[74, 81, 86].forEach((n, i) => bell(e, h + 0.1 + i * 0.12, n, 0.09, 1.6, { pan: i % 2 ? 0.45 : -0.45, ...p }))
+
+  // Motif: two short stabs, then a held chord with timpani (B♭ B♭ C, then Dm Dm A).
+  const beat = 0.3125
+  const phrase = (at: number, stab: number[], held: number[], root: number, hold: number) => {
+    brass(e, at, stab, 0.26, 0.08, 0.01, p)
+    brass(e, at + beat, stab, 0.26, 0.08, 0.01, p)
+    brass(e, at + beat * 2, held, hold, 0.09, 0.02, p)
+    kick(e, at + beat * 2, 0.6, 100, 38, 0.5, p)
+    timpani(e, at + beat * 2, root, 0.5, p)
+    bell(e, at + beat * 2, held[held.length - 1] + 12, 0.08, 1.4, p)
+  }
+  phrase(h + 1.25, [46, 50, 53, 58], [48, 52, 55, 60], 36, 0.6)
+  phrase(h + 2.5, [50, 53, 57, 62], [45, 49, 52, 57], 33, 1.35)
+  snareRoll(e, h + 3.9, 0.6, 0.02, 0.14, p)
+
+  // Resolve to D major and let it ring.
+  const f = h + 4.5
+  brass(e, f, [50, 54, 57, 62, 66], 3.6, 0.085, 0.03, p)
+  kick(e, f, 1, 100, 30, 1.4, p)
+  timpani(e, f, 38, 0.55, p)
+  crash(e, f, 0.26, 3.5, p)
+  tone(e, { at: f, freq: midi(26), dur: 3.8, gain: 0.32, ...p })
+  ;[86, 90, 93, 98, 102].forEach((n, i) => bell(e, f + 0.1 + i * 0.12, n, 0.07, 2.2, { pan: i % 2 ? 0.5 : -0.5, ...p }))
+  noise(e, { at: f + 0.2, dur: 2.5, gain: 0.035, filter: 'highpass', freq: 9000, attack: 0.4, ...p })
+}
+
+/**
+ * Faint lobby loop, 76 bpm over Dm – B♭ – F – C: warm pad, soft sub pulse and a
+ * slow bell pattern, with a light shimmer. Eight 8th notes per bar.
+ */
+function lobbyLoop(e: AudioEngine, p: { dest: AudioNode; reverb: 0 }, startAt: number) {
+  const eighth = 60 / 76 / 2
+  const bars = [
+    { root: 38, chord: [50, 53, 57, 62] },
+    { root: 34, chord: [50, 53, 58] },
+    { root: 41, chord: [48, 53, 57] },
+    { root: 36, chord: [48, 52, 55, 60] },
+  ]
+  // Which chord tone (two octaves up) the bell plays on each 8th; -1 rests.
+  const bellPattern = [0, -1, 2, 1, -1, 2, 3, -1]
+
+  return sequencer(
+    e,
+    eighth,
+    (step, t) => {
+      const s = step % 8
+      const bar = Math.floor(step / 8)
+      const { root, chord } = bars[bar % bars.length]
+
+      if (s === 0) {
+        pad(e, t, chord, eighth * 8, 0.04, 1100, p)
+        tone(e, { at: t, freq: midi(root), dur: eighth * 8, gain: 0.14, attack: 0.4, ...p })
+      }
+      if (s === 0 || s === 4) kick(e, t, 0.22, 80, 40, 0.4, p)
+      const n = bellPattern[s]
+      if (n >= 0 && n < chord.length) bell(e, t, chord[n] + 24, 0.045, 1.8, { pan: s % 2 ? 0.4 : -0.4, ...p })
+      if (s % 2 === 1) noise(e, { at: t, dur: 0.05, gain: 0.012, filter: 'highpass', freq: 8000, pan: 0.2, ...p })
+      // Every fourth bar, a high chime marks the turnaround.
+      if (s === 6 && bar % 4 === 3) bell(e, t, 86, 0.05, 2.4, p)
+    },
+    startAt,
+  )
 }

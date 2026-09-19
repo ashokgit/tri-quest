@@ -35,6 +35,11 @@
       "id": "gk",
       "name": "General Knowledge",
       "icon": "🌏"
+    },
+    {
+      "id": "gen-z",
+      "name": "Vibe Check",
+      "icon": "📱"
     }
   ],
   "questions": [
@@ -1776,6 +1781,505 @@
         "reveal": "none",
         "alt": "Red blood cells under a microscope"
       }
+    },
+    {
+      "id": "gz-emoji-harry-potter",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Guess the movie!",
+      "showcase": "⚡ 👓 🧙",
+      "answer": "Harry Potter",
+      "explanation": "The boy with the lightning-bolt scar.",
+      "tags": [
+        "emoji",
+        "movie"
+      ]
+    },
+    {
+      "id": "gz-emoji-spider-man",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Guess the superhero!",
+      "showcase": "🕷️ 🕸️ 🦸",
+      "answer": "Spider-Man",
+      "explanation": "\"With great power comes great responsibility.\"",
+      "tags": [
+        "emoji",
+        "movie"
+      ]
+    },
+    {
+      "id": "gz-emoji-chocolate-factory",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Guess the movie!",
+      "showcase": "🍫 🏭 🎫",
+      "answer": "Charlie and the Chocolate Factory",
+      "explanation": "Find the golden ticket, visit Willy Wonka's factory.",
+      "tags": [
+        "emoji",
+        "movie"
+      ]
+    },
+    {
+      "id": "gz-rizz",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Oxford's Word of the Year 2023 was \"rizz\". What is it short for?",
+      "options": [
+        "Horizon",
+        "Charisma",
+        "Rizzle",
+        "Rhythm"
+      ],
+      "answerIndex": 1,
+      "explanation": "Rizz means style or charm that attracts people.",
+      "tags": [
+        "slang",
+        "internet"
+      ]
+    },
+    {
+      "id": "gz-brain-rot",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What was Oxford's Word of the Year for 2024?",
+      "options": [
+        "Brat",
+        "Delulu",
+        "Brain rot",
+        "Rizz"
+      ],
+      "answerIndex": 2,
+      "explanation": "Brain rot is what endless scrolling does to your mind. (\"Brat\" was Collins' pick that year.)",
+      "tags": [
+        "slang",
+        "internet"
+      ]
+    },
+    {
+      "id": "gz-emoji-word-2015",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In 2015, Oxford Dictionaries picked an emoji as its \"Word\" of the Year. Which one?",
+      "options": [
+        "❤️",
+        "😂",
+        "👍",
+        "🔥"
+      ],
+      "answerIndex": 1,
+      "explanation": "\"Face with Tears of Joy\" was the most-used emoji in the world that year.",
+      "tags": [
+        "emoji",
+        "internet"
+      ]
+    },
+    {
+      "id": "gz-goat",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does \"GOAT\" stand for?",
+      "options": [
+        "Good On All Tasks",
+        "Game Over, All Time",
+        "Greatest Of All Time",
+        "Genius Of All Teams"
+      ],
+      "answerIndex": 2,
+      "explanation": "Messi or Ronaldo? The debate never ends.",
+      "tags": [
+        "slang"
+      ]
+    },
+    {
+      "id": "gz-404",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "You click a link and see \"Error 404\". What does it mean?",
+      "options": [
+        "No internet",
+        "Page not found",
+        "Website hacked",
+        "Wrong password"
+      ],
+      "answerIndex": 1,
+      "explanation": "The server is reachable, but the page you asked for doesn't exist.",
+      "tags": [
+        "internet",
+        "tech"
+      ]
+    },
+    {
+      "id": "gz-first-youtube",
+      "category": "gen-z",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What was the very first video uploaded to YouTube (2005)?",
+      "options": [
+        "Hello World",
+        "Charlie Bit My Finger",
+        "Me at the zoo",
+        "My First Vlog"
+      ],
+      "answerIndex": 2,
+      "explanation": "A 19-second clip of co-founder Jawed Karim at San Diego Zoo, posted 23 April 2005.",
+      "tags": [
+        "internet",
+        "history"
+      ]
+    },
+    {
+      "id": "gz-google-backrub",
+      "category": "gen-z",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What was Google's original name?",
+      "options": [
+        "BackRub",
+        "Googol",
+        "Searchly",
+        "AltaVista"
+      ],
+      "answerIndex": 0,
+      "explanation": "Larry Page and Sergey Brin's 1996 project ranked pages by their \"back links\". The name Google comes from googol (10¹⁰⁰).",
+      "tags": [
+        "tech",
+        "history"
+      ]
+    },
+    {
+      "id": "gz-snapchat-ghost",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which app has a ghost as its logo?",
+      "options": [
+        "Telegram",
+        "Discord",
+        "Snapchat",
+        "Threads"
+      ],
+      "answerIndex": 2,
+      "explanation": "Snapchat's ghost is nicknamed \"Ghostface Chillah\".",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "id": "gz-tiktok-bytedance",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which Chinese company created TikTok?",
+      "options": [
+        "Tencent",
+        "Alibaba",
+        "Huawei",
+        "ByteDance"
+      ],
+      "answerIndex": 3,
+      "explanation": "ByteDance launched it in China as Douyin in 2016, then TikTok worldwide.",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "id": "gz-twitter-x",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "truefalse",
+      "prompt": "In 2023, Twitter was renamed \"X\".",
+      "answer": true,
+      "explanation": "Elon Musk rebranded it in July 2023, and the blue bird logo was retired.",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
+      "id": "gz-bluetooth",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Bluetooth is named after…",
+      "options": [
+        "A Viking king",
+        "A blue dental disease",
+        "Its inventor",
+        "A river in Denmark"
+      ],
+      "answerIndex": 0,
+      "explanation": "King Harald \"Bluetooth\" united Denmark and Norway, just as the tech unites devices. The logo is his initials in runes.",
+      "tags": [
+        "tech",
+        "history"
+      ]
+    },
+    {
+      "id": "gz-qr-code",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What does \"QR\" in QR code stand for?",
+      "options": [
+        "Quality Read",
+        "Quick Response",
+        "Query Result",
+        "Quick Reader"
+      ],
+      "answerIndex": 1,
+      "explanation": "Invented in Japan in 1994 to track car parts. Now it's how we pay for momo.",
+      "tags": [
+        "tech"
+      ]
+    },
+    {
+      "id": "gz-pubg-chicken",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "Finish the PUBG victory line: \"Winner winner…\"",
+      "answer": "Chicken dinner!",
+      "explanation": "Every PUBG player's favourite screen.",
+      "tags": [
+        "gaming"
+      ]
+    },
+    {
+      "id": "gz-minecraft-bestseller",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the best-selling video game of all time?",
+      "options": [
+        "GTA V",
+        "Tetris",
+        "Minecraft",
+        "PUBG"
+      ],
+      "answerIndex": 2,
+      "explanation": "Minecraft has sold over 300 million copies.",
+      "tags": [
+        "gaming"
+      ]
+    },
+    {
+      "id": "gz-among-us",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "In Among Us, what is the traitor called?",
+      "options": [
+        "Crewmate",
+        "Impostor",
+        "Ghost",
+        "Sus"
+      ],
+      "answerIndex": 1,
+      "explanation": "Emergency meeting! Someone is acting sus.",
+      "tags": [
+        "gaming"
+      ]
+    },
+    {
+      "id": "gz-creeper",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Which Minecraft mob hisses… and then explodes?",
+      "options": [
+        "Zombie",
+        "Enderman",
+        "Skeleton",
+        "Creeper"
+      ],
+      "answerIndex": 3,
+      "explanation": "Ssssss… BOOM. Aw man.",
+      "tags": [
+        "gaming"
+      ]
+    },
+    {
+      "id": "gz-mario-plumber",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is Super Mario's job?",
+      "options": [
+        "Carpenter",
+        "Plumber",
+        "Chef",
+        "Electrician"
+      ],
+      "answerIndex": 1,
+      "explanation": "Fun twist: in his first game, Donkey Kong (1981), Mario was a carpenter!",
+      "tags": [
+        "gaming"
+      ]
+    },
+    {
+      "id": "gz-bts-members",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "How many members are in the K-pop group BTS?",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "9"
+      ],
+      "answerIndex": 2,
+      "explanation": "RM, Jin, Suga, j-hope, Jimin, V and Jung Kook.",
+      "tags": [
+        "k-pop",
+        "music"
+      ]
+    },
+    {
+      "id": "gz-naruto-ramen",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is Naruto's favourite food?",
+      "options": [
+        "Sushi",
+        "Momo",
+        "Dumplings",
+        "Ramen"
+      ],
+      "answerIndex": 3,
+      "explanation": "Especially from Ichiraku Ramen. Believe it!",
+      "tags": [
+        "anime"
+      ]
+    },
+    {
+      "id": "gz-squid-game",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Squid Game was made in which country?",
+      "options": [
+        "Japan",
+        "South Korea",
+        "China",
+        "Thailand"
+      ],
+      "answerIndex": 1,
+      "explanation": "Red light, green light!",
+      "tags": [
+        "series"
+      ]
+    },
+    {
+      "id": "gz-luffy-dream",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In One Piece, what is Luffy's dream?",
+      "options": [
+        "Become a Marine admiral",
+        "Find the All Blue",
+        "Become King of the Pirates",
+        "Be the world's greatest swordsman"
+      ],
+      "answerIndex": 2,
+      "explanation": "The other options are the dreams of Garp's Marines, Sanji and Zoro.",
+      "tags": [
+        "anime"
+      ]
+    },
+    {
+      "id": "gz-nepal-football-nickname",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is the nickname of Nepal's national football team?",
+      "options": [
+        "The Yetis",
+        "The Gorkhalis",
+        "The Red Pandas",
+        "The Snow Leopards"
+      ],
+      "answerIndex": 1,
+      "explanation": "Named after the Gorkhali warriors.",
+      "tags": [
+        "nepal",
+        "sports"
+      ]
+    },
+    {
+      "id": "gz-balen-peek",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "open",
+      "prompt": "You only get the top of this photo. Who is he?",
+      "media": {
+        "kind": "image",
+        "src": "media/images/av-balen-shah.jpg",
+        "alt": "Balen Shah",
+        "reveal": "peek",
+        "peek": 30
+      },
+      "answer": "Balen Shah (Balendra Shah)",
+      "explanation": "Rapper, structural engineer, Mayor of Kathmandu, and now Prime Minister of Nepal!",
+      "tags": [
+        "image",
+        "nepal"
+      ]
+    },
+    {
+      "id": "gz-cobweb-mercedes",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Which song is this music video from?",
+      "media": {
+        "kind": "youtube",
+        "id": "WwNk-zjdAqc",
+        "start": 37,
+        "end": 52,
+        "muted": true
+      },
+      "answer": "Mercedes Benz, by Cobweb",
+      "explanation": "A classic from the Nepali rock band Cobweb. Turn it up!",
+      "tags": [
+        "video",
+        "music",
+        "nepal"
+      ]
+    },
+    {
+      "id": "gz-unko-sweater",
+      "category": "gen-z",
+      "difficulty": "medium",
+      "type": "open",
+      "prompt": "Only the feet are dancing! Which movie is this song from?",
+      "media": {
+        "kind": "youtube",
+        "id": "-g4HhCkeU8g",
+        "start": 69,
+        "end": 84,
+        "muted": true,
+        "peek": 40,
+        "peekFrom": "bottom"
+      },
+      "answer": "Unko Sweater (ऊनको स्वीटर)",
+      "explanation": "The song is \"Chainejo Jindaganima\" from the Nepali movie Unko Sweater.",
+      "tags": [
+        "video",
+        "movie",
+        "nepal"
+      ]
     }
   ]
 }

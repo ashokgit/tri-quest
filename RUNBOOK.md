@@ -61,7 +61,8 @@ The show runs **offline from the host laptop**, mirrored to the projector. The G
 **Variations:**
 - **Open questions** have no options: take answers from hands up, then press **R**.
 - **Picture questions:** each **→** makes the image clearer before the options appear.
-- **Audio and video questions:** press **P** to play (and to replay). There's no clock music under clips.
+- **Audio, video and YouTube questions:** press **P** to play (and to replay). The clock starts on the first **P**, not before (or press **T**). There's no clock music under clips, except the muted YouTube ones. The two YouTube clips (Cobweb, Unko Sweater) **need the hall PC online**; they play muted and replay with sound on the reveal.
+- **Jump to a question:** on the *Slide check* page every question in the current draw has a **▶ Go to** button that opens the show right there.
 - **A wrong lock-in:** press the same letter again to unlock, then lock a different answer before revealing.
 - **Nobody knows:** just press **R**.
 

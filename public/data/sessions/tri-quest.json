@@ -16,7 +16,7 @@
       "id": "r1-science",
       "title": "Science Warm-up",
       "category": "science",
-      "pick": 12,
+      "pick": 10,
       "questionIds": [
         "sci-force-unit",
         "sci-red-wavelength",
@@ -41,10 +41,52 @@
       ]
     },
     {
+      "id": "r-vibe-check",
+      "title": "Vibe Check",
+      "subtitle": "Internet, games & pop culture",
+      "category": "gen-z",
+      "pick": 6,
+      "questionIds": [
+        "gz-balen-peek",
+        "gz-cobweb-mercedes",
+        "gz-unko-sweater",
+        "gz-emoji-harry-potter",
+        "gz-emoji-spider-man",
+        "gz-emoji-chocolate-factory",
+        "gz-rizz",
+        "gz-brain-rot",
+        "gz-emoji-word-2015",
+        "gz-goat",
+        "gz-404",
+        "gz-first-youtube",
+        "gz-google-backrub",
+        "gz-snapchat-ghost",
+        "gz-tiktok-bytedance",
+        "gz-twitter-x",
+        "gz-bluetooth",
+        "gz-qr-code",
+        "gz-pubg-chicken",
+        "gz-minecraft-bestseller",
+        "gz-among-us",
+        "gz-creeper",
+        "gz-mario-plumber",
+        "gz-bts-members",
+        "gz-naruto-ramen",
+        "gz-squid-game",
+        "gz-luffy-dream",
+        "gz-nepal-football-nickname"
+      ],
+      "keep": [
+        "gz-balen-peek",
+        "gz-cobweb-mercedes",
+        "gz-unko-sweater"
+      ]
+    },
+    {
       "id": "r2-niet",
       "title": "Know Your NIET",
       "category": "niet",
-      "pick": 8,
+      "pick": 7,
       "questionIds": [
         "niet-full-form",
         "niet-principal",
@@ -89,7 +131,7 @@
       "title": "Fun & Tricky",
       "category": "fun-tricky",
       "timerSeconds": 20,
-      "pick": 10,
+      "pick": 9,
       "questionIds": [
         "fun-keyboard",
         "fun-months-28",
@@ -131,7 +173,7 @@
       "id": "r6-gk",
       "title": "General Knowledge",
       "category": "gk",
-      "pick": 8,
+      "pick": 7,
       "questionIds": [
         "gk-nepal-flag",
         "gk-national-flower",
@@ -154,7 +196,7 @@
       "id": "r7-current-affairs",
       "title": "Current Affairs",
       "category": "current-affairs",
-      "pick": 7,
+      "pick": 6,
       "questionIds": [
         "ca-nepal-pm",
         "ca-balen-rapper",

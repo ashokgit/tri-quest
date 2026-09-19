@@ -57,7 +57,7 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: 'spring', stiffness: 180, damping: 22 }}
           >
-            <MediaView media={q.media} obscurity={imageObscurity(slide, stage)} />
+            <MediaView media={q.media} obscurity={imageObscurity(slide, stage)} revealed={revealed} live={slideIndex >= 0} />
           </motion.div>
         ) : q.showcase ? (
           <motion.p

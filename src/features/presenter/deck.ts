@@ -114,6 +114,7 @@ function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): 
         subtitle: `${items.length} questions · ${DIFFICULTY_LABEL[difficulty]}`,
         questionIds: items.map((e) => e.q.id),
         shuffle: false,
+        keep: [],
       },
       category: { id: `level-${difficulty}`, name: DIFFICULTY_LABEL[difficulty], icon: DIFFICULTY_ICON[difficulty] },
       questions: items.map((e) => e.q),
@@ -145,8 +146,9 @@ export function buildDeck(loaded: LoadedSession, seed: number, order: RoundOrder
   return slides
 }
 
+/** Blur and zoom images clear in steps; a `peek` image stays cropped until the answer. */
 function hasImageClues(q: Question) {
-  return q.media?.kind === 'image' && q.media.reveal !== 'none'
+  return q.media?.kind === 'image' && (q.media.reveal === 'blur' || q.media.reveal === 'zoom')
 }
 
 export function stagesFor(slide: Slide): Stage[] {
@@ -157,6 +159,11 @@ export function stagesFor(slide: Slide): Stage[] {
   if (q.type !== 'open') stages.push('options')
   stages.push('answer')
   return stages
+}
+
+/** Audio, video and YouTube questions: the clock waits for the host to play the clip (P). */
+export function hasClip(q: Question) {
+  return q.media?.kind === 'audio' || q.media?.kind === 'video' || q.media?.kind === 'youtube'
 }
 
 /** Stage index at which the countdown starts: when options appear, or straight away for open questions. */
@@ -173,6 +180,7 @@ export function timerStageIndex(slide: Slide): number {
 export function imageObscurity(slide: Slide, stage: number): number {
   const stages = stagesFor(slide)
   const kind = stages[stage]
+  if (slide.kind === 'question' && slide.question.media?.kind === 'image' && slide.question.media.reveal === 'peek') return kind === 'answer' ? 0 : 1
   if (kind === 'prompt') return 1
   if (kind === 'clue') return 1 - stages.slice(0, stage + 1).filter((s) => s === 'clue').length / (IMAGE_CLUE_STEPS + 1)
   return 0

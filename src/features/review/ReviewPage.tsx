@@ -5,7 +5,7 @@ import { correctOptionIndex, drawSession, optionLabels } from '@/features/presen
 import { optionLetter } from '@/features/presenter/components/palette'
 import { usePresenterStore, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
 import { useAsync } from '@/lib/useAsync'
-import type { Question } from '@/data/schema'
+import { mediaLocation, type Question } from '@/data/schema'
 
 /** Host cheat sheet: the questions in the current draw, in show order, with answers. Printable. */
 export function ReviewPage() {
@@ -112,7 +112,7 @@ function ReviewItem({ q, n }: { q: Question; n: number }) {
       ) : (
         <p className="mt-2 text-sm font-bold text-correct print:text-black print:underline">Answer: {q.type === 'open' ? q.answer : ''}</p>
       )}
-      {q.media && <p className="mt-1 font-mono text-xs text-white/40 print:text-black/50">{q.media.src}</p>}
+      {q.media && <p className="mt-1 font-mono text-xs text-white/40 print:text-black/50">{mediaLocation(q.media)}</p>}
     </li>
   )
 }

@@ -1,26 +1,35 @@
 import { motion } from 'motion/react'
-import { useEffect, useRef, useState, type RefObject } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import type { Media } from '@/data/schema'
 import { mediaUrl } from '@/data/source'
 import { usePresenterStore } from '../store'
 
 /** Marks the playable element on stage so the P key can find it. */
 export const STAGE_MEDIA_ATTR = 'data-stage-media'
+/** Window event the P key sends when the stage clip isn't a media element (YouTube). */
+export const STAGE_MEDIA_TOGGLE = 'quizzeria:toggle-stage-media'
 
 interface Props {
   media: Media
   /** 1 = maximally obscured, 0 = clear. Only used for images with a reveal effect. */
   obscurity: number
+  /** The answer is showing. */
+  revealed?: boolean
+  /** On the presenter stage (false on the slide check, which shows a still instead of a player). */
+  live?: boolean
 }
 
-export function MediaView({ media, obscurity }: Props) {
+export function MediaView({ media, obscurity, revealed = false, live = true }: Props) {
   if (media.kind === 'image') return <ImageMedia media={media} obscurity={obscurity} />
+  if (media.kind === 'youtube') return live ? <YouTubeMedia media={media} revealed={revealed} /> : <YouTubeStill media={media} />
   return <PlayableMedia media={media} />
 }
 
 function ImageMedia({ media, obscurity }: { media: Extract<Media, { kind: 'image' }>; obscurity: number }) {
   const [missing, setMissing] = useState(false)
   if (missing) return <MissingMedia src={media.src} />
+
+  if (media.reveal === 'peek') return <PeekImage media={media} hidden={obscurity > 0} onError={() => setMissing(true)} />
 
   const blur = media.reveal === 'blur' ? obscurity * 36 : 0
   const zoom = media.reveal === 'zoom' ? 1 + obscurity * ((media.zoom ?? 4) - 1) : 1
@@ -36,6 +45,28 @@ function ImageMedia({ media, obscurity }: { media: Extract<Media, { kind: 'image
         className="h-full w-full object-contain"
         animate={{ filter: `blur(${blur}px)`, scale: zoom }}
         transition={{ duration: 0.9, ease: 'easeOut' }}
+      />
+    </div>
+  )
+}
+
+/**
+ * Only the top strip of the image shows; on the answer the rest drops into view.
+ * The image is sized to its own box (not object-contain) so the crop is a share of the photo, not of the frame.
+ */
+function PeekImage({ media, hidden, onError }: { media: Extract<Media, { kind: 'image' }>; hidden: boolean; onError: () => void }) {
+  const cut = 100 - (media.peek ?? 30)
+  return (
+    <div className="relative grid h-full w-full place-items-center overflow-hidden rounded-3xl bg-black/40 ring-2 ring-white/10">
+      <motion.img
+        src={mediaUrl(media.src)}
+        alt={media.alt ?? ''}
+        draggable={false}
+        onError={onError}
+        className="max-h-full max-w-full"
+        initial={false}
+        animate={{ clipPath: `inset(0% 0% ${hidden ? cut : 0}% 0%)` }}
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
       />
     </div>
   )
@@ -109,10 +140,180 @@ function PlayableMedia({ media }: { media: Extract<Media, { kind: 'audio' | 'vid
   )
 }
 
-function PlayHint() {
+function PlayHint({ text = '▶ Press P to play' }: { text?: string }) {
   return (
     <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-6 py-2 font-display text-2xl font-bold text-white/80">
-      ▶ Press P to play
+      {text}
+    </div>
+  )
+}
+
+/** Slide-check stand-in for a YouTube clip: its thumbnail and the clip window. */
+function YouTubeStill({ media }: { media: Extract<Media, { kind: 'youtube' }> }) {
+  const time = (s = 0) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
+  return (
+    <div className="grid h-full w-full place-items-center">
+      <div className="relative aspect-video h-full max-w-full overflow-hidden rounded-3xl bg-black ring-2 ring-white/10">
+        <img src={`https://i.ytimg.com/vi/${media.id}/hqdefault.jpg`} alt="" className="h-full w-full object-cover opacity-60" />
+        <PlayHint text={`YouTube ${time(media.start)}–${media.end ? time(media.end) : 'end'}${media.muted ? ' · muted' : ''}`} />
+      </div>
+    </div>
+  )
+}
+
+/** `starting`: the host pressed P and the cover is already off (YouTube pauses a clip it can't see). */
+type YouTubeState = 'loading' | 'ready' | 'starting' | 'playing' | 'paused' | 'error'
+
+/**
+ * A YouTube clip driven through the embed's postMessage API (no extra script).
+ * Until the reveal, a cover hides YouTube's title and thumbnail whenever the clip isn't
+ * playing, a strip hides the title bar across the top while it plays, and the clip
+ * loops back to `start` at `end`. A `muted` clip replays with sound on the reveal.
+ */
+function YouTubeMedia({ media, revealed }: { media: Extract<Media, { kind: 'youtube' }>; revealed: boolean }) {
+  const ref = useRef<HTMLIFrameElement>(null)
+  const [state, setState] = useState<YouTubeState>('loading')
+  const volume = usePresenterStore((s) => s.volume)
+  const start = media.start ?? 0
+  // Some browsers start the embed on their own; only the host (P or the reveal) may play it.
+  const hostStarted = useRef(false)
+
+  const src = useMemo(() => {
+    const params = new URLSearchParams({
+      start: String(Math.floor(start)),
+      mute: '1',
+      controls: '0',
+      disablekb: '1',
+      fs: '0',
+      rel: '0',
+      iv_load_policy: '3',
+      playsinline: '1',
+      enablejsapi: '1',
+      origin: window.location.origin,
+    })
+    return `https://www.youtube.com/embed/${media.id}?${params}`
+  }, [media.id, start])
+
+  const command = useCallback((func: string, args: unknown[] = []) => {
+    ref.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func, args }), '*')
+  }, [])
+
+  // Subscribe to the player's state; keep asking until it answers (it ignores us before it's ready).
+  useEffect(() => {
+    const listen = () => ref.current?.contentWindow?.postMessage(JSON.stringify({ event: 'listening', id: media.id }), '*')
+    const retry = window.setInterval(listen, 400)
+    const onMessage = (e: MessageEvent) => {
+      if (e.source !== ref.current?.contentWindow || typeof e.data !== 'string') return
+      let data: { event?: string; info?: { playerState?: number; currentTime?: number } | number }
+      try {
+        data = JSON.parse(e.data)
+      } catch {
+        return
+      }
+      // Any reply means the player is listening.
+      window.clearInterval(retry)
+      if (data.event === 'onReady') {
+        // P pressed while YouTube was still loading: play now.
+        if (hostStarted.current) command('playVideo')
+        setState((s) => (s === 'loading' ? 'ready' : s))
+      }
+      if (data.event === 'onError') setState('error')
+      const info = typeof data.info === 'object' ? data.info : undefined
+      const playerState = data.event === 'onStateChange' ? (data.info as number) : info?.playerState
+      const running = playerState === 1 || (info?.currentTime !== undefined && info.currentTime > start + 0.5)
+      if (running && !hostStarted.current) {
+        command('pauseVideo')
+        command('seekTo', [start, true])
+        return
+      }
+      if (playerState === 1) setState('playing')
+      else if (playerState === 0) setState('paused')
+      // A pause straight after P is YouTube settling in, not the host; only a later one counts.
+      else if (playerState === 2) setState((s) => (s === 'starting' ? s : 'paused'))
+      // Loop the question clip back to the start at `end`.
+      if (media.end !== undefined && info?.currentTime !== undefined && info.currentTime >= media.end && !revealed) {
+        command('pauseVideo')
+        command('seekTo', [start, true])
+      }
+    }
+    window.addEventListener('message', onMessage)
+    return () => {
+      window.clearInterval(retry)
+      window.removeEventListener('message', onMessage)
+    }
+  }, [media.id, media.end, start, command, revealed])
+
+  // P key: play / pause.
+  useEffect(() => {
+    const toggle = () => {
+      if (state === 'playing' || state === 'starting') {
+        setState('paused')
+        return command('pauseVideo')
+      }
+      hostStarted.current = true
+      setState('starting')
+      if (!media.muted || revealed) {
+        command('unMute')
+        command('setVolume', [Math.round(volume * 100)])
+      }
+      command('playVideo')
+    }
+    window.addEventListener(STAGE_MEDIA_TOGGLE, toggle)
+    return () => window.removeEventListener(STAGE_MEDIA_TOGGLE, toggle)
+  }, [state, media.muted, revealed, volume, command])
+
+  // The reveal replays a muted clip from the top, with sound (once per reveal).
+  const replayed = useRef(false)
+  useEffect(() => {
+    if (!revealed) {
+      replayed.current = false
+      return
+    }
+    if (replayed.current || !media.muted || state === 'loading' || state === 'error') return
+    replayed.current = true
+    hostStarted.current = true
+    command('unMute')
+    command('setVolume', [Math.round(volume * 100)])
+    command('seekTo', [start, true])
+    command('playVideo')
+  }, [revealed, media.muted, state, volume, start, command])
+
+  const covered = !revealed && state !== 'playing' && state !== 'starting'
+  // Until the reveal, a `peek` clip shows only a strip of the frame (the bottom, by default).
+  const hidden = !revealed && media.peek !== undefined ? 100 - media.peek : 0
+  return (
+    <div className="grid h-full w-full place-items-center">
+      <div className="relative aspect-video h-full max-w-full overflow-hidden rounded-3xl bg-black ring-2 ring-white/10">
+        <iframe
+          ref={ref}
+          src={src}
+          title="Clip"
+          allow="autoplay; encrypted-media"
+          referrerPolicy="strict-origin-when-cross-origin"
+          onLoad={() => ref.current?.contentWindow?.postMessage(JSON.stringify({ event: 'listening', id: media.id }), '*')}
+          className="pointer-events-none absolute inset-0 h-full w-full border-0"
+        />
+        {/* YouTube flashes the video title across the top; keep it hidden until the reveal. */}
+        {!revealed && <div className="absolute inset-x-0 top-0 h-[16%] bg-stage-900" />}
+        {hidden > 0 && (
+          <div
+            className={`absolute inset-x-0 bg-stage-900 ${media.peekFrom === 'top' ? 'bottom-0' : 'top-0'}`}
+            style={{ height: `${hidden}%` }}
+          />
+        )}
+        {covered && (
+          <div className="absolute inset-0 grid place-items-center bg-stage-900">
+            <span className="font-display text-[120px] leading-none text-white/15">{state === 'error' ? '⚠' : '🎬'}</span>
+          </div>
+        )}
+        {state === 'error' ? (
+          <PlayHint text="YouTube can't play this clip: check the internet" />
+        ) : state === 'loading' ? (
+          <PlayHint text="Loading YouTube…" />
+        ) : (
+          covered && <PlayHint text={media.muted ? '▶ Press P to play (muted)' : undefined} />
+        )}
+      </div>
     </div>
   )
 }

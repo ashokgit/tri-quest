@@ -6,11 +6,12 @@ import { toggleFullscreen } from '@/lib/fullscreen'
 import { Backdrop } from './components/Backdrop'
 import { HelpOverlay } from './components/HelpOverlay'
 import { HostBar } from './components/HostBar'
-import { STAGE_MEDIA_ATTR } from './components/MediaView'
+import { STAGE_MEDIA_ATTR, STAGE_MEDIA_TOGGLE } from './components/MediaView'
 import { NietBug } from './components/NietSeal'
 import {
   buildDeck,
   clampPosition,
+  hasClip,
   nextSlide,
   optionLabels,
   revealAnswer,
@@ -117,7 +118,8 @@ function useTimerLifecycle(deck: ReturnType<typeof buildDeck>, pos: Position) {
     }
     const isAnswer = stagesFor(slide)[pos.stage] === 'answer'
     if (timer.key !== pos.slide) {
-      if (!isAnswer && pos.stage >= timerStageIndex(slide)) startTimer(pos.slide, slide.timerSeconds)
+      // Clip questions start their clock on P instead, so the clip gets its full time.
+      if (!isAnswer && pos.stage >= timerStageIndex(slide) && !hasClip(slide.question)) startTimer(pos.slide, slide.timerSeconds)
       else resetTimer()
     } else if (isAnswer) {
       stopTimer()
@@ -169,7 +171,8 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: 
           return handled()
         case 't':
         case 'T':
-          return store.toggleTimer()
+          // No clock yet (a clip that hasn't been played): T starts one.
+          return startClock(deck, pos) || store.toggleTimer()
         case '+':
         case '=':
           return store.addTime(10)
@@ -178,9 +181,20 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: 
           return store.addTime(-10)
         case 'p':
         case 'P':
-          return toggleStageMedia()
+          toggleStageMedia()
+          // The first play of a clip starts the clock.
+          if (slideHasClip(deck, pos)) startClock(deck, pos)
+          return
         case '.':
           return store.toggleBlackout()
+        case 'i':
+        case 'I':
+          // Replay the opening fanfare (e.g. once the hall is seated).
+          if (deck[pos.slide].kind === 'welcome') {
+            sfx.stopLoop('lobby', 0.3)
+            sfx.startLoop('lobby')
+          }
+          return
         case 'm':
         case 'M':
           return store.toggleMuted()
@@ -223,9 +237,24 @@ function useHostKeys(deck: ReturnType<typeof buildDeck>, sessionId: string, go: 
   }, [deck, sessionId, go, roundCount])
 }
 
+function slideHasClip(deck: ReturnType<typeof buildDeck>, pos: Position) {
+  const slide = deck[pos.slide]
+  return slide.kind === 'question' && hasClip(slide.question)
+}
+
+/** Starts the countdown on a question that doesn't have one yet (not on the answer). Returns whether it did. */
+function startClock(deck: ReturnType<typeof buildDeck>, pos: Position) {
+  const slide = deck[pos.slide]
+  const store = usePresenterStore.getState()
+  if (slide.kind !== 'question' || store.timer.key === pos.slide || stagesFor(slide)[pos.stage] === 'answer') return false
+  store.startTimer(pos.slide, slide.timerSeconds)
+  return true
+}
+
 function toggleStageMedia() {
   const el = document.querySelector<HTMLMediaElement>(`[${STAGE_MEDIA_ATTR}]`)
-  if (!el) return
+  // A YouTube clip isn't a media element; it listens for this event instead.
+  if (!el) return void window.dispatchEvent(new Event(STAGE_MEDIA_TOGGLE))
   if (el.paused) el.play().catch(() => {})
   else el.pause()
 }

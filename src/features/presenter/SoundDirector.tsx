@@ -1,5 +1,5 @@
 import confetti from 'canvas-confetti'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import type { Session } from '@/data/schema'
 import { sfx } from '@/features/audio/sfx'
 import { correctOptionIndex, optionLabels, stagesFor, type Position, type Slide } from './deck'
@@ -59,6 +59,15 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
   const current = deck[pos.slide]
   const stageKind = stagesFor(current)[pos.stage]
 
+  // Welcome screen: the opening fanfare, then faint lobby music until the show starts.
+  // Audio is unlocked by the Present click; after a reload it starts on the first click or key.
+  const soundReady = useSyncExternalStore(sfx.subscribe, () => sfx.ready)
+  const lobbyOn = soundReady && current.kind === 'welcome'
+  useEffect(() => {
+    if (lobbyOn) sfx.startLoop('lobby')
+    else sfx.stopLoop('lobby', 1.5)
+  }, [lobbyOn])
+
   // Answer locked in: the "final answer" boom, then the suspense drone holds until the reveal.
   useEffect(() => {
     if (locked) sfx.play('lock')
@@ -71,8 +80,9 @@ export function SoundDirector({ deck, pos, session }: { deck: Slide[]; pos: Posi
 
   // Music bed while the clock runs, building as time runs out.
   const onQuestion = timer.key === pos.slide
-  // No bed under audio/video clips: the clip is the soundtrack.
-  const clipQuestion = current.kind === 'question' && (current.question.media?.kind === 'audio' || current.question.media?.kind === 'video')
+  // No bed under audio/video clips: the clip is the soundtrack. (A muted YouTube clip keeps the bed.)
+  const media = current.kind === 'question' ? current.question.media : undefined
+  const clipQuestion = media?.kind === 'audio' || media?.kind === 'video' || (media?.kind === 'youtube' && !media.muted)
   const bedOn = onQuestion && running && left > 0 && !clipQuestion
   useEffect(() => {
     if (bedOn) sfx.startLoop('bed')

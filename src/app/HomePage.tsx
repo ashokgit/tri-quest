@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { getSession, getSessionIndex } from '@/data/source'
 import type { RoundOrder } from '@/features/presenter/deck'
+import { sfx } from '@/features/audio/sfx'
 import { usePresenterStore, useSessionOrder } from '@/features/presenter/store'
 import { enterFullscreen } from '@/lib/fullscreen'
 import { useAsync } from '@/lib/useAsync'
@@ -46,6 +47,12 @@ const ORDERS: { value: RoundOrder; label: string; hint: string }[] = [
 
 type Pending = { kind: 'reshuffle' } | { kind: 'order'; order: RoundOrder } | null
 
+/** The Present click is the user gesture that lets the welcome music start straight away. */
+function startShow() {
+  enterFullscreen()
+  sfx.unlock()
+}
+
 function SessionCard({ id, title, event }: { id: string; title: string; event?: string }) {
   const session = useAsync(() => getSession(id), id)
   const reshuffle = usePresenterStore((s) => s.reshuffle)
@@ -85,7 +92,7 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
           <Link to={`/review/${id}`} className="rounded-xl px-4 py-2 text-white/80 ring-1 ring-white/15 transition hover:bg-stage-700">
             Review
           </Link>
-          <Link to={`/present/${id}`} onClick={enterFullscreen} className="rounded-xl bg-niet-red px-5 py-2 text-white transition hover:brightness-110">
+          <Link to={`/present/${id}`} onClick={startShow} className="rounded-xl bg-niet-red px-5 py-2 text-white transition hover:brightness-110">
             {inProgress ? 'Resume →' : 'Present →'}
           </Link>
         </span>

@@ -5,7 +5,7 @@ import type { OneShotCue } from './cues'
 import { sfx } from './sfx'
 
 const ONE_SHOTS: { cue: OneShotCue; label: string; when: string; variant?: number }[] = [
-  { cue: 'theme', label: 'Opening theme', when: 'Leaving the welcome screen' },
+  { cue: 'theme', label: 'Round 1 theme', when: 'Leaving the welcome screen' },
   { cue: 'roundIntro', label: 'Round intro', when: 'Each round title card' },
   { cue: 'optionIn', label: 'Answer slides in', when: 'Each answer bar (A/C left, B/D right)' },
   { cue: 'tick', label: 'Countdown tick', when: 'Last 5 seconds, rising in pitch', variant: 3 },
@@ -26,6 +26,7 @@ export function SoundCheckPage() {
   const [bed, setBed] = useState(false)
   const [intensity, setIntensity] = useState(0)
   const [suspense, setSuspense] = useState(false)
+  const [lobby, setLobby] = useState(false)
 
   useEffect(() => sfx.setVolume(volume), [volume])
   useEffect(() => sfx.setMuted(muted), [muted])
@@ -41,7 +42,7 @@ export function SoundCheckPage() {
     }, sfx.ready ? 0 : 150)
   }
 
-  const toggleLoop = (cue: 'bed' | 'suspense', on: boolean, set: (v: boolean) => void) => {
+  const toggleLoop = (cue: 'bed' | 'suspense' | 'lobby', on: boolean, set: (v: boolean) => void) => {
     sfx.unlock()
     window.setTimeout(() => (on ? sfx.stopLoop(cue) : sfx.startLoop(cue)), sfx.ready ? 0 : 150)
     set(!on)
@@ -104,6 +105,14 @@ export function SoundCheckPage() {
         <section>
           <h2 className="mb-3 font-display text-xl font-bold">Loops</h2>
           <div className="grid gap-3 sm:grid-cols-2">
+            <div className="space-y-3 rounded-2xl bg-stage-800 p-4 ring-1 ring-white/10 sm:col-span-2">
+              <button type="button" onClick={() => toggleLoop('lobby', lobby, setLobby)} className="font-display text-lg font-bold">
+                {lobby ? '■ Stop' : '▶ Play'} intro + welcome music
+              </button>
+              <p className="text-sm text-white/55">
+                On the welcome screen: an opening fanfare (~10 s), then faint music the host can talk over. Press I to replay the fanfare.
+              </p>
+            </div>
             <div className="space-y-3 rounded-2xl bg-stage-800 p-4 ring-1 ring-white/10">
               <button type="button" onClick={() => toggleLoop('bed', bed, setBed)} className="font-display text-lg font-bold">
                 {bed ? '■ Stop' : '▶ Play'} clock music

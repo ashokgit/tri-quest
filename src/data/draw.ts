@@ -33,15 +33,24 @@ function shuffled<T>(items: T[], rng: () => number): T[] {
 /**
  * Picks `pick` questions from a round's pool, keeping the pool's difficulty mix
  * (largest-remainder allocation) and ordering the result easy → medium → hard.
+ * Questions in `keep` are always included; the rest of the pick is drawn around them.
  * Without `pick` or `shuffle`, the pool is returned unchanged.
  */
 export function drawRound<Q extends { id: string; difficulty: Difficulty }>(
   pool: Q[],
-  opts: { pick?: number; shuffle?: boolean },
+  opts: { pick?: number; shuffle?: boolean; keep?: string[] },
   rng: () => number,
 ): Q[] {
   if (!opts.pick && !opts.shuffle) return pool
+  const keep = new Set(opts.keep ?? [])
+  if (keep.size) {
+    const kept = pool.filter((q) => keep.has(q.id))
+    const rest = pool.filter((q) => !keep.has(q.id))
+    const drawn = drawRound(rest, { ...opts, keep: [], pick: Math.max(0, (opts.pick ?? pool.length) - kept.length) }, rng)
+    return DIFFICULTIES.flatMap((d) => [...kept, ...drawn].filter((q) => q.difficulty === d))
+  }
   const pick = Math.min(opts.pick ?? pool.length, pool.length)
+  if (pick === 0) return []
 
   const groups = DIFFICULTIES.map((d) => pool.filter((q) => q.difficulty === d))
   const exact = groups.map((g) => (g.length / pool.length) * pick)
