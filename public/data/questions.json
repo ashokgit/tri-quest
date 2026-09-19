@@ -2326,6 +2326,32 @@
         "image",
         "tech"
       ]
+    },
+    {
+      "id": "gz-meme-mordor",
+      "category": "gen-z",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Finish the famous meme: “One does not simply…”",
+      "options": [
+        "skip the orientation",
+        "walk into Mordor",
+        "leave the group chat",
+        "ask for the Wi-Fi password"
+      ],
+      "answerIndex": 1,
+      "explanation": "Boromir in The Lord of the Rings: The Fellowship of the Ring (2001).",
+      "tags": [
+        "meme",
+        "movie",
+        "image"
+      ],
+      "media": {
+        "kind": "image",
+        "src": "media/images/gz-meme-mordor.jpg",
+        "alt": "The “One does not simply” meme",
+        "reveal": "none"
+      }
     }
   ]
 }

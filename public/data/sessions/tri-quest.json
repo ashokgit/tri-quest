@@ -50,6 +50,7 @@
         "gz-balen-peek",
         "gz-cobweb-mercedes",
         "gz-unko-sweater",
+        "gz-meme-mordor",
         "gz-emoji-harry-potter",
         "gz-emoji-spider-man",
         "gz-emoji-chocolate-factory",
@@ -79,7 +80,8 @@
       "keep": [
         "gz-balen-peek",
         "gz-cobweb-mercedes",
-        "gz-unko-sweater"
+        "gz-unko-sweater",
+        "gz-meme-mordor"
       ]
     },
     {
