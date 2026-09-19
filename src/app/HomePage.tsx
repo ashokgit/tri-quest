@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { getSession, getSessionIndex } from '@/data/source'
 import type { RoundOrder } from '@/features/presenter/deck'
@@ -69,6 +69,12 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
   const count = useSessionCount(ready ?? { id }) ?? written
   // In-page confirmations: native confirm() dialogs are blocked in some embedded browsers.
   const [pending, setPending] = useState<Pending>(null)
+  // Mid-show, − / + build up a pending count (shown in amber) until the host confirms.
+  const shown = pending?.kind === 'count' ? pending.count : count
+  const alertRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    alertRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }, [pending])
 
   const onOrder = (next: RoundOrder) => {
     if (next === order) return setPending(null)
@@ -78,7 +84,7 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
   }
   const onCount = (next: number) => {
     const clamped = Math.min(pool, Math.max(COUNT_STEP, next))
-    if (clamped === count) return
+    if (clamped === count) return setPending(null)
     // Like the order: mid-show a new count restarts, so ask first.
     if (inProgress) setPending({ kind: 'count', count: clamped })
     else setCount(id, clamped)
@@ -141,20 +147,20 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
           <button
             type="button"
             aria-label="Fewer questions"
-            onClick={() => onCount(Math.ceil(count / COUNT_STEP) * COUNT_STEP - COUNT_STEP)}
-            disabled={count <= COUNT_STEP}
+            onClick={() => onCount(Math.ceil(shown / COUNT_STEP) * COUNT_STEP - COUNT_STEP)}
+            disabled={shown <= COUNT_STEP}
             className="rounded-lg px-3 py-1 text-white/70 hover:bg-stage-700 hover:text-white disabled:opacity-30"
           >
             −
           </button>
-          <span className="w-12 text-center text-lg tabular-nums" aria-live="polite">
-            {count}
+          <span className={`w-12 text-center text-lg tabular-nums ${shown !== count ? 'text-lock' : ''}`} aria-live="polite">
+            {shown}
           </span>
           <button
             type="button"
             aria-label="More questions"
-            onClick={() => onCount(Math.floor(count / COUNT_STEP) * COUNT_STEP + COUNT_STEP)}
-            disabled={count >= pool}
+            onClick={() => onCount(Math.floor(shown / COUNT_STEP) * COUNT_STEP + COUNT_STEP)}
+            disabled={shown >= pool}
             className="rounded-lg px-3 py-1 text-white/70 hover:bg-stage-700 hover:text-white disabled:opacity-30"
           >
             +
@@ -169,7 +175,7 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
       </div>
 
       {pending && (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-lock/10 px-4 py-3 ring-1 ring-lock/40" role="alert">
+        <div ref={alertRef} className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-lock/10 px-4 py-3 ring-1 ring-lock/40" role="alert">
           <p className="text-sm text-white/85">
             {pending.kind === 'reshuffle'
               ? 'Draw a new random set of questions? This also restarts the show from the welcome screen.'
