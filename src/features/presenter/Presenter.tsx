@@ -2,8 +2,10 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { LoadedSession } from '@/data/source'
 import { sfx } from '@/features/audio/sfx'
+import { toggleFullscreen } from '@/lib/fullscreen'
 import { Backdrop } from './components/Backdrop'
 import { HelpOverlay } from './components/HelpOverlay'
+import { HostBar } from './components/HostBar'
 import { STAGE_MEDIA_ATTR } from './components/MediaView'
 import { NietBug } from './components/NietSeal'
 import {
@@ -90,6 +92,7 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
 
         <SoundDirector deck={deck} pos={pos} session={session} />
         {muted && <div className="absolute right-6 bottom-5 z-10 text-3xl opacity-40">🔇</div>}
+        <HostBar visible={!cursorHidden && !blackout} />
 
         <AnimatePresence>{helpOpen && <HelpOverlay />}</AnimatePresence>
         {blackout && <div className="absolute inset-0 z-50 bg-black" />}
@@ -227,10 +230,6 @@ function toggleStageMedia() {
   else el.pause()
 }
 
-function toggleFullscreen() {
-  if (document.fullscreenElement) document.exitFullscreen().catch(() => {})
-  else document.documentElement.requestFullscreen().catch(() => {})
-}
 
 /** Hides the mouse pointer after a couple of seconds without movement. */
 function useIdleCursor(delayMs = 2000) {

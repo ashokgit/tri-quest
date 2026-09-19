@@ -43,7 +43,7 @@ The show runs **offline from the host laptop**, mirrored to the projector. The G
 - [ ] Sound check page: play the **Opening theme** and **Countdown tick**, and adjust.
 
 **Open the show**
-- [ ] Present → press **F** for full screen.
+- [ ] Click **Present →**. It opens in full screen automatically. If it doesn't, move the mouse and click **⛶ Full screen** in the bottom-right corner, or press **F**.
 - [ ] The welcome screen stays up while students arrive.
 - [ ] Sound starts on the first key press. The first **→** plays the opening theme, so that's your "let's begin".
 
@@ -114,5 +114,5 @@ Most presentation clickers send **Page Down / Page Up**, which Tri-Quest treats 
 | **Home** | Back to the welcome screen |
 | **.** | Blank screen |
 | **M** | Mute |
-| **F** | Full screen |
+| **F** | Full screen (or move the mouse → ⛶ button, bottom-right) |
 | **H** | Show all controls on screen (audience sees it) |
