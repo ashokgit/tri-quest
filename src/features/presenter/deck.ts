@@ -1,4 +1,4 @@
-import { drawRound, seededRandom } from '@/data/draw'
+import { drawRound, scalePicks, seededRandom } from '@/data/draw'
 import type { LoadedSession } from '@/data/source'
 import type { Category, Question, Round } from '@/data/schema'
 
@@ -48,13 +48,16 @@ export interface DrawnRound {
  * difficulty-balanced selection; the same seed always gives the same questions.
  * In "difficulty" order the same questions are regrouped into a rising ladder.
  */
-export function drawSession(loaded: LoadedSession, seed: number, order: RoundOrder = 'category'): DrawnRound[] {
+export function drawSession(loaded: LoadedSession, seed: number, order: RoundOrder = 'category', count?: number): DrawnRound[] {
   const { session, bank, questionsById } = loaded
   const categories = new Map(bank.categories.map((c) => [c.id, c]))
   const rng = seededRandom(seed)
-  const byCategory: DrawnRound[] = session.rounds.map((round) => {
+  const picks = count === undefined ? undefined : scalePicks(session.rounds, count)
+  const byCategory: DrawnRound[] = session.rounds.map((round, i) => {
     const pool = round.questionIds.map((qid) => questionsById.get(qid)!)
-    const questions = drawRound(pool, round, rng)
+    // A scaled pick only replaces the written one when it differs, so unpicked rounds keep their order.
+    const pick = picks && picks[i] !== (round.pick ?? pool.length) ? picks[i] : round.pick
+    const questions = drawRound(pool, { ...round, pick }, rng)
     const timer = round.timerSeconds ?? session.defaults.timerSeconds
     return {
       // Consumers read round.questionIds for counts, so it reflects the draw.
@@ -71,7 +74,18 @@ const DIFFICULTY_LABEL = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as con
 const DIFFICULTY_ICON = { easy: '⭐', medium: '⭐⭐', hard: '⭐⭐⭐' } as const
 /** Easiest formats first within a level: a coin-flip, then four options, then no options at all. */
 const TYPE_EASE = { truefalse: 0, mcq: 1, open: 2 } as const
-const DEFAULT_LEVEL_TITLES = ['Warm-up', 'Easy Does It', 'Getting Going', 'Picking Up', 'Halfway Hero', 'Heating Up', 'Brain Burner', 'Final Challenge']
+const DEFAULT_LEVEL_TITLES = [
+  'Warm-up',
+  'Easy Does It',
+  'Getting Going',
+  'Picking Up',
+  'Halfway Hero',
+  'Heating Up',
+  'Mind Bender',
+  'Nerves of Steel',
+  'Brain Burner',
+  'Final Challenge',
+]
 /** Target questions per ladder level. */
 const LEVEL_SIZE = 8
 
@@ -104,9 +118,11 @@ function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): 
   }
 
   return levels.map(({ difficulty, items }, i) => {
-    // The top rung always gets the last title ("Final Challenge"), however many levels there are.
-    const last = i === levels.length - 1 && titles.length > 1
-    const title = (last ? titles.at(-1) : i < titles.length - 1 ? titles[i] : undefined) ?? `Level ${i + 1}`
+    // The top rungs always get the last titles ("Brain Burner", "Final Challenge"), however many
+    // levels there are; the rest are named from the start of the list.
+    const tail = Math.min(2, titles.length - 1, levels.length)
+    const fromTop = levels.length - 1 - i
+    const title = (fromTop < tail ? titles[titles.length - 1 - fromTop] : i < titles.length - tail ? titles[i] : undefined) ?? `Level ${i + 1}`
     return {
       round: {
         id: `level-${i + 1}`,
@@ -123,11 +139,11 @@ function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): 
   })
 }
 
-export function buildDeck(loaded: LoadedSession, seed: number, order: RoundOrder = 'category'): Slide[] {
+export function buildDeck(loaded: LoadedSession, seed: number, order: RoundOrder = 'category', count?: number): Slide[] {
   const categories = new Map(loaded.bank.categories.map((c) => [c.id, c]))
   const slides: Slide[] = [{ kind: 'welcome' }]
 
-  drawSession(loaded, seed, order).forEach(({ round, category, questions, timers }, roundIndex) => {
+  drawSession(loaded, seed, order, count).forEach(({ round, category, questions, timers }, roundIndex) => {
     slides.push({ kind: 'round', round, roundIndex, category })
     questions.forEach((question, indexInRound) => {
       slides.push({

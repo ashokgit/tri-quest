@@ -28,7 +28,7 @@ import { RoundIntroSlide } from './slides/RoundIntroSlide'
 import { WelcomeSlide } from './slides/WelcomeSlide'
 import { SoundDirector } from './SoundDirector'
 import { Stage } from './Stage'
-import { usePresenterStore, useSessionOrder, useSessionSeed } from './store'
+import { usePresenterStore, useSessionCount, useSessionOrder, useSessionSeed } from './store'
 
 const START: Position = { slide: 0, stage: 0 }
 
@@ -36,7 +36,8 @@ export function Presenter({ loaded }: { loaded: LoadedSession }) {
   const { session } = loaded
   const seed = useSessionSeed(session)
   const order = useSessionOrder(session)
-  const deck = useMemo(() => buildDeck(loaded, seed, order), [loaded, seed, order])
+  const count = useSessionCount(session)
+  const deck = useMemo(() => buildDeck(loaded, seed, order, count), [loaded, seed, order, count])
 
   const saved = usePresenterStore((s) => s.positions[session.id])
   const pos = clampPosition(deck, saved ?? START)

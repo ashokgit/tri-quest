@@ -73,6 +73,8 @@ Each question keeps its own timer (e.g. 30s for Audio-Visual) in either order.
 | `truefalse` | `answer: boolean` | |
 | `open` | `answer: string` | no options, answer shown on reveal |
 
+A session's `questionCount` sets how many questions the show has; each round's `pick` is scaled in proportion to reach it (never below its `keep` questions or above its pool). The host can change it on the home page (**Questions − / +**). A round's `keep` lists questions that are always drawn.
+
 Every question can also have `showcase` (big text on the stage, e.g. an emoji puzzle), `media` (`image` with `reveal: blur \| zoom \| peek`, where `peek` shows only the top `peek`% (default 30) until the answer, `youtube` with an `id`, `start`/`end`, `muted` (silent for the question, replayed with sound on the reveal) and an optional `peek`/`peekFrom` strip (needs internet on the day), `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
 
 ## Sound effects

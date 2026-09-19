@@ -7,7 +7,7 @@ import { sfx } from '@/features/audio/sfx'
 import { buildDeck, stagesFor, type Slide } from '@/features/presenter/deck'
 import { QuestionSlide } from '@/features/presenter/slides/QuestionSlide'
 import { STAGE_HEIGHT, STAGE_WIDTH } from '@/features/presenter/Stage'
-import { usePresenterStore, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
+import { usePresenterStore, useSessionCount, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
 import { enterFullscreen } from '@/lib/fullscreen'
 import { useAsync } from '@/lib/useAsync'
 
@@ -53,11 +53,12 @@ function SlideCheck({ loaded }: { loaded: LoadedSession }) {
   // Where each question sits in the show as currently drawn, so a slide can be presented directly.
   const seed = useSessionSeed(session)
   const order = useSessionOrder(session)
+  const count = useSessionCount(session)
   const deckIndex = useMemo(() => {
     const index = new Map<string, number>()
-    buildDeck(loaded, seed, order).forEach((s, i) => s.kind === 'question' && index.set(s.question.id, i))
+    buildDeck(loaded, seed, order, count).forEach((s, i) => s.kind === 'question' && index.set(s.question.id, i))
     return index
-  }, [loaded, seed, order])
+  }, [loaded, seed, order, count])
   const setPosition = usePresenterStore((s) => s.setPosition)
   const navigate = useNavigate()
   const presentFrom = useCallback(

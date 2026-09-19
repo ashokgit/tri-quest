@@ -35,6 +35,7 @@ The show runs **offline from the host laptop**, mirrored to the projector. The G
 - [ ] **Turn Wi-Fi off** and reload once, to prove it runs offline.
 - [ ] Home page:
   - [ ] **Order** is *By difficulty*.
+  - [ ] **Questions** is the number you want (default 80). − / + change it in steps of 5; the rounds share them in proportion, and must-have questions are always in.
   - [ ] The button says **Present →**, not "Resume". If it says Resume, press **Home** inside the show to go back to the welcome screen.
 
 **Sound**
@@ -112,7 +113,7 @@ Most presentation clickers send **Page Down / Page Up**, which Tri-Quest treats 
 | **T** | Pause / resume the clock |
 | **+ / −** | ±10 seconds |
 | **P** | Play / pause audio or video |
-| **1–8** | Jump to level |
+| **1–9** | Jump to level (level 10, if there is one: use ▶ Go to on the Slide check) |
 | **Home** | Back to the welcome screen |
 | **.** | Blank screen |
 | **M** | Mute |

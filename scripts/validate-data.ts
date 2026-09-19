@@ -9,6 +9,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { z } from 'zod'
 import { QuestionBank, Session, SessionIndex } from '../src/data/schema.ts'
+import { scalePicks } from '../src/data/draw.ts'
 import { CUES, type Cue } from '../src/features/audio/cues.ts'
 
 const publicDir = join(import.meta.dirname, '..', 'public')
@@ -69,7 +70,7 @@ for (const file of sessionFiles) {
       used.add(qid)
     }
   }
-  const shown = session.rounds.reduce((n, r) => n + (r.pick ?? r.questionIds.length), 0)
+  const shown = session.questionCount === undefined ? session.rounds.reduce((n, r) => n + (r.pick ?? r.questionIds.length), 0) : scalePicks(session.rounds, session.questionCount).reduce((a, b) => a + b, 0)
   console.log(`✔ ${session.id}: ${session.rounds.length} rounds, ${shown} shown from a pool of ${used.size}`)
 }
 // Optional sound overrides: every listed file must exist.

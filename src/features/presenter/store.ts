@@ -23,6 +23,8 @@ interface PresenterState {
   seeds: Record<string, number>
   /** Host's choice of round order per session (overrides the session file). */
   orders: Record<string, RoundOrder>
+  /** Host's choice of how many questions the show has, per session (overrides the session file). */
+  counts: Record<string, number>
   muted: boolean
   /** Master sound volume, 0 … 1 (set on the sound check page). */
   volume: number
@@ -37,6 +39,8 @@ interface PresenterState {
   reshuffle: (sessionId: string) => void
   /** Switch between category rounds and the difficulty ladder; restarts the session. */
   setOrder: (sessionId: string, order: RoundOrder) => void
+  /** Change how many questions the show has (null: back to the session file's); restarts the session. */
+  setCount: (sessionId: string, count: number | null) => void
   /** Drop this browser's reshuffle and go back to the session file's draw. */
   resetDraw: (sessionId: string) => void
   toggleMuted: () => void
@@ -62,6 +66,10 @@ export const useSessionSeed = (session: { id: string; seed: number }) => usePres
 export const useSessionOrder = (session: { id: string; order: RoundOrder }) =>
   usePresenterStore((s) => s.orders[session.id] ?? session.order)
 
+/** How many questions the show has: the host's choice if any, else the session file's (undefined: picks as written). */
+export const useSessionCount = (session: { id: string; questionCount?: number }) =>
+  usePresenterStore((s) => s.counts[session.id] ?? session.questionCount)
+
 export const remainingMs = (t: TimerState, now = Date.now()) =>
   t.endsAt === null ? t.remainingMs : Math.max(0, t.endsAt - now)
 
@@ -71,6 +79,7 @@ export const usePresenterStore = create<PresenterState>()(
       positions: {},
       seeds: {},
       orders: {},
+      counts: {},
       muted: false,
       volume: 0.9,
       blackout: false,
@@ -90,6 +99,13 @@ export const usePresenterStore = create<PresenterState>()(
           orders: { ...s.orders, [sessionId]: order },
           positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } },
         })),
+      setCount: (sessionId, count) =>
+        set((s) => {
+          const counts = { ...s.counts }
+          if (count === null) delete counts[sessionId]
+          else counts[sessionId] = count
+          return { counts, positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
+        }),
       reshuffle: (sessionId) =>
         set((s) => ({
           seeds: { ...s.seeds, [sessionId]: randomSeed() },
@@ -136,7 +152,7 @@ export const usePresenterStore = create<PresenterState>()(
     }),
     {
       name: 'quizzeria-presenter',
-      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, orders: s.orders, muted: s.muted, volume: s.volume }),
+      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, orders: s.orders, counts: s.counts, muted: s.muted, volume: s.volume }),
     },
   ),
 )

@@ -41,7 +41,7 @@ export function drawRound<Q extends { id: string; difficulty: Difficulty }>(
   opts: { pick?: number; shuffle?: boolean; keep?: string[] },
   rng: () => number,
 ): Q[] {
-  if (!opts.pick && !opts.shuffle) return pool
+  if (opts.pick === undefined && !opts.shuffle) return pool
   const keep = new Set(opts.keep ?? [])
   if (keep.size) {
     const kept = pool.filter((q) => keep.has(q.id))
@@ -66,4 +66,28 @@ export function drawRound<Q extends { id: string; difficulty: Difficulty }>(
   }
 
   return groups.flatMap((g, i) => shuffled(g, rng).slice(0, counts[i]))
+}
+
+/**
+ * Scales each round's `pick` so the whole show has `total` questions, in proportion to
+ * the picks as written. A round never goes below its `keep` questions (or 1) or above its pool.
+ */
+export function scalePicks(rounds: { pick?: number; questionIds: string[]; keep?: string[] }[], total: number): number[] {
+  const base = rounds.map((r) => r.pick ?? r.questionIds.length)
+  const cap = rounds.map((r) => r.questionIds.length)
+  const floor = rounds.map((r) => Math.min(r.questionIds.length, Math.max(1, r.keep?.length ?? 0)))
+  const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0)
+  const goal = Math.min(Math.max(total, sum(floor)), sum(cap))
+  const exact = base.map((b) => (b * goal) / sum(base))
+  const picks = exact.map((x, i) => Math.min(cap[i], Math.max(floor[i], Math.floor(x))))
+  // Hand out (or take back) the difference one question at a time, to the rounds furthest from their share.
+  for (let left = goal - sum(picks); left !== 0; ) {
+    const step = left > 0 ? 1 : -1
+    const open = picks.map((_, i) => i).filter((i) => (step > 0 ? picks[i] < cap[i] : picks[i] > floor[i]))
+    if (!open.length) break
+    const i = open.reduce((a, b) => (step * (exact[b] - picks[b]) > step * (exact[a] - picks[a]) ? b : a))
+    picks[i] += step
+    left -= step
+  }
+  return picks
 }

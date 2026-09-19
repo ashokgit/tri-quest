@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { getSession, getSessionIndex } from '@/data/source'
 import type { RoundOrder } from '@/features/presenter/deck'
 import { sfx } from '@/features/audio/sfx'
-import { usePresenterStore, useSessionOrder } from '@/features/presenter/store'
+import { usePresenterStore, useSessionCount, useSessionOrder } from '@/features/presenter/store'
 import { enterFullscreen } from '@/lib/fullscreen'
 import { useAsync } from '@/lib/useAsync'
 import { StatusScreen } from './StatusScreen'
@@ -45,7 +45,10 @@ const ORDERS: { value: RoundOrder; label: string; hint: string }[] = [
   { value: 'difficulty', label: 'By difficulty', hint: 'A rising ladder: easiest first, mixed subjects, up to the Final Challenge' },
 ]
 
-type Pending = { kind: 'reshuffle' } | { kind: 'order'; order: RoundOrder } | null
+type Pending = { kind: 'reshuffle' } | { kind: 'order'; order: RoundOrder } | { kind: 'count'; count: number } | null
+
+/** Steps of the question-count control. */
+const COUNT_STEP = 5
 
 /** The Present click is the user gesture that lets the welcome music start straight away. */
 function startShow() {
@@ -57,8 +60,13 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
   const session = useAsync(() => getSession(id), id)
   const reshuffle = usePresenterStore((s) => s.reshuffle)
   const setOrder = usePresenterStore((s) => s.setOrder)
+  const setCount = usePresenterStore((s) => s.setCount)
   const inProgress = usePresenterStore((s) => (s.positions[id]?.slide ?? 0) > 0)
   const order = useSessionOrder(session.status === 'ready' ? session.data : { id, order: 'category' })
+  const ready = session.status === 'ready' ? session.data : undefined
+  const pool = ready ? new Set(ready.rounds.flatMap((r) => r.questionIds)).size : 0
+  const written = ready ? ready.rounds.reduce((n, r) => n + (r.pick ?? r.questionIds.length), 0) : 0
+  const count = useSessionCount(ready ?? { id }) ?? written
   // In-page confirmations: native confirm() dialogs are blocked in some embedded browsers.
   const [pending, setPending] = useState<Pending>(null)
 
@@ -68,9 +76,17 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
     if (inProgress) setPending({ kind: 'order', order: next })
     else setOrder(id, next)
   }
+  const onCount = (next: number) => {
+    const clamped = Math.min(pool, Math.max(COUNT_STEP, next))
+    if (clamped === count) return
+    // Like the order: mid-show a new count restarts, so ask first.
+    if (inProgress) setPending({ kind: 'count', count: clamped })
+    else setCount(id, clamped)
+  }
   const confirm = () => {
     if (pending?.kind === 'reshuffle') reshuffle(id)
     if (pending?.kind === 'order') setOrder(id, pending.order)
+    if (pending?.kind === 'count') setCount(id, pending.count)
     setPending(null)
   }
 
@@ -117,6 +133,36 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
           ))}
         </div>
         <span className="flex-1 text-sm text-white/50">{ORDERS.find((o) => o.value === order)?.hint}</span>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3">
+        <span className="font-display text-sm font-semibold tracking-wider text-white/50 uppercase">Questions</span>
+        <div className="inline-flex items-center rounded-xl bg-stage-950/60 p-1 font-display font-semibold ring-1 ring-white/10">
+          <button
+            type="button"
+            aria-label="Fewer questions"
+            onClick={() => onCount(Math.ceil(count / COUNT_STEP) * COUNT_STEP - COUNT_STEP)}
+            disabled={count <= COUNT_STEP}
+            className="rounded-lg px-3 py-1 text-white/70 hover:bg-stage-700 hover:text-white disabled:opacity-30"
+          >
+            −
+          </button>
+          <span className="w-12 text-center text-lg tabular-nums" aria-live="polite">
+            {count}
+          </span>
+          <button
+            type="button"
+            aria-label="More questions"
+            onClick={() => onCount(Math.floor(count / COUNT_STEP) * COUNT_STEP + COUNT_STEP)}
+            disabled={count >= pool}
+            className="rounded-lg px-3 py-1 text-white/70 hover:bg-stage-700 hover:text-white disabled:opacity-30"
+          >
+            +
+          </button>
+        </div>
+        <span className="flex-1 text-sm text-white/50">
+          of {pool} in the pool, shared across the rounds{ready?.durationMinutes ? ` · planned for ${ready.durationMinutes} min` : ''}
+        </span>
         <Link to={`/slides/${id}`} className="font-display text-sm font-semibold text-white/60 hover:text-white">
           Slide check →
         </Link>
@@ -127,14 +173,16 @@ function SessionCard({ id, title, event }: { id: string; title: string; event?: 
           <p className="text-sm text-white/85">
             {pending.kind === 'reshuffle'
               ? 'Draw a new random set of questions? This also restarts the show from the welcome screen.'
-              : `The show is in progress. Switch to ${pending.order === 'difficulty' ? 'the difficulty ladder' : 'category rounds'} and restart from the welcome screen? (Same questions, new order.)`}
+              : pending.kind === 'count'
+                ? `The show is in progress. Change to ${pending.count} questions and restart from the welcome screen?`
+                : `The show is in progress. Switch to ${pending.order === 'difficulty' ? 'the difficulty ladder' : 'category rounds'} and restart from the welcome screen? (Same questions, new order.)`}
           </p>
           <span className="flex gap-2 font-display text-sm font-semibold">
             <button type="button" onClick={() => setPending(null)} className="rounded-lg px-3 py-1.5 ring-1 ring-white/20 hover:bg-stage-700">
               Cancel
             </button>
             <button type="button" onClick={confirm} className="rounded-lg bg-lock px-3 py-1.5 text-stage-950 hover:brightness-110">
-              {pending.kind === 'reshuffle' ? 'Reshuffle & restart' : 'Switch & restart'}
+              {pending.kind === 'reshuffle' ? 'Reshuffle & restart' : pending.kind === 'count' ? 'Change & restart' : 'Switch & restart'}
             </button>
           </span>
         </div>

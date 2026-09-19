@@ -3,7 +3,7 @@ import { StatusScreen } from '@/app/StatusScreen'
 import { loadSession, type LoadedSession } from '@/data/source'
 import { correctOptionIndex, drawSession, optionLabels } from '@/features/presenter/deck'
 import { optionLetter } from '@/features/presenter/components/palette'
-import { usePresenterStore, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
+import { usePresenterStore, useSessionCount, useSessionOrder, useSessionSeed } from '@/features/presenter/store'
 import { useAsync } from '@/lib/useAsync'
 import { mediaLocation, type Question } from '@/data/schema'
 
@@ -23,7 +23,8 @@ function Review({ loaded }: { loaded: LoadedSession }) {
   const pinned = seed === session.seed
   const resetDraw = usePresenterStore((s) => s.resetDraw)
   const order = useSessionOrder(session)
-  const rounds = drawSession(loaded, seed, order)
+  const count = useSessionCount(session)
+  const rounds = drawSession(loaded, seed, order, count)
   const total = rounds.reduce((n, r) => n + r.questions.length, 0)
   const toVerify = rounds.flatMap((r) => r.questions).filter((q) => q.verify).length
   const withMedia = rounds.flatMap((r) => r.questions).filter((q) => q.media).length
