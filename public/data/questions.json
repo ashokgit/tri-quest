@@ -1707,8 +1707,9 @@
         "nepal"
       ],
       "media": {
-        "kind": "audio",
-        "src": "media/audio/av-sarangi.mp3"
+        "kind": "youtube",
+        "id": "_rc2IpeYM-U",
+        "audioOnly": true
       }
     },
     {
@@ -2279,6 +2280,27 @@
         "video",
         "movie",
         "nepal"
+      ]
+    },
+    {
+      "id": "gk-devkota-yatri",
+      "category": "gk",
+      "difficulty": "medium",
+      "type": "mcq",
+      "verify": true,
+      "prompt": "These are the closing lines of a poem by Mahakavi Laxmi Prasad Devkota. What is the poem called?",
+      "showcase": "फर्क फर्क हे ! जाऊ समाऊ, मानिसहरूको पाउ !\nमलम लगाऊ आर्तहरूको, चहराइरहेको घाउ\nमानिस भइ ईश्वरको त्यो, दिव्य मुहार हँसाऊ",
+      "options": [
+        "पागल (Pagal)",
+        "भिखारी (Bhikhari)",
+        "यात्री (Yatri)",
+        "मुनामदन (Muna Madan)"
+      ],
+      "answerIndex": 2,
+      "explanation": "In \"Yatri\", Devkota tells the pilgrim to turn back: God is found by serving people.",
+      "tags": [
+        "nepal",
+        "literature"
       ]
     }
   ]

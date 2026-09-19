@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import type { Session } from '@/data/schema'
-import { correctOptionIndex, imageObscurity, optionLabels, stagesFor, timerStageIndex, type Slide } from '../deck'
+import { correctOptionIndex, hasClip, imageObscurity, optionLabels, stagesFor, timerStageIndex, type Slide } from '../deck'
 import { Lozenge, Rail } from '../components/Lozenge'
 import { MediaView } from '../components/MediaView'
 import { OptionTiles } from '../components/OptionTiles'
@@ -61,7 +61,12 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
           </motion.div>
         ) : q.showcase ? (
           <motion.p
-            className="text-center font-display text-[200px] leading-none font-black tracking-wide drop-shadow-[0_0_50px_rgb(245_197_66/0.35)]"
+            // Short showcases (emoji, an equation) are huge; longer text such as a verse is set like a quote.
+            className={
+              q.showcase.length > 16
+                ? 'max-w-[1500px] text-center text-[52px] leading-[1.45] font-bold whitespace-pre-line text-white drop-shadow-[0_0_30px_rgb(245_197_66/0.25)]'
+                : 'text-center font-display text-[200px] leading-none font-black tracking-wide drop-shadow-[0_0_50px_rgb(245_197_66/0.35)]'
+            }
             initial={{ opacity: 0, scale: 0.4 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: 'spring', stiffness: 160, damping: 13 }}
@@ -74,7 +79,8 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
           </div>
         )}
 
-        <TimerSlot slideIndex={slideIndex} visible={stage >= timerStageIndex(slide) && !revealed} />
+        {/* A clip's clock starts on P, so it shows from then on, even before the options. */}
+        <TimerSlot slideIndex={slideIndex} visible={(stage >= timerStageIndex(slide) || hasClip(q)) && !revealed} />
 
         <AnimatePresence>
           {revealed && q.explanation && (

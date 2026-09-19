@@ -124,6 +124,9 @@
         "av-newtons-cradle",
         "av-dial-up",
         "av-red-blood-cells"
+      ],
+      "keep": [
+        "av-sarangi"
       ]
     },
     {
@@ -175,6 +178,7 @@
       "category": "gk",
       "pick": 7,
       "questionIds": [
+        "gk-devkota-yatri",
         "gk-nepal-flag",
         "gk-national-flower",
         "gk-buddha-birthplace",
@@ -190,6 +194,9 @@
         "gk-everest-height",
         "gk-constitution-year",
         "gk-most-time-zones"
+      ],
+      "keep": [
+        "gk-devkota-yatri"
       ]
     },
     {

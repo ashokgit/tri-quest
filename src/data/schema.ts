@@ -65,6 +65,8 @@ export const Media = z.discriminatedUnion('kind', [
     peek: z.number().min(5).max(95).optional(),
     /** Which edge the `peek` strip is taken from (default bottom). */
     peekFrom: z.enum(['top', 'bottom']).default('bottom'),
+    /** Sound only: the picture stays hidden until the reveal. */
+    audioOnly: z.boolean().default(false),
   }),
 ])
 

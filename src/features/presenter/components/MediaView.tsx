@@ -125,17 +125,24 @@ function PlayableMedia({ media }: { media: Extract<Media, { kind: 'audio' | 'vid
   return (
     <div className="relative grid h-full w-full place-items-center rounded-3xl bg-stage-800/80 ring-2 ring-white/10">
       <audio ref={ref as RefObject<HTMLAudioElement>} {...attrs} />
-      <div className="flex h-48 items-center gap-3">
-        {Array.from({ length: 24 }, (_, i) => (
-          <motion.span
-            key={i}
-            className="w-4 rounded-full bg-gold"
-            animate={playing ? { height: [24, 60 + ((i * 37) % 120), 24] } : { height: 24 }}
-            transition={playing ? { duration: 0.6 + (i % 5) * 0.12, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
-          />
-        ))}
-      </div>
+      <SoundBars playing={playing} />
       {!playing && <PlayHint />}
+    </div>
+  )
+}
+
+/** Animated gold bars standing in for a sound clip's picture. */
+function SoundBars({ playing }: { playing: boolean }) {
+  return (
+    <div className="flex h-48 items-center gap-3">
+      {Array.from({ length: 24 }, (_, i) => (
+        <motion.span
+          key={i}
+          className="w-4 rounded-full bg-gold"
+          animate={playing ? { height: [24, 60 + ((i * 37) % 120), 24] } : { height: 24 }}
+          transition={playing ? { duration: 0.6 + (i % 5) * 0.12, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
+        />
+      ))}
     </div>
   )
 }
@@ -227,7 +234,14 @@ function YouTubeMedia({ media, revealed }: { media: Extract<Media, { kind: 'yout
         return
       }
       if (playerState === 1) setState('playing')
-      else if (playerState === 0) setState('paused')
+      else if (playerState === 0) {
+        setState('paused')
+        // Played to the end: rewind (seeking restarts playback, so pause again) so P plays it again.
+        if (!revealed) {
+          command('seekTo', [start, true])
+          command('pauseVideo')
+        }
+      }
       // A pause straight after P is YouTube settling in, not the host; only a later one counts.
       else if (playerState === 2) setState((s) => (s === 'starting' ? s : 'paused'))
       // Loop the question clip back to the start at `end`.
@@ -278,7 +292,8 @@ function YouTubeMedia({ media, revealed }: { media: Extract<Media, { kind: 'yout
     command('playVideo')
   }, [revealed, media.muted, state, volume, start, command])
 
-  const covered = !revealed && state !== 'playing' && state !== 'starting'
+  const playing = state === 'playing' || state === 'starting'
+  const covered = !revealed && !playing
   // Until the reveal, a `peek` clip shows only a strip of the frame (the bottom, by default).
   const hidden = !revealed && media.peek !== undefined ? 100 - media.peek : 0
   return (
@@ -301,7 +316,13 @@ function YouTubeMedia({ media, revealed }: { media: Extract<Media, { kind: 'yout
             style={{ height: `${hidden}%` }}
           />
         )}
-        {covered && (
+        {/* Sound-only clip: the picture stays hidden behind the bars until the reveal. */}
+        {media.audioOnly && !revealed && (
+          <div className="absolute inset-0 grid place-items-center bg-stage-800">
+            <SoundBars playing={playing} />
+          </div>
+        )}
+        {covered && !media.audioOnly && (
           <div className="absolute inset-0 grid place-items-center bg-stage-900">
             <span className="font-display text-[120px] leading-none text-white/15">{state === 'error' ? '⚠' : '🎬'}</span>
           </div>
