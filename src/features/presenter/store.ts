@@ -25,6 +25,8 @@ interface PresenterState {
   orders: Record<string, RoundOrder>
   /** Host's choice of how many questions the show has, per session (overrides the session file). */
   counts: Record<string, number>
+  /** Questions the host hand-picked on the review page, per session (overrides the seeded draw). */
+  picks: Record<string, string[]>
   muted: boolean
   /** Master sound volume, 0 … 1 (set on the sound check page). */
   volume: number
@@ -41,6 +43,8 @@ interface PresenterState {
   setOrder: (sessionId: string, order: RoundOrder) => void
   /** Change how many questions the show has (null: back to the session file's); restarts the session. */
   setCount: (sessionId: string, count: number | null) => void
+  /** Hand-pick the exact questions of a session (null: back to the seeded draw); restarts the session. */
+  setPicks: (sessionId: string, questionIds: string[] | null) => void
   /** Drop this browser's reshuffle and go back to the session file's draw. */
   resetDraw: (sessionId: string) => void
   toggleMuted: () => void
@@ -57,6 +61,13 @@ interface PresenterState {
   clearLock: () => void
 }
 
+/** A copy of `map` without `key`. */
+const without = <T,>(map: Record<string, T>, key: string): Record<string, T> => {
+  const next = { ...map }
+  delete next[key]
+  return next
+}
+
 const idleTimer: TimerState = { key: null, durationMs: 0, endsAt: null, remainingMs: 0 }
 
 /** The session's draw number: the host's reshuffle if any, else the one pinned in the session file. */
@@ -65,6 +76,9 @@ export const useSessionSeed = (session: { id: string; seed: number }) => usePres
 /** The session's round order: the host's choice if any, else the session file's. */
 export const useSessionOrder = (session: { id: string; order: RoundOrder }) =>
   usePresenterStore((s) => s.orders[session.id] ?? session.order)
+
+/** The questions the host hand-picked for a session, if any (undefined: the seeded draw decides). */
+export const useSessionPicks = (session: { id: string }) => usePresenterStore((s) => s.picks[session.id])
 
 /** How many questions the show has: the host's choice if any, else the session file's (undefined: picks as written). */
 export const useSessionCount = (session: { id: string; questionCount?: number }) =>
@@ -80,6 +94,7 @@ export const usePresenterStore = create<PresenterState>()(
       seeds: {},
       orders: {},
       counts: {},
+      picks: {},
       muted: false,
       volume: 0.9,
       blackout: false,
@@ -92,7 +107,7 @@ export const usePresenterStore = create<PresenterState>()(
         set((s) => {
           const seeds = { ...s.seeds }
           delete seeds[sessionId]
-          return { seeds, positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
+          return { seeds, picks: without(s.picks, sessionId), positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
         }),
       setOrder: (sessionId, order) =>
         set((s) => ({
@@ -104,11 +119,18 @@ export const usePresenterStore = create<PresenterState>()(
           const counts = { ...s.counts }
           if (count === null) delete counts[sessionId]
           else counts[sessionId] = count
-          return { counts, positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
+          // A new target makes the old hand-picked set the wrong size, so it goes back to the draw.
+          return { counts, picks: without(s.picks, sessionId), positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } } }
         }),
+      setPicks: (sessionId, questionIds) =>
+        set((s) => ({
+          picks: questionIds === null ? without(s.picks, sessionId) : { ...s.picks, [sessionId]: questionIds },
+          positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } },
+        })),
       reshuffle: (sessionId) =>
         set((s) => ({
           seeds: { ...s.seeds, [sessionId]: randomSeed() },
+          picks: without(s.picks, sessionId),
           positions: { ...s.positions, [sessionId]: { slide: 0, stage: 0 } },
         })),
       toggleMuted: () => set((s) => ({ muted: !s.muted })),
@@ -152,7 +174,15 @@ export const usePresenterStore = create<PresenterState>()(
     }),
     {
       name: 'quizzeria-presenter',
-      partialize: (s) => ({ positions: s.positions, seeds: s.seeds, orders: s.orders, counts: s.counts, muted: s.muted, volume: s.volume }),
+      partialize: (s) => ({
+        positions: s.positions,
+        seeds: s.seeds,
+        orders: s.orders,
+        counts: s.counts,
+        picks: s.picks,
+        muted: s.muted,
+        volume: s.volume,
+      }),
     },
   ),
 )

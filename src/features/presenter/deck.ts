@@ -43,21 +43,33 @@ export interface DrawnRound {
   timers: number[]
 }
 
+const DIFFICULTY_RANK = { easy: 0, medium: 1, hard: 2 } as const
+
 /**
  * Resolves each round's draw. Rounds with `pick`/`shuffle` get a seeded random,
  * difficulty-balanced selection; the same seed always gives the same questions.
- * In "difficulty" order the same questions are regrouped into a rising ladder.
+ * `picks` (the host's hand-picked set from the review page) replaces the random draw
+ * altogether. In "difficulty" order the same questions are regrouped into a rising ladder.
  */
-export function drawSession(loaded: LoadedSession, seed: number, order: RoundOrder = 'category', count?: number): DrawnRound[] {
+export function drawSession(
+  loaded: LoadedSession,
+  seed: number,
+  order: RoundOrder = 'category',
+  count?: number,
+  picks?: string[],
+): DrawnRound[] {
   const { session, bank, questionsById } = loaded
   const categories = new Map(bank.categories.map((c) => [c.id, c]))
   const rng = seededRandom(seed)
-  const picks = count === undefined ? undefined : scalePicks(session.rounds, count)
+  const scaled = count === undefined ? undefined : scalePicks(session.rounds, count)
+  const chosen = picks && new Set(picks)
   const byCategory: DrawnRound[] = session.rounds.map((round, i) => {
     const pool = round.questionIds.map((qid) => questionsById.get(qid)!)
     // A scaled pick only replaces the written one when it differs, so unpicked rounds keep their order.
-    const pick = picks && picks[i] !== (round.pick ?? pool.length) ? picks[i] : round.pick
-    const questions = drawRound(pool, { ...round, pick }, rng)
+    const pick = scaled && scaled[i] !== (round.pick ?? pool.length) ? scaled[i] : round.pick
+    const questions = chosen
+      ? pool.filter((q) => chosen.has(q.id)).sort((a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty])
+      : drawRound(pool, { ...round, pick }, rng)
     const timer = round.timerSeconds ?? session.defaults.timerSeconds
     return {
       // Consumers read round.questionIds for counts, so it reflects the draw.
@@ -67,7 +79,9 @@ export function drawSession(loaded: LoadedSession, seed: number, order: RoundOrd
       timers: questions.map(() => timer),
     }
   })
-  return order === 'difficulty' ? difficultyLadder(byCategory, session.levelTitles) : byCategory
+  // A hand-picked set can empty a round out; an empty round has nothing to introduce.
+  const rounds = byCategory.filter((r) => r.questions.length)
+  return order === 'difficulty' ? difficultyLadder(rounds, session.levelTitles) : rounds
 }
 
 const DIFFICULTY_LABEL = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as const
@@ -147,11 +161,17 @@ function difficultyLadder(rounds: DrawnRound[], titles = DEFAULT_LEVEL_TITLES): 
   })
 }
 
-export function buildDeck(loaded: LoadedSession, seed: number, order: RoundOrder = 'category', count?: number): Slide[] {
+export function buildDeck(
+  loaded: LoadedSession,
+  seed: number,
+  order: RoundOrder = 'category',
+  count?: number,
+  picks?: string[],
+): Slide[] {
   const categories = new Map(loaded.bank.categories.map((c) => [c.id, c]))
   const slides: Slide[] = [{ kind: 'welcome' }]
 
-  drawSession(loaded, seed, order, count).forEach(({ round, category, questions, timers }, roundIndex) => {
+  drawSession(loaded, seed, order, count, picks).forEach(({ round, category, questions, timers }, roundIndex) => {
     slides.push({ kind: 'round', round, roundIndex, category })
     questions.forEach((question, indexInRound) => {
       slides.push({
