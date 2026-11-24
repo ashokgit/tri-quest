@@ -1,6 +1,7 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { StatusScreen } from '@/app/StatusScreen'
+import { GroupSlideCheck } from '@/features/groups/GroupSlideCheck'
 import type { Question, Session } from '@/data/schema'
 import { loadSession, type LoadedSession } from '@/data/source'
 import { sfx } from '@/features/audio/sfx'
@@ -25,6 +26,7 @@ export function SlideCheckPage() {
 
   if (state.status === 'loading') return <StatusScreen title="Loading session…" />
   if (state.status === 'error') return <StatusScreen title="Couldn't load session" tone="error">{state.error.message}</StatusScreen>
+  if (state.data.session.format === 'groups') return <GroupSlideCheck loaded={state.data} />
   return <SlideCheck loaded={state.data} />
 }
 

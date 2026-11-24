@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router'
 import { StatusScreen } from '@/app/StatusScreen'
+import { GroupReview } from '@/features/groups/GroupReviewPage'
 import { loadSession, type LoadedSession } from '@/data/source'
 import { correctOptionIndex, drawSession, optionLabels } from '@/features/presenter/deck'
 import { optionLetter } from '@/features/presenter/components/palette'
@@ -14,6 +15,7 @@ export function ReviewPage() {
 
   if (state.status === 'loading') return <StatusScreen title="Loading session…" />
   if (state.status === 'error') return <StatusScreen title="Couldn't load session" tone="error">{state.error.message}</StatusScreen>
+  if (state.data.session.format === 'groups') return <GroupReview loaded={state.data} />
   return <Review loaded={state.data} />
 }
 

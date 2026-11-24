@@ -18,8 +18,8 @@ export async function getSessionIndex(): Promise<SessionIndex> {
   return SessionIndex.parse(await fetchJson('sessions/index.json'))
 }
 
-export async function getQuestionBank(): Promise<QuestionBank> {
-  return QuestionBank.parse(await fetchJson('questions.json'))
+export async function getQuestionBank(file = 'questions.json'): Promise<QuestionBank> {
+  return QuestionBank.parse(await fetchJson(file))
 }
 
 export async function getSession(id: string): Promise<Session> {
@@ -34,7 +34,8 @@ export interface LoadedSession {
 
 /** Loads a session together with the questions it references. */
 export async function loadSession(id: string): Promise<LoadedSession> {
-  const [session, bank] = await Promise.all([getSession(id), getQuestionBank()])
+  const session = await getSession(id)
+  const bank = await getQuestionBank(session.bank)
   const questionsById = new Map(bank.questions.map((q) => [q.id, q]))
   const missing = session.rounds.flatMap((r) => r.questionIds).filter((qid) => !questionsById.has(qid))
   if (missing.length) throw new Error(`Session "${id}" references unknown questions: ${missing.join(', ')}`)

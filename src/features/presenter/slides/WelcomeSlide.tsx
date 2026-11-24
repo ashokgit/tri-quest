@@ -5,11 +5,13 @@ import { Lozenge, Rail } from '../components/Lozenge'
 import { NietSeal } from '../components/NietSeal'
 import { NietQuestEmblem } from '../components/NietQuestEmblem'
 
-const MOTTO = ['Happy', 'Healthy', 'Learning']
+const NIET_MOTTO = ['Happy', 'Healthy', 'Learning']
 
 /** Opening title card: the show emblem, the event on a gold bar, and the NIET motto cycling below. */
 export function WelcomeSlide({ session }: { session: Session }) {
   const [word, setWord] = useState(0)
+  // NIET-Quest keeps the NIET motto; other sessions show their own tagline, still.
+  const MOTTO = session.emblem ? [session.tagline ?? ''] : NIET_MOTTO
 
   useEffect(() => {
     const id = window.setInterval(() => setWord((w) => (w + 1) % MOTTO.length), 2400)
@@ -36,7 +38,7 @@ export function WelcomeSlide({ session }: { session: Session }) {
         animate={{ scale: 1, opacity: 1, rotate: 0 }}
         transition={{ type: 'spring', stiffness: 70, damping: 13 }}
       >
-        <NietQuestEmblem size={560} />
+        <NietQuestEmblem size={560} label={session.emblem?.label} mark={session.emblem?.mark} />
       </motion.div>
 
       <motion.div
@@ -55,7 +57,7 @@ export function WelcomeSlide({ session }: { session: Session }) {
         <AnimatePresence mode="wait">
           <motion.p
             key={word}
-            className="font-display text-[60px] font-extrabold tracking-[0.25em] text-gold uppercase"
+            className={`px-16 text-center font-display font-extrabold text-gold uppercase ${session.emblem ? 'text-[44px] tracking-[0.14em]' : 'text-[60px] tracking-[0.25em]'}`}
             initial={{ y: 70, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -70, opacity: 0 }}

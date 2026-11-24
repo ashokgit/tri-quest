@@ -80,7 +80,7 @@ export function QuestionSlide({ slide, slideIndex, stage, session }: Props) {
           </motion.p>
         ) : (
           <div className="opacity-25">
-            <NietQuestEmblem size={380} glow={false} />
+            <NietQuestEmblem size={380} glow={false} label={session.emblem?.label} mark={session.emblem?.mark} />
           </div>
         )}
 

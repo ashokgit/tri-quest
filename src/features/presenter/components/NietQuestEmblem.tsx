@@ -2,7 +2,19 @@
  * Show logo: gold rings around the NIET triangle (split into four, like the seal),
  * with a slowly turning outer ring.
  */
-export function NietQuestEmblem({ size = 520, glow = true }: { size?: number; glow?: boolean }) {
+export function NietQuestEmblem({
+  size = 520,
+  glow = true,
+  label = 'NIET-QUEST',
+  mark = '?',
+}: {
+  size?: number
+  glow?: boolean
+  /** The lettering under the triangle (up to about 14 characters). */
+  label?: string
+  /** The symbol in the triangle's centre. */
+  mark?: string
+}) {
   // Equilateral triangle centred in a 400×400 box.
   const top = [200, 92]
   const left = [106.5, 254]
@@ -63,7 +75,7 @@ export function NietQuestEmblem({ size = 520, glow = true }: { size?: number; gl
           <polygon points={pts(ml, mr, mb)} fill="#f8fafc" />
         </g>
         <text x="200" y="226" textAnchor="middle" fontFamily="Montserrat Variable" fontWeight="900" fontSize="30" fill="#0c4e93">
-          ?
+          {mark}
         </text>
 
         <text
@@ -72,13 +84,13 @@ export function NietQuestEmblem({ size = 520, glow = true }: { size?: number; gl
           textAnchor="middle"
           fontFamily="Montserrat Variable"
           fontWeight="900"
-          fontSize="46"
+          fontSize={46 * Math.min(1, 10 / label.length)}
           letterSpacing="3"
           fill="url(#tq-gold)"
           stroke="#3a2600"
           strokeWidth="1"
         >
-          NIET-QUEST
+          {label.toUpperCase()}
         </text>
       </svg>
     </div>

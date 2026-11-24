@@ -8,7 +8,7 @@ export function FinaleSlide({ session }: { session: Session }) {
   return (
     <div className="flex h-full flex-col items-center justify-center gap-10">
       <motion.div initial={{ scale: 0, rotate: 90 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 80, damping: 12 }}>
-        <NietQuestEmblem size={400} />
+        <NietQuestEmblem size={400} label={session.emblem?.label} mark={session.emblem?.mark} />
       </motion.div>
 
       <motion.div
@@ -31,7 +31,7 @@ export function FinaleSlide({ session }: { session: Session }) {
       >
         <NietSeal size={110} className="ring-2" />
         <div className="font-display">
-          <p className="text-[52px] leading-tight font-black text-gold">Welcome to the NIET family 🎉</p>
+          <p className="text-[52px] leading-tight font-black text-gold">{session.emblem ? 'Well done, everyone 🎉' : 'Welcome to the NIET family 🎉'}</p>
           <p className="text-3xl font-semibold text-white/60">
             {session.title} · {session.event}
           </p>

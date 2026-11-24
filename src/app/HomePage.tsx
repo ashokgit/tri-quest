@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { getSession, getSessionIndex } from '@/data/source'
+import { GroupSessionCard } from '@/features/groups/GroupSessionCard'
 import type { RoundOrder } from '@/features/presenter/deck'
 import { sfx } from '@/features/audio/sfx'
 import { usePresenterStore, useSessionCount, useSessionOrder } from '@/features/presenter/store'
@@ -32,9 +33,13 @@ export function HomePage() {
         </Link>
       </nav>
       <ul className="space-y-3">
-        {state.data.sessions.map((s) => (
-          <SessionCard key={s.id} id={s.id} title={s.title} event={s.event} />
-        ))}
+        {state.data.sessions.map((s) =>
+          s.format === 'groups' ? (
+            <GroupSessionCard key={s.id} id={s.id} title={s.title} event={s.event} />
+          ) : (
+            <SessionCard key={s.id} id={s.id} title={s.title} event={s.event} />
+          ),
+        )}
       </ul>
     </main>
   )

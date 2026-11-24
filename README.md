@@ -33,12 +33,14 @@ public/
   data/questions.json          question bank (categories + questions)
   data/sessions/index.json     list of sessions shown on the home page
   data/sessions/<id>.json      a session: rounds → question ids, timers
+  data/questions-<name>.json   an extra bank, used by a session with "bank"
   media/{images,audio,video,brand}/
 src/
   app/                         routing, home page, shared screens
   data/schema.ts               Zod schemas = the data contract
   data/source.ts               data access layer (JSON today, Supabase later)
   features/presenter/          presenter mode (projector screen)
+  features/groups/             the groups format: deck, scoring engine, presenter, review
   styles/index.css             Tailwind + NIET brand tokens
 scripts/validate-data.ts       pre-build data checks
 ```
@@ -76,6 +78,28 @@ Each question keeps its own timer (e.g. 30s for Audio-Visual) in either order.
 A session's `questionCount` sets how many questions the show has; each round's `pick` is scaled in proportion to reach it (never below its `keep` questions or above its pool). The host can change it on the home page (**Questions − / +**). A round's `keep` lists questions that are always drawn.
 
 Every question can also have `showcase` (big text on the stage, e.g. an emoji puzzle), `media` (`image` with `reveal: blur \| zoom \| peek`, where `peek` shows only the top `peek`% (default 30) until the answer, `youtube` with an `id`, `start`/`end`, `muted` (silent for the question, replayed with sound on the reveal) and an optional `peek`/`peekFrom` strip (needs internet on the day), `audio`, or `video` with an optional `start`/`end`), an `explanation`, and `verify: true` for facts that still need checking.
+
+## Groups format (teams, turns and scores)
+
+A session with `"format": "groups"` is a contest between groups (A, B, C by default) instead of a show with a single audience. **Code Clash** (`bt101co-clash`, BT101CO Units 1–4 for BTech AI) is the first. It uses the same stage, lozenges, clock and sounds, with a scoreboard across the top, whose turn it is on the left, and a different rule set per round, set in each round's `play` block:
+
+| `play` field | Meaning |
+|---|---|
+| `mode` | `turns`: each question goes to one group and may be passed on. `rapid`: groups get blocks of `block` questions in a row and a miss moves on. |
+| `points`, `passPoints` | Points for a correct answer, and for one after a pass (turns). |
+| `penalty` | Points lost for a wrong answer (not for running out of time). |
+| `hopSeconds` | Seconds off the clock each time a question is passed. |
+| `lifelines` | One 50:50 and one hint per group in this round (questions need a `hint`). |
+| `tiebreakers` | Pool questions tagged `tiebreak` are held back, and up to this many are played only if the groups are level for first place. |
+| `intro` | The bullet lines on the round's title card. |
+
+Questions are dealt fairly: a turns round rises in difficulty but gives every group a question of the same level on each lap, and each rapid-fire block gets the same difficulty mix. The draw comes from the session `seed` (the home page's **Reshuffle** draws a new one for this browser).
+
+The session names its own bank with `"bank": "questions-bt101co.json"`. Groups sessions take multiple choice and true/false questions only (no media). `npm run validate` checks that the pools are big enough, blocks divide evenly and lifeline rounds have hints.
+
+Controls (also on screen with **H**): **A–D** lock the answering group's choice (amber), **Enter** confirms it; in rapid fire a letter counts at once. **U** undoes the last action on a question, **R** shows the answer without scoring, **X** is "time's up" now, **T** pauses the clock (or the auto-advance after an answer), **L** is 50:50 and **K** the hint. An answer lingers on screen for a few seconds, then the next question comes up by itself.
+
+`#/review/<session>` is the cheat sheet (draw ticked, answers marked, coverage by unit) and `#/slides/<session>` checks that every question's code fits the stage. To change or extend the Code Clash bank, edit `scripts/question-banks/bt101co/` and run `python3 scripts/question-banks/bt101co/build.py`: it runs every snippet in Python while building, so the answer keys are always what Python really prints.
 
 ## Sound effects
 

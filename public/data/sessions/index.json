@@ -1,3 +1,20 @@
 {
-  "sessions": [{ "id": "tri-quest", "title": "NIET-Quest", "event": "NIET Orientation 2026" }]
+  "sessions": [
+    {
+      "id": "tri-quest",
+      "title": "NIET-Quest",
+      "event": "NIET Orientation 2026"
+    },
+    {
+      "id": "bt101co-clash",
+      "title": "Code Clash",
+      "event": "BT101CO · Introduction to Programming",
+      "format": "groups"
+    },
+    {
+      "id": "nn-unit1-wrapup",
+      "title": "Unit 1 Wrap-up",
+      "event": "Neural Network · BE Biomedical, VIII Sem"
+    }
+  ]
 }

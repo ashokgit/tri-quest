@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "id": "nn-unit1-wrapup",
+  "title": "Unit 1 Wrap-up",
+  "event": "Neural Network · BE Biomedical, VIII Sem",
+  "tagline": "Unit 1 · Introduction to Neural Networks",
+  "bank": "questions-nn-unit1.json",
+  "emblem": {
+    "label": "NN Wrap-up",
+    "mark": "Σ"
+  },
+  "durationMinutes": 20,
+  "order": "category",
+  "seed": 2026,
+  "defaults": {
+    "timerSeconds": 30,
+    "optionReveal": "together"
+  },
+  "rounds": [
+    {
+      "id": "r-history",
+      "title": "History & basics",
+      "subtitle": "1943 to today, and what a network stores",
+      "category": "nn-history",
+      "questionIds": [
+        "nn-mcp-1943",
+        "nn-xor-1969",
+        "nn-store-weights",
+        "nn-backprop-1986"
+      ]
+    },
+    {
+      "id": "r-bio",
+      "title": "Biology → ANN",
+      "subtitle": "Dendrite to weight, spike to output",
+      "category": "nn-bio",
+      "questionIds": [
+        "nn-hillock",
+        "nn-inhibitory",
+        "nn-all-or-none",
+        "nn-plasticity"
+      ]
+    },
+    {
+      "id": "r-maths",
+      "title": "Neuron maths",
+      "subtitle": "Compute it by hand",
+      "category": "nn-maths",
+      "questionIds": [
+        "nn-step-boundary",
+        "nn-bias-threshold",
+        "nn-relu",
+        "nn-delta"
+      ],
+      "timerSeconds": 45
+    },
+    {
+      "id": "r-arch",
+      "title": "Networks & computers",
+      "subtitle": "Feedforward, feedback and where computers win",
+      "category": "nn-arch",
+      "questionIds": [
+        "nn-memory",
+        "nn-hopfield",
+        "nn-dose-formula",
+        "nn-ff-no-memory"
+      ]
+    }
+  ]
+}

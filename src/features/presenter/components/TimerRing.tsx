@@ -45,8 +45,9 @@ export function TimerRing() {
           style={{ transition: 'stroke-dashoffset 100ms linear, stroke 300ms' }}
         />
       </svg>
-      <span className="relative font-display text-[84px] font-black tabular-nums" style={{ color: urgent ? color : 'white' }}>
-        {seconds}
+      {/* Long clocks (100 s and over) read as m:ss so the digits stay inside the dial. */}
+      <span className={`relative font-display font-black tabular-nums ${seconds >= 100 ? 'text-[62px]' : 'text-[84px]'}`} style={{ color: urgent ? color : 'white' }}>
+        {seconds >= 100 ? `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}` : seconds}
       </span>
       {!running && left > 0 && (
         <span className="absolute -bottom-10 font-display text-2xl font-extrabold tracking-[0.3em] text-white/70 uppercase">Paused</span>

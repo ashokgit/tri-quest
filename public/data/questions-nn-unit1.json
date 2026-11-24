@@ -1,0 +1,306 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "nn-history",
+   "name": "History & basics",
+   "icon": "📜"
+  },
+  {
+   "id": "nn-bio",
+   "name": "Biology → ANN",
+   "icon": "🧠"
+  },
+  {
+   "id": "nn-maths",
+   "name": "Neuron maths",
+   "icon": "🧮"
+  },
+  {
+   "id": "nn-arch",
+   "name": "Networks & computers",
+   "icon": "🕸️"
+  }
+ ],
+ "questions": [
+  {
+   "id": "nn-mcp-1943",
+   "category": "nn-history",
+   "difficulty": "easy",
+   "prompt": "Who proposed the first mathematical model of a neuron, and when?",
+   "explanation": "McCulloch and Pitts (1943) gave a binary threshold neuron with fixed weights.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Rosenblatt, 1958",
+    "McCulloch & Pitts, 1943",
+    "Hebb, 1949",
+    "Hopfield, 1982"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-xor-1969",
+   "category": "nn-history",
+   "difficulty": "medium",
+   "prompt": "In 1969 Minsky and Papert proved that a single-layer perceptron cannot solve which problem, triggering the first AI winter?",
+   "explanation": "XOR is not linearly separable, so one layer cannot solve it. Funding collapsed.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "AND",
+    "OR",
+    "XOR",
+    "NOT"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "nn-store-weights",
+   "category": "nn-history",
+   "difficulty": "easy",
+   "prompt": "Where does a neural network store what it has learned?",
+   "explanation": "Knowledge lives in the synaptic weights; there is no single memory location.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "In a separate memory at fixed addresses",
+    "In the connection weights",
+    "In the activation function",
+    "In the program code"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-backprop-1986",
+   "category": "nn-history",
+   "difficulty": "medium",
+   "prompt": "Which development in 1986 made multilayer networks trainable?",
+   "explanation": "Rumelhart, Hinton and Williams popularised backpropagation in 1986.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Backpropagation",
+    "The Perceptron",
+    "The Transformer",
+    "Self-organising maps"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "nn-hillock",
+   "category": "nn-bio",
+   "difficulty": "medium",
+   "prompt": "Which part of a biological neuron decides whether it fires, and what is its ANN counterpart?",
+   "explanation": "The axon hillock fires a spike if the voltage crosses threshold; in an ANN that is the activation function / bias.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Dendrite → input",
+    "Soma → summation",
+    "Axon hillock → activation / threshold",
+    "Axon → output"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "nn-inhibitory",
+   "category": "nn-bio",
+   "difficulty": "easy",
+   "prompt": "An inhibitory synapse corresponds to which feature of an artificial neuron?",
+   "explanation": "Excitatory synapse = positive weight; inhibitory synapse = negative weight.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "A positive weight",
+    "A negative weight",
+    "A large bias",
+    "A ReLU output"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-all-or-none",
+   "category": "nn-bio",
+   "difficulty": "easy",
+   "prompt": "A biological neuron's action potential is all-or-nothing: there is no half spike.",
+   "explanation": "Information is carried by the firing rate, not the spike size.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "nn-plasticity",
+   "category": "nn-bio",
+   "difficulty": "medium",
+   "prompt": "Synaptic plasticity, the biological basis of learning, corresponds to what in an ANN?",
+   "explanation": "Synapses that are used together get stronger (Hebb). In an ANN, learning means changing weights by a learning rule.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "The input vector",
+    "The summing junction",
+    "The learning rule (weight update)",
+    "The output layer"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "nn-step-boundary",
+   "category": "nn-maths",
+   "difficulty": "medium",
+   "prompt": "A binary-step neuron fires (outputs 1) when v ≥ 0. What is its output?",
+   "showcase": "x = (1, 2)   w = (0.4, 0.3)   b = −1",
+   "explanation": "v = 0.4×1 + 0.3×2 − 1 = 0, and the neuron fires when v ≥ 0, so y = 1.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "0",
+    "1",
+    "0.5",
+    "−1"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-bias-threshold",
+   "category": "nn-maths",
+   "difficulty": "easy",
+   "prompt": "A neuron fires when Σ wᵢxᵢ ≥ 0.6. Written with a bias, what is b?",
+   "explanation": "Fire if Σ wx − θ ≥ 0, so b = −θ = −0.6.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "b = 0.6",
+    "b = −0.6",
+    "b = 0",
+    "b = 1.6"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-relu",
+   "category": "nn-maths",
+   "difficulty": "medium",
+   "prompt": "Find the output of this ReLU neuron: y = max(0, v).",
+   "showcase": "x = (1, 3)   w = (−0.5, −0.2)   b = 0.4",
+   "explanation": "v = (−0.5)(1) + (−0.2)(3) + 0.4 = −0.7, and ReLU(−0.7) = 0.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "−0.7",
+    "0",
+    "0.7",
+    "1.1"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-delta",
+   "category": "nn-maths",
+   "difficulty": "hard",
+   "prompt": "Using Δw = η(t − y)x, what is Δw₁?",
+   "showcase": "x = (2, 1)   η = 0.5   target t = 1   output y = 0",
+   "explanation": "Δw₁ = 0.5 × (1 − 0) × 2 = 1.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "0.5",
+    "1",
+    "2",
+    "−1"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-memory",
+   "category": "nn-arch",
+   "difficulty": "easy",
+   "prompt": "Which kind of network has memory, because its output depends on its previous state?",
+   "explanation": "Feedback networks loop outputs back as inputs, giving them memory and dynamics.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Feedforward",
+    "Feedback (recurrent)",
+    "Single-layer feedforward",
+    "None of them"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "nn-hopfield",
+   "category": "nn-arch",
+   "difficulty": "medium",
+   "prompt": "Which of the five basic architectures is the Hopfield network?",
+   "explanation": "Hopfield is single-layer recurrent. Elman and Jordan RNNs are multilayer recurrent.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Multilayer feedforward",
+    "Single node with own feedback",
+    "Single-layer recurrent",
+    "Multilayer recurrent"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "nn-dose-formula",
+   "category": "nn-arch",
+   "difficulty": "easy",
+   "prompt": "Which task is better suited to a conventional (von Neumann) computer than to a neural network?",
+   "explanation": "Exact arithmetic and rule-based tasks suit a conventional computer; fuzzy perception suits a neural network.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Reading an ECG",
+    "Spotting pneumonia on an X-ray",
+    "Calculating a drug dose from a formula",
+    "Recognising speech"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "nn-ff-no-memory",
+   "category": "nn-arch",
+   "difficulty": "medium",
+   "prompt": "In a feedforward network, the output depends only on the current input.",
+   "explanation": "No loops means no memory: one pass gives the output.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "truefalse",
+   "answer": true
+  }
+ ]
+}

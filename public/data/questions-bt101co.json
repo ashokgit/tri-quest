@@ -1,0 +1,2431 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "py-intro",
+   "name": "Unit 1 · Python basics",
+   "icon": "🐍"
+  },
+  {
+   "id": "py-data",
+   "name": "Unit 2 · Data & I/O",
+   "icon": "🔤"
+  },
+  {
+   "id": "py-ops",
+   "name": "Unit 3 · Operators",
+   "icon": "➕"
+  },
+  {
+   "id": "py-control",
+   "name": "Unit 4 · Control flow",
+   "icon": "🔁"
+  },
+  {
+   "id": "round-turns",
+   "name": "Turn by turn",
+   "icon": "🎯"
+  },
+  {
+   "id": "round-rapid",
+   "name": "Rapid fire",
+   "icon": "⚡"
+  },
+  {
+   "id": "round-hard",
+   "name": "Hard questions",
+   "icon": "🔥"
+  }
+ ],
+ "questions": [
+  {
+   "id": "t-monty",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Python is named after:",
+   "explanation": "Guido van Rossum named it after the TV show Monty Python's Flying Circus. The snake logo came later.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "A large snake",
+    "The comedy group Monty Python",
+    "A Greek mythological figure",
+    "Its creator's pet"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-1991",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "Python was first released to the public in:",
+   "explanation": "Guido van Rossum started it in the late 1980s at CWI in the Netherlands, and version 0.9.0 came out in February 1991.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "1972",
+    "1991",
+    "1985",
+    "2000"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-zen",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "Typing import this in the Python shell prints:",
+   "explanation": "It prints the Zen of Python, written by Tim Peters: \"Beautiful is better than ugly\", \"Readability counts\" and so on.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "A list of every installed module",
+    "The Zen of Python, its guiding principles",
+    "The licence terms of Python",
+    "The version history of Python"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-dir",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "Which call lists the names (attributes and methods) available inside a type or module?",
+   "explanation": "dir(str) lists the methods of str. help(str) would instead print their documentation.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "help()",
+    "type()",
+    "dir()",
+    "len()"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "t-bytecode",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "How does the standard Python interpreter (CPython) run your .py file?",
+   "explanation": "CPython compiles source to bytecode (the .pyc files in __pycache__) and a virtual machine executes it. You never run a separate compile or link step.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Translated straight to machine code, like C",
+    "Compiled to bytecode, then run by a virtual machine",
+    "Read and run one character at a time",
+    "Linked into an .exe before every run"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-print-fn",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "In Python 3, print is:",
+   "explanation": "print(\"hi\") is a function call. Python 2 had a print statement, which is one of the changes in Python 3.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "A reserved keyword",
+    "An operator",
+    "A statement with no brackets",
+    "A built-in function"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-vs-c",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "Compared with C, which is true of Python?",
+   "explanation": "Indentation is part of Python's syntax, so no braces are needed. Variables take their type from the value they hold.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Every statement ends with a semicolon",
+    "Every variable needs a declared type",
+    "Blocks are marked by indentation, not braces",
+    "A program must be compiled to an .exe first"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "t-idle",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "IDLE, the editor that comes with Python, is named after:",
+   "explanation": "A tribute to Eric Idle of Monty Python, in keeping with the name of the language.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Eric Idle of Monty Python",
+    "The English word for waiting around",
+    "A Dutch software company",
+    "The Python logo's designer"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-ident",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "Which of these is NOT a valid Python identifier?",
+   "explanation": "An identifier cannot start with a digit. It may start with a letter or an underscore and then contain letters, digits and underscores.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "_count",
+    "2nd_place",
+    "Total1",
+    "roll_no"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-keyword",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "Which of these is a Python keyword?",
+   "explanation": "print, input and len are built-in functions that you could even reassign. pass is a reserved keyword.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "pass",
+    "print",
+    "input",
+    "len"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-dyn",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "Python is dynamically typed: a name has no fixed type, it just refers to whatever value it was last given.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "x = 10\nx = \"ten\"\nprint(type(x))",
+   "type": "mcq",
+   "options": [
+    "<class 'str'>",
+    "<class 'int'>",
+    "<class 'float'>",
+    "TypeError"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-bool-false",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this evaluate to?",
+   "explanation": "Any non-empty string is truthy, whatever it says. Only \"\" (the empty string) gives False.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "bool(\"False\")",
+   "type": "mcq",
+   "options": [
+    "False",
+    "True",
+    "ValueError",
+    "None"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-int-str",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What happens when this runs?",
+   "explanation": "int() will not parse a string that has a decimal point. int(float('3.5')) works, and so does int(3.5) directly.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "int('3.5')",
+   "type": "mcq",
+   "options": [
+    "3",
+    "ValueError",
+    "4",
+    "3.5"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-sep-end",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "sep goes between the values and end goes after the last one. end replaces the usual newline.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(1, 2, 3, sep=\"-\", end=\"!\")",
+   "type": "mcq",
+   "options": [
+    "1 2 3!",
+    "1-2-3!",
+    "1-2-3",
+    "1-2-3\\n!"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-eval-risk",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "Why is eval(input()) risky in a real program?",
+   "explanation": "eval runs text as Python code, so a malicious user could run anything. Prefer int() or float() for numbers.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "It always returns a string",
+    "It runs whatever expression the user types",
+    "It cannot read numbers",
+    "It is much slower than int()"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-bigint",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "Why can Python print 2 ** 1000 exactly, with every digit?",
+   "explanation": "An int grows as large as memory allows, so there is no overflow as in C. A float would lose the lower digits.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "Python quietly converts it to a float",
+    "Python stores it as a string",
+    "Python rounds it to 32 bits",
+    "Python integers have arbitrary precision"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-fstring",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": ".2f means two digits after the decimal point, so 2.3333… prints as 2.33.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(f\"{7 / 3:.2f}\")",
+   "type": "mcq",
+   "options": [
+    "2",
+    "2.3",
+    "2.333333",
+    "2.33"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-divmod",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "17 = 3 × 5 + 2, so // gives the quotient 3 and % gives the remainder 2.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(17 // 5, 17 % 5)",
+   "type": "mcq",
+   "options": [
+    "3.4 2",
+    "3 3",
+    "3 2",
+    "4 2"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "t-neg-floor",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this evaluate to?",
+   "explanation": "// floors towards minus infinity. -3.5 floors to -4, not -3.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "-7 // 2",
+   "type": "mcq",
+   "options": [
+    "-4",
+    "-3",
+    "-3.5",
+    "3"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-prec",
+   "category": "py-ops",
+   "difficulty": "medium",
+   "prompt": "What does this evaluate to?",
+   "explanation": "** goes first (3² = 9), then × (2 × 9 = 18), then + (10 + 18).",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "10 + 2 * 3 ** 2",
+   "type": "mcq",
+   "options": [
+    "108",
+    "72",
+    "34",
+    "28"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-invert",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this evaluate to?",
+   "explanation": "~n equals -(n + 1) in two's complement, so ~5 is -6.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "~5",
+   "type": "mcq",
+   "options": [
+    "-5",
+    "6",
+    "-6",
+    "5"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "t-odd",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "n & 1 gives 1 exactly when n is:",
+   "explanation": "The lowest bit of a number is 1 for odd numbers and 0 for even numbers, so n & 1 reads that bit.",
+   "tags": [
+    "unit3"
+   ],
+   "type": "mcq",
+   "options": [
+    "Even",
+    "Positive",
+    "A power of two",
+    "Odd"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-shortcircuit",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "or returns its first truthy operand. 0 is falsy, so the answer is the string \"default\".",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(0 or \"default\")",
+   "type": "mcq",
+   "options": [
+    "default",
+    "0",
+    "True",
+    "False"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-not",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "not turns any value into a Boolean opposite: 0 and \"\" are falsy so not gives True, while \"a\" is truthy so not gives False.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(not 0, not \"\", not \"a\")",
+   "type": "mcq",
+   "options": [
+    "False False True",
+    "True True False",
+    "True False False",
+    "True True True"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "t-compound",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "x starts at 7, becomes 14 after *=, then 10 after -=.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "x = 7\nx *= 2\nx -= 4\nprint(x)",
+   "type": "mcq",
+   "options": [
+    "3",
+    "14",
+    "24",
+    "10"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-range-list",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "range counts from 2 in steps of 3 and stops before 10. 11 is never reached.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "print(list(range(2, 10, 3)))",
+   "type": "mcq",
+   "options": [
+    "[2, 5, 8, 11]",
+    "[3, 6, 9]",
+    "[2, 3, 4, 5, 6, 7, 8, 9]",
+    "[2, 5, 8]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-continue",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "continue skips the rest of the loop body whenever i is odd, so only the even numbers 0, 2 and 4 are printed.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "for i in range(6):\n    if i % 2:\n        continue\n    print(i, end=\" \")",
+   "type": "mcq",
+   "options": [
+    "0 2 4",
+    "1 3 5",
+    "0 1 2 3 4 5",
+    "0 2 4 6"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-noreturn",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "A function with no return statement returns:",
+   "explanation": "Every Python function returns something. With no return, that something is the special value None.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "0",
+    "An empty string",
+    "None",
+    "Nothing, so using its value is an error"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "t-assert",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What happens when this runs?",
+   "explanation": "When the condition is false, assert raises AssertionError and attaches the message after the comma.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "assert 5 < 3, 'bad'",
+   "type": "mcq",
+   "options": [
+    "AssertionError",
+    "ValueError",
+    "SyntaxError",
+    "Nothing, the message is ignored"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "t-break-continue",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What is the difference between break and continue?",
+   "explanation": "break ends the loop completely. continue only skips the rest of the current pass and carries on with the next one.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "break ends the program; continue pauses it",
+    "They do the same thing in a for loop",
+    "break leaves the loop; continue skips to the next pass",
+    "continue leaves the loop; break skips a pass"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "t-first-true",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "An if-elif chain runs only the first branch whose condition is true. 85 ≥ 40 is true, so the elif is never tested.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "marks = 85\nif marks >= 40:\n    print(\"C\")\nelif marks >= 80:\n    print(\"A\")\nelse:\n    print(\"F\")",
+   "type": "mcq",
+   "options": [
+    "A",
+    "A then C",
+    "F",
+    "C"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-while-sum",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "n takes the values 5, 3, 1 and then -1 stops the loop, so total = 5 + 3 + 1 = 9.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "n = 5\ntotal = 0\nwhile n > 0:\n    total += n\n    n -= 2\nprint(total)",
+   "type": "mcq",
+   "options": [
+    "15",
+    "8",
+    "5",
+    "9"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-range-len",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "How many numbers does it produce?",
+   "explanation": "range(1, 10, 2) produces 1, 3, 5, 7, 9. That is five numbers.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "len(range(1, 10, 2))",
+   "type": "mcq",
+   "options": [
+    "4",
+    "9",
+    "10",
+    "5"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "t-return-tuple",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Returning two values with a comma packs them into one tuple, here (3, 7).",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "def lo_hi(a, b):\n    return min(a, b), max(a, b)\n\nprint(lo_hi(7, 3))",
+   "type": "mcq",
+   "options": [
+    "(7, 3)",
+    "(3, 7)",
+    "3",
+    "[3, 7]"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-guido",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Who created Python?",
+   "explanation": "Guido van Rossum, who began the language in the late 1980s. Gosling made Java, Ritchie made C and Stroustrup made C++.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Guido van Rossum",
+    "James Gosling",
+    "Dennis Ritchie",
+    "Bjarne Stroustrup"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-interpreted",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Python is best described as:",
+   "explanation": "High-level means close to human language, and interpreted means it runs through an interpreter rather than being compiled by you first.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "A high-level, interpreted language",
+    "A low-level assembly language",
+    "A markup language",
+    "A database language"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-ext",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "A Python source file normally ends with:",
+   "explanation": ".py is the source file. A .pyc file is the compiled bytecode that Python creates automatically.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    ".pt",
+    ".python",
+    ".pyc",
+    ".py"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-prompt",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "The prompt of the interactive Python shell is:",
+   "explanation": "You type a statement after >>> and Python runs it straight away.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "$",
+    ">",
+    "#",
+    ">>>"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-case",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "Yes. Upper and lower case letters make different identifiers, so Total is a separate variable from total.",
+   "tags": [
+    "unit1"
+   ],
+   "showcase": "Python is case sensitive: total and Total are two different names.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-version",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Which command shows the installed Python version?",
+   "explanation": "On some systems the command is python3 --version.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "python -show",
+    "python what",
+    "python --list",
+    "python --version"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-help",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Which call shows the documentation of the print function in the shell?",
+   "explanation": "help() opens the built-in documentation of any function, module or type.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "doc(print)",
+    "show(print)",
+    "print.help",
+    "help(print)"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-compile",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "No, you run it directly with python file.py. Python compiles to bytecode behind the scenes.",
+   "tags": [
+    "unit1"
+   ],
+   "showcase": "You must compile a .py file to an executable before you can run it.",
+   "type": "truefalse",
+   "answer": false
+  },
+  {
+   "id": "r-pep8",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "PEP 8 is:",
+   "explanation": "PEP stands for Python Enhancement Proposal. PEP 8 describes how to lay out and name things in readable code.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "A Python version",
+    "A built-in module",
+    "The Python style guide",
+    "An online compiler"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-docstring",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "A docstring is written between:",
+   "explanation": "A triple-quoted string at the top of a file, class or function documents it. A hash starts an ordinary comment.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Hash signs",
+    "Square brackets",
+    "Triple quotes",
+    "Slashes and stars"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-comment",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "A single-line comment in Python begins with:",
+   "explanation": "Everything after # on a line is ignored by Python.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "//",
+    "#",
+    "--",
+    "/*"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-docs",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "The official Python documentation lives at:",
+   "explanation": "docs.python.org has the language reference, the library reference and the tutorial.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "pythonhelp.com",
+    "docs.python.org",
+    "learnpython.net",
+    "python.guide"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-type-str",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "type('7') is:",
+   "explanation": "Quote marks make it text, whatever is inside them.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "str",
+    "int",
+    "float",
+    "bool"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-float",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "Which of these is a float?",
+   "explanation": "A number with a decimal point is a float. \"3.0\" in quotes is a string.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "3",
+    "\"3.0\"",
+    "3.0",
+    "True"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-len",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "len counts characters. P-y-t-h-o-n is six.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "len(\"Python\")",
+   "type": "mcq",
+   "options": [
+    "5",
+    "7",
+    "6",
+    "\"Python\""
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-repeat",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this give?",
+   "explanation": "Multiplying a string repeats it.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "\"Hi\" * 3",
+   "type": "mcq",
+   "options": [
+    "'Hi3'",
+    "'HiHiHi'",
+    "'HiHiHi' + 'Hi'",
+    "6"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-concat",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "+ joins two strings end to end. It does not add them.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "\"5\" + \"3\"",
+   "type": "mcq",
+   "options": [
+    "8",
+    "'8'",
+    "'53'",
+    "TypeError"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-bool0",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "Zero, an empty string and an empty list are all falsy. Everything else is truthy.",
+   "tags": [
+    "unit2"
+   ],
+   "showcase": "bool(0) is False.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-int-add",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "int(\"42\") becomes the number 42 first, so + adds.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "int(\"42\") + 8",
+   "type": "mcq",
+   "options": [
+    "'428'",
+    "42",
+    "50",
+    "TypeError"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-str-pct",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "str() converts 100 to text, then + joins the two strings.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "str(100) + \"%\"",
+   "type": "mcq",
+   "options": [
+    "'100'",
+    "100",
+    "'100%'",
+    "\"%100\""
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-name",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "Which is a valid variable name?",
+   "explanation": "No digit at the start, no spaces and no keyword.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "2marks",
+    "total marks",
+    "class",
+    "total_marks"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-declare",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "No. A variable is created when you assign to it, and its type comes from the value.",
+   "tags": [
+    "unit2"
+   ],
+   "showcase": "In Python you must declare a variable's type before using it.",
+   "type": "truefalse",
+   "answer": false
+  },
+  {
+   "id": "r-dynamic",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "x = 5 followed by x = \"five\" is allowed because Python is:",
+   "explanation": "A name can be rebound to a value of any type at any time.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "Statically typed",
+    "Dynamically typed",
+    "Case insensitive",
+    "Compiled"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-chr",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "chr converts a character code to a character. 65 is A in ASCII.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "chr(65)",
+   "type": "mcq",
+   "options": [
+    "65",
+    "'a'",
+    "'A'",
+    "'0'"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-ord",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "ord gives the code of a character. Lowercase a is 97 (capital A is 65).",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "ord('a')",
+   "type": "mcq",
+   "options": [
+    "97",
+    "65",
+    "1",
+    "96"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-sep",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "sep=\"\" removes the space that print normally puts between values.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(\"A\", \"B\", sep=\"\")",
+   "type": "mcq",
+   "options": [
+    "A B",
+    "A,B",
+    "AB",
+    "AB "
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-end",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "end=\" \" finishes the first print with a space instead of a newline, so both land on one line.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(\"Hello\", end=\" \")\nprint(\"World\")",
+   "type": "mcq",
+   "options": [
+    "Hello World",
+    "Hello then World",
+    "HelloWorld",
+    "World then Hello"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-round",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "round gives the nearest whole number, as an int.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "round(3.7)",
+   "type": "mcq",
+   "options": [
+    "3",
+    "3.7",
+    "3.0",
+    "4"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-abs",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "abs removes the sign.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "abs(-7)",
+   "type": "mcq",
+   "options": [
+    "-7",
+    "7",
+    "0",
+    "7.0"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-max",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "max returns the largest value.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "max(3, 9, 4)",
+   "type": "mcq",
+   "options": [
+    "3",
+    "4",
+    "9",
+    "16"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-bool-type",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "True and False are of type bool.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "type(True)",
+   "type": "mcq",
+   "options": [
+    "<class 'int'>",
+    "<class 'str'>",
+    "<class 'NoneType'>",
+    "<class 'bool'>"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-input",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "input() always returns a value of type:",
+   "explanation": "Even if the user types 25, you get the string \"25\". Convert it with int() or float().",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "int",
+    "str",
+    "float",
+    "It depends on what is typed"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-floordiv",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "// is floor division: the whole-number part of the quotient.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "7 // 2",
+   "type": "mcq",
+   "options": [
+    "3",
+    "3.5",
+    "4",
+    "2"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-mod",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "% gives the remainder after division. 7 = 3 × 2 + 1.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "7 % 2",
+   "type": "mcq",
+   "options": [
+    "3",
+    "0",
+    "1",
+    "3.5"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-pow",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "** raises to a power: 2 × 2 × 2 × 2 × 2.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "2 ** 5",
+   "type": "mcq",
+   "options": [
+    "10",
+    "32",
+    "25",
+    "7"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-true-div",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "In Python 3, / always gives a float.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "10 / 4",
+   "type": "mcq",
+   "options": [
+    "2",
+    "2.0",
+    "2.5",
+    "3"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-eq-float",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "Equality compares values, and 5 and 5.0 are the same number.",
+   "tags": [
+    "unit3"
+   ],
+   "showcase": "5 == 5.0 is True.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-not",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "not flips a Boolean.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "not True",
+   "type": "mcq",
+   "options": [
+    "True",
+    "0",
+    "False",
+    "'False'"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-and",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "and is true only when both sides are true.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "True and False",
+   "type": "mcq",
+   "options": [
+    "False",
+    "True",
+    "1",
+    "0"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-or",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "or is true when at least one side is true, and 4 > 3 is true.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "4 > 3 or 1 > 2",
+   "type": "mcq",
+   "options": [
+    "False",
+    "True",
+    "4",
+    "3"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-neq",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "!= means not equal, and 3 is equal to 3, so the result is False.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "3 != 3",
+   "type": "mcq",
+   "options": [
+    "True",
+    "0",
+    "None",
+    "False"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-aug",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "x += 3 is shorthand for x = x + 3.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "x = 5\nx += 3\nprint(x)",
+   "type": "mcq",
+   "options": [
+    "8",
+    "53",
+    "3",
+    "5"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-and-bit",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "5 is 101 and 3 is 011 in binary. Bitwise AND keeps only the bits set in both: 001.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "5 & 3",
+   "type": "mcq",
+   "options": [
+    "1",
+    "8",
+    "15",
+    "2"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-or-bit",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "Bitwise OR keeps a bit if it is set in either one: 101 | 011 = 111.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "5 | 3",
+   "type": "mcq",
+   "options": [
+    "1",
+    "6",
+    "7",
+    "8"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-shift",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "Each left shift doubles the number: 1 → 2 → 4 → 8.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "1 << 3",
+   "type": "mcq",
+   "options": [
+    "3",
+    "8",
+    "4",
+    "13"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-prec1",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "Multiplication comes before subtraction: 10 − 6.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "10 - 2 * 3",
+   "type": "mcq",
+   "options": [
+    "24",
+    "16",
+    "4",
+    "-4"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-prec2",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "Brackets first: 8 × 3.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "(10 - 2) * 3",
+   "type": "mcq",
+   "options": [
+    "4",
+    "16",
+    "24",
+    "30"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-pow-op",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "Which operator raises a number to a power?",
+   "explanation": "In Python, ^ is bitwise XOR, not a power.",
+   "tags": [
+    "unit3"
+   ],
+   "type": "mcq",
+   "options": [
+    "**",
+    "^",
+    "//",
+    "%"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-range-print",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "range(3) gives 0, 1, 2. It stops before 3.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "for i in range(3):\n    print(i, end=\" \")",
+   "type": "mcq",
+   "options": [
+    "1 2 3",
+    "0 1 2",
+    "0 1 2 3",
+    "3 2 1"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-range-list",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "range(1, 6) starts at 1 and stops before 6.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "list(range(1, 6))",
+   "type": "mcq",
+   "options": [
+    "[1, 2, 3, 4, 5, 6]",
+    "[0, 1, 2, 3, 4, 5]",
+    "[1, 6]",
+    "[1, 2, 3, 4, 5]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-break",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which keyword leaves a loop immediately?",
+   "explanation": "continue only skips to the next iteration.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "stop",
+    "exit",
+    "continue",
+    "break"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-continue",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which keyword skips to the next iteration of a loop?",
+   "explanation": "pass does nothing at all, and break leaves the loop.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "pass",
+    "break",
+    "next",
+    "continue"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-pass",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which statement does nothing and acts as a placeholder?",
+   "explanation": "Python needs at least one statement in a block, and pass fills that gap.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "continue",
+    "break",
+    "skip",
+    "pass"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-def",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which keyword defines a function?",
+   "explanation": "def name(parameters): starts a function definition.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "func",
+    "function",
+    "define",
+    "def"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-indent",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "It is part of the syntax. There are no braces to mark blocks.",
+   "tags": [
+    "unit4"
+   ],
+   "showcase": "Indentation decides which statements belong to a block.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-eq-assign",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "= assigns and is a syntax error in a condition. Use == to compare.",
+   "tags": [
+    "unit4"
+   ],
+   "showcase": "\"if x = 5:\" is a correct way to test whether x equals 5.",
+   "type": "truefalse",
+   "answer": false
+  },
+  {
+   "id": "r-elif",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which keyword adds a second condition after if?",
+   "explanation": "elif is short for else if.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "elseif",
+    "else if",
+    "elif",
+    "then"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-return",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "What does return do inside a function?",
+   "explanation": "return hands a value back to the caller and leaves the function immediately.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "Prints a value on screen",
+    "Restarts the function",
+    "Ends the whole program",
+    "Sends a value back and ends the function"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-assert-err",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "When an assert condition is false, Python raises:",
+   "explanation": "It is used to check that something you believe is true really is.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "AssertionError",
+    "ValueError",
+    "TypeError",
+    "NameError"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-while",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "A while loop keeps repeating:",
+   "explanation": "The condition is checked before every pass.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "Exactly ten times",
+    "Once for every character",
+    "As long as its condition is true",
+    "Until break is typed"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-compound-chain",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Step by step: 10 // 3 = 3, then 3 ** 2 = 9, then 9 % 5 = 4.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "x = 10\nx //= 3\nx **= 2\nx %= 5\nprint(x)",
+   "hint": "Apply the three operators one line at a time, and keep the new value of x each time.",
+   "type": "mcq",
+   "options": [
+    "1",
+    "0",
+    "4",
+    "9"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-floor-neg",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Floor division rounds towards minus infinity: -17 // 5 is -4. Then -17 = (-4 × 5) + 3, so the remainder is 3.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(-17 // 5, -17 % 5)",
+   "hint": "The pair must satisfy a == (a // b) * b + a % b, and // rounds down, not towards zero.",
+   "type": "mcq",
+   "options": [
+    "-3 -2",
+    "-4 -3",
+    "-4 3",
+    "-3 2"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-pow-assoc",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "** is right-associative: 2 ** (3 ** 2) = 2 ** 9 = 512, while (2 ** 3) ** 2 = 8 ** 2 = 64.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(2 ** 3 ** 2, (2 ** 3) ** 2)",
+   "hint": "Only one operator in Python groups from the right. Which one?",
+   "type": "mcq",
+   "options": [
+    "512 64",
+    "64 64",
+    "512 512",
+    "64 512"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-shortcircuit",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "or returns the first truthy operand and and returns the first falsy one (or the last operand if all are truthy): 7, 0, 3, 4.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(0 or 7, 3 and 0, 3 or 5, 8 and 4)",
+   "hint": "Neither or nor and gives True or False. Each one hands back one of its operands.",
+   "type": "mcq",
+   "options": [
+    "7 3 3 8",
+    "7 0 5 4",
+    "7 0 3 4",
+    "0 0 3 4"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-chain",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "1 < 2 < 3 means 1 < 2 and 2 < 3, so True. 3 > 2 > 2 needs 2 > 2, so False. True counts as 1, so the sum is 3.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(1 < 2 < 3, 3 > 2 > 2, True + True + 1)",
+   "hint": "A chain is a shorthand for several comparisons joined by and. True behaves like 1 in arithmetic.",
+   "type": "mcq",
+   "options": [
+    "True False 3",
+    "True True 3",
+    "True False 2",
+    "False False 3"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-bitwise",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "12 = 1100 and 10 = 1010. AND = 1000 (8), OR = 1110 (14), XOR = 0110 (6), and ~12 = -(12 + 1) = -13.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "a, b = 12, 10\nprint(a & b, a | b, a ^ b, ~a)",
+   "hint": "Write both numbers in binary, line them up, and remember ~n is -(n + 1).",
+   "type": "mcq",
+   "options": [
+    "8 14 6 -13",
+    "8 14 6 -12",
+    "8 14 4 -13",
+    "2 14 6 -13"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-shift-neg",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "n << 2 multiplies by 4 (20). n >> 1 floors 2.5 to 2. -5 >> 1 floors -2.5 to -3, because shifts round down.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "n = 5\nprint(n << 2, n >> 1, -n >> 1)",
+   "hint": "A right shift divides by 2 and rounds down, even for negative numbers.",
+   "type": "mcq",
+   "options": [
+    "20 2 -3",
+    "20 2 -2",
+    "10 2 -3",
+    "20 3 -3"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-precedence",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "** first: 2 ** 3 = 8. Then // and % have equal rank and go left to right: 8 // 3 = 2, then 2 % 4 = 2. Finally 10 - 2 = 8.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(10 - 2 ** 3 // 3 % 4)",
+   "hint": "Order of work: **, then // and % from left to right, and subtraction last.",
+   "type": "mcq",
+   "options": [
+    "9",
+    "10",
+    "5",
+    "8"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-float-eq",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Floats are stored in binary, so 0.1 + 0.2 is really 0.30000000000000004. Rounding to one place gives 0.3 again.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(0.1 + 0.2 == 0.3, round(0.1 + 0.2, 1) == 0.3)",
+   "hint": "Think about how a computer stores 0.1 in binary. Is the sum exactly 0.3?",
+   "type": "mcq",
+   "options": [
+    "True True",
+    "True False",
+    "False True",
+    "False False"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-bankers",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Python rounds exact halves to the nearest even number: 2.5 → 2, 3.5 → 4, -2.5 → -2.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(round(2.5), round(3.5), round(-2.5))",
+   "hint": "When a number is exactly halfway, Python does not always round up.",
+   "type": "mcq",
+   "options": [
+    "3 4 -3",
+    "3 3 -2",
+    "2 4 -2",
+    "2 3 -2"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-swap",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The right side is evaluated first as (3, 1, 2), then unpacked into a, b, c. So a = 3, b = 1, c = 2.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "a, b, c = 1, 2, 3\na, b, c = c, a, b\nprint(a, b, c)",
+   "hint": "Evaluate the whole right-hand tuple before assigning anything.",
+   "type": "mcq",
+   "options": [
+    "3 1 2",
+    "3 2 1",
+    "2 3 1",
+    "1 2 3"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-convert",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "int(7.9) truncates to 7, so 7 + 2 = 9. float(\"1.5\") * 2 = 3.0, and str(3) + \"4\" joins two strings into \"34\".",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(int(7.9) + int(\"2\"), float(\"1.5\") * 2, str(3) + \"4\")",
+   "hint": "int() chops the decimal part, and + on two strings joins them.",
+   "type": "mcq",
+   "options": [
+    "10 3.0 7",
+    "9 3.0 34",
+    "9 3 34",
+    "9 3.0 7"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "h-slice",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "s[1:4] takes indices 1, 2 and 3: \"yth\". s[-1] is the last character, \"n\". s * 2 and s + s are both \"PythonPython\".",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "s = \"Python\"\nprint(s[1:4], s[-1], s * 2 == s + s)",
+   "hint": "A slice stops before its end index, and index -1 counts from the end.",
+   "type": "mcq",
+   "options": [
+    "Pyth n True",
+    "ytho n True",
+    "yth n True",
+    "yth n False"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-eval",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "eval runs its string as an expression using the current variables: 4 * 2 + 1 = 9, and 'ab' * 2 = 'abab'.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "x = 4\nprint(eval(\"x * 2 + 1\"), eval(\"'ab' * 2\"))",
+   "hint": "eval treats the text as if you had typed it as code.",
+   "type": "mcq",
+   "options": [
+    "9 ab2",
+    "5 abab",
+    "8 abab",
+    "9 abab"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-is-eq",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "== compares contents (equal). \"is\" compares identity: b is a separate list, but c is another name for the same list as a.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "a = [1, 2]\nb = [1, 2]\nc = a\nprint(a == b, a is b, a is c)",
+   "hint": "Only one list was created for a and c to share, and b is a fresh copy.",
+   "type": "mcq",
+   "options": [
+    "True True True",
+    "False False True",
+    "True False True",
+    "True False False"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-continue-sum",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The numbers 3 and 6 are skipped. 1 + 2 + 4 + 5 + 7 = 19.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "total = 0\nfor i in range(1, 8):\n    if i % 3 == 0:\n        continue\n    total += i\nprint(total)",
+   "hint": "List the numbers range(1, 8) gives, cross out the multiples of 3, then add the rest.",
+   "type": "mcq",
+   "options": [
+    "28",
+    "22",
+    "19",
+    "16"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-while-break",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "i goes 3, 6, 9, 12. Six is even but not above 8, and 9 is not even. At 12 both conditions hold, so the loop breaks with i = 12.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "i = 0\nwhile True:\n    i += 3\n    if i % 2 == 0 and i > 8:\n        break\nprint(i)",
+   "hint": "Both parts of the condition must be true at once. Write out the values of i.",
+   "type": "mcq",
+   "options": [
+    "6",
+    "9",
+    "8",
+    "12"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-nested-count",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The inner loop runs i times: 1, then 2, then 3. That adds up to 6.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "count = 0\nfor i in range(1, 4):\n    for j in range(i):\n        count += 1\nprint(count)",
+   "hint": "How many times does the inner loop run for each value of i?",
+   "type": "mcq",
+   "options": [
+    "3",
+    "9",
+    "4",
+    "6"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-none-return",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "When x is not positive, no return runs, so the function returns None. print shows None as the word None.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "def f(x):\n    if x > 0:\n        return \"pos\"\n\nprint(f(1), f(-1))",
+   "hint": "What does Python return from a function when no return statement is reached?",
+   "type": "mcq",
+   "options": [
+    "pos neg",
+    "pos",
+    "pos Error",
+    "pos None"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-print-return",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "add prints 5 itself but returns nothing, so r is None and the second print shows None.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "def add(a, b):\n    print(a + b)\n\nr = add(2, 3)\nprint(r)",
+   "hint": "print shows a value, return hands it back. Which of these did add do?",
+   "type": "mcq",
+   "options": [
+    "5 then None",
+    "5 then 5",
+    "None then 5",
+    "5"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-assert-caught",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The assertion fails and raises AssertionError(\"math broke\"). The except block prints the message that was attached to it.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "try:\n    assert 2 + 2 == 5, \"math broke\"\nexcept AssertionError as e:\n    print(\"caught:\", e)",
+   "hint": "The text after the comma in an assert is the exception's message.",
+   "type": "mcq",
+   "options": [
+    "Nothing is printed",
+    "caught: AssertionError",
+    "caught: 4",
+    "caught: math broke"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-range-neg",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "It starts at 10 and subtracts 3 until it would pass 0: 10, 7, 4, 1.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "print(list(range(10, 0, -3)))",
+   "hint": "The stop value is never included, and the step is negative.",
+   "type": "mcq",
+   "options": [
+    "[10, 7, 4, 1, -2]",
+    "[7, 4, 1]",
+    "[10, 7, 4, 1]",
+    "[10, 7, 4]"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-loopvar",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The loop variable survives after the loop, holding the last value it was given: 2.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "for i in range(3):\n    pass\nprint(i)",
+   "hint": "Does the loop variable disappear when the loop ends?",
+   "type": "mcq",
+   "options": [
+    "3",
+    "0",
+    "2",
+    "NameError"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-two-ifs",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The first if is a separate statement and prints A. The second if-elif chain stops at its first true branch, x > 3, and prints B.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "x = 7\nif x > 5:\n    print(\"A\")\nif x > 3:\n    print(\"B\")\nelif x > 1:\n    print(\"C\")",
+   "hint": "How many separate if statements are there? An elif belongs only to the if just above it.",
+   "type": "mcq",
+   "options": [
+    "A then B then C",
+    "A then B",
+    "A",
+    "B"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "b-floor-mod",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "7 // 2 = 3, then 3 * 2 = 6, and 7 % 2 = 1. So 6 + 1 = 7.",
+   "tags": [
+    "unit3",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(7 // 2 * 2 + 7 % 2)",
+   "hint": "Work from left to right at each level of precedence.",
+   "type": "mcq",
+   "options": [
+    "7",
+    "6",
+    "8",
+    "9"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "b-truthy",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "An empty list is falsy, but a list holding a 0 is not empty, so it is truthy. The empty string is falsy.",
+   "tags": [
+    "unit3",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(bool([]), bool([0]), bool(\"\"))",
+   "hint": "Truthiness depends on being empty, not on what is inside.",
+   "type": "mcq",
+   "options": [
+    "False False False",
+    "True True False",
+    "False True False",
+    "False True True"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "b-str-cmp",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "Strings compare character by character using their codes. \"a\" < \"b\" decides the first, and \"Z\" (90) is below \"a\" (97).",
+   "tags": [
+    "unit3",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(\"ab\" < \"b\", \"Z\" < \"a\")",
+   "hint": "Compare first characters by code. Capital letters come before small ones.",
+   "type": "mcq",
+   "options": [
+    "True True",
+    "False False",
+    "True False",
+    "False True"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "b-digits",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "2 ** 10 is 1024. As a string it has four characters.",
+   "tags": [
+    "unit2",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(len(str(2 ** 10)))",
+   "hint": "Work out the number first, then count its digits.",
+   "type": "mcq",
+   "options": [
+    "3",
+    "10",
+    "2",
+    "4"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "b-types",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "// of two ints gives an int (2). / always gives a float (2.5).",
+   "tags": [
+    "unit2",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(type(5 // 2), type(5 / 2))",
+   "hint": "One division floors, the other is always a float.",
+   "type": "mcq",
+   "options": [
+    "<class 'int'> <class 'int'>",
+    "<class 'float'> <class 'float'>",
+    "<class 'float'> <class 'int'>",
+    "<class 'int'> <class 'float'>"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "b-bin",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "bin(10) gives the string \"0b1010\". int(\"101\", 2) reads 101 as a binary number, which is 5.",
+   "tags": [
+    "unit3",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(bin(10), int(\"101\", 2))",
+   "hint": "Remember the prefix bin() adds. The second argument of int() is the base.",
+   "type": "mcq",
+   "options": [
+    "0b1010 5",
+    "1010 5",
+    "0b1010 101",
+    "0b101 10"
+   ],
+   "answerIndex": 0
+  }
+ ]
+}

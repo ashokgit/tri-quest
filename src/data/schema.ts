@@ -86,6 +86,8 @@ const questionBase = {
   showcase: z.string().optional(),
   /** Shown under the answer on reveal. */
   explanation: z.string().optional(),
+  /** A nudge the host can reveal on request (the group quiz's hint lifeline). */
+  hint: z.string().optional(),
   /** Flag facts that must be checked (current affairs, NIET facts) before going live. */
   verify: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
@@ -123,6 +125,31 @@ export const QuestionBank = z.object({
   questions: z.array(Question),
 })
 
+/**
+ * How a round is played when a session is in `groups` format.
+ * `turns`: each question goes to one group, which may pass it on when it misses (worth less each time).
+ * `rapid`: questions are dealt to the groups in blocks and a miss simply moves on.
+ */
+export const GroupRules = z.object({
+  mode: z.enum(['turns', 'rapid']),
+  /** Points for answering the question when it is first put to a group. */
+  points: z.number().int().positive(),
+  /** Points when the question has been passed on to another group (turns only). */
+  passPoints: z.number().int().nonnegative().default(0),
+  /** Points a group loses for a wrong answer (not for running out of time). */
+  penalty: z.number().int().nonnegative().default(0),
+  /** Seconds taken off the clock each time a question is passed on. */
+  hopSeconds: z.number().int().nonnegative().default(0),
+  /** Rapid fire: how many questions in a row each group gets. */
+  block: z.number().int().positive().default(6),
+  /** Each group may use one 50:50 and one hint in this round. */
+  lifelines: z.boolean().default(false),
+  /** Questions tagged `tiebreak` in the pool are held back; up to this many are played if the groups are level at the end. */
+  tiebreakers: z.number().int().nonnegative().default(0),
+  /** The bullet lines on the round's title card. */
+  intro: z.array(z.string()).default([]),
+})
+
 export const Round = z
   .object({
     id,
@@ -140,6 +167,8 @@ export const Round = z
     keep: z.array(id).default([]),
     /** Randomise which questions appear even without `pick`. */
     shuffle: z.boolean().default(false),
+    /** Group-quiz rules; required for every round of a `groups` session. */
+    play: GroupRules.optional(),
   })
   .refine((r) => r.pick === undefined || r.pick <= r.questionIds.length, {
     message: 'pick is larger than the question pool',
@@ -154,35 +183,51 @@ export const Round = z
     path: ['keep'],
   })
 
-export const Session = z.object({
-  version: z.literal(1),
-  id,
-  title: z.string().min(1),
-  event: z.string().optional(),
-  tagline: z.string().optional(),
-  /**
-   * How many questions the show has. Round picks are scaled in proportion to reach it
-   * (the host can change it on the home page). Without it, the picks are used as written.
-   */
-  questionCount: z.number().int().positive().optional(),
-  /** Planned length, used for pacing hints only. */
-  durationMinutes: z.number().int().positive().optional(),
-  /** Default arrangement: the category rounds as written, or a ladder of rising difficulty built from the same questions. */
-  order: z.enum(['category', 'difficulty']).default('category'),
-  /** Names for the difficulty-ladder levels, easiest first (defaults to Warm-up … Final Challenge). The last two always name the top two levels. */
-  levelTitles: z.array(z.string().min(1)).optional(),
-  /** Default draw number for rounds with `pick`, so every device shows the same questions until reshuffled. */
-  seed: z.number().int().positive().default(2026),
-  defaults: z.object({
-    timerSeconds: z.number().int().positive().default(30),
-    /** Options appear all together or one by one (A → B → C → D). */
-    optionReveal: z.enum(['together', 'sequential']).default('sequential'),
-  }),
-  rounds: z.array(Round).min(1),
-})
+export const Session = z
+  .object({
+    version: z.literal(1),
+    id,
+    title: z.string().min(1),
+    event: z.string().optional(),
+    tagline: z.string().optional(),
+    /** `show`: one stage, the host steps through the questions. `groups`: teams take turns and keep score. */
+    format: z.enum(['show', 'groups']).default('show'),
+    /** Names of the competing groups (`groups` format). */
+    groups: z.array(z.string().min(1).max(12)).min(2).max(4).default(['A', 'B', 'C']),
+    /** The question bank file under public/data, when not the shared questions.json. */
+    bank: z
+      .string()
+      .regex(/^[a-z0-9][a-z0-9-]*\.json$/, 'a bank is a .json file name under public/data')
+      .optional(),
+    /** Large lettering on the show emblem (defaults to the session title). */
+    emblem: z.object({ label: z.string().min(1).max(14), mark: z.string().max(4).optional() }).optional(),
+    /**
+     * How many questions the show has. Round picks are scaled in proportion to reach it
+     * (the host can change it on the home page). Without it, the picks are used as written.
+     */
+    questionCount: z.number().int().positive().optional(),
+    /** Planned length, used for pacing hints only. */
+    durationMinutes: z.number().int().positive().optional(),
+    /** Default arrangement: the category rounds as written, or a ladder of rising difficulty built from the same questions. */
+    order: z.enum(['category', 'difficulty']).default('category'),
+    /** Names for the difficulty-ladder levels, easiest first (defaults to Warm-up … Final Challenge). The last two always name the top two levels. */
+    levelTitles: z.array(z.string().min(1)).optional(),
+    /** Default draw number for rounds with `pick`, so every device shows the same questions until reshuffled. */
+    seed: z.number().int().positive().default(2026),
+    defaults: z.object({
+      timerSeconds: z.number().int().positive().default(30),
+      /** Options appear all together or one by one (A → B → C → D). */
+      optionReveal: z.enum(['together', 'sequential']).default('sequential'),
+    }),
+    rounds: z.array(Round).min(1),
+  })
+  .refine((s) => s.format !== 'groups' || s.rounds.every((r) => r.play), {
+    message: 'every round of a groups session needs `play` rules',
+    path: ['rounds'],
+  })
 
 export const SessionIndex = z.object({
-  sessions: z.array(z.object({ id, title: z.string(), event: z.string().optional() })),
+  sessions: z.array(z.object({ id, title: z.string(), event: z.string().optional(), format: z.enum(['show', 'groups']).optional() })),
 })
 
 export type Difficulty = z.infer<typeof Difficulty>
@@ -191,5 +236,6 @@ export type Media = z.infer<typeof Media>
 export type Question = z.infer<typeof Question>
 export type QuestionBank = z.infer<typeof QuestionBank>
 export type Round = z.infer<typeof Round>
+export type GroupRules = z.infer<typeof GroupRules>
 export type Session = z.infer<typeof Session>
 export type SessionIndex = z.infer<typeof SessionIndex>
