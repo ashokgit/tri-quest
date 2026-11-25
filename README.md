@@ -83,6 +83,8 @@ Every question can also have `showcase` (big text on the stage, e.g. an emoji pu
 
 A session with `"format": "groups"` is a contest between groups (A, B, C by default) instead of a show with a single audience. **Code Clash** (`bt101co-clash`, BT101CO Units 1–4 for BTech AI) is the first. It uses the same stage, lozenges, clock and sounds, with a scoreboard across the top, whose turn it is on the left, and a different rule set per round, set in each round's `play` block:
 
+**Code Clash II** (`bt101co-clash-u5`) is the same contest extended to Units 1–5 (about 60% of its questions are on Unit 5, Functions and Lists), with a fresh bank built by `scripts/question-banks/bt101co-u5/build.py`.
+
 | `play` field | Meaning |
 |---|---|
 | `mode` | `turns`: each question goes to one group and may be passed on. `rapid`: groups get blocks of `block` questions in a row and a miss moves on. |

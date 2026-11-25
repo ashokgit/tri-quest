@@ -1,0 +1,2161 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "py-intro",
+   "name": "Unit 1 · Python basics",
+   "icon": "🐍"
+  },
+  {
+   "id": "py-data",
+   "name": "Unit 2 · Data & I/O",
+   "icon": "🔤"
+  },
+  {
+   "id": "py-ops",
+   "name": "Unit 3 · Operators",
+   "icon": "➕"
+  },
+  {
+   "id": "py-control",
+   "name": "Unit 4 · Control flow",
+   "icon": "🔁"
+  },
+  {
+   "id": "py-func",
+   "name": "Unit 5 · Functions & lists",
+   "icon": "🧩"
+  },
+  {
+   "id": "round-turns",
+   "name": "Turn by turn",
+   "icon": "🎯"
+  },
+  {
+   "id": "round-rapid",
+   "name": "Rapid fire",
+   "icon": "⚡"
+  },
+  {
+   "id": "round-hard",
+   "name": "Hard questions",
+   "icon": "🔥"
+  }
+ ],
+ "questions": [
+  {
+   "id": "u-py3",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "Which statement about Python 3 is true?",
+   "explanation": "Python 3.0 (2008) fixed design flaws, such as making print a function and / true division, and broke compatibility with Python 2 on purpose.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "It runs every Python 2 program unchanged",
+    "It is not fully backward compatible with Python 2",
+    "It was released before Python 2",
+    "It replaced the interpreter with a compiler"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-docstring",
+   "category": "py-intro",
+   "difficulty": "medium",
+   "prompt": "A docstring is written:",
+   "explanation": "Triple-quoted text on the first line of a function becomes its __doc__, which help() prints. A # comment is thrown away.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "After a # sign at the end of a line",
+    "Inside an assert statement",
+    "As a string literal at the start of a function, class or module",
+    "Between two backticks"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-fmt",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "In an f-string, :.2f formats a float with two digits after the point, rounding as needed: 3.14.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "x = 3.14159\nprint(f\"{x:.2f}\")",
+   "hint": "The number after the dot is how many decimals to keep.",
+   "type": "mcq",
+   "options": [
+    "3.1",
+    "3.14",
+    "3.14159",
+    "0.31"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-sepend",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "sep goes between the items and end goes after the last one, replacing the usual newline.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(\"a\", \"b\", \"c\", sep=\"-\", end=\"!\")",
+   "hint": "sep is placed between items, end is placed once at the very end.",
+   "type": "mcq",
+   "options": [
+    "a b c!",
+    "a-b-c",
+    "a-b-c-!",
+    "a-b-c!"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-input-add",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "The user types 12 when asked. After x = input(), what is x + x?",
+   "explanation": "input() always returns a string, so + joins the two strings. Use int(input()) to do arithmetic.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "24, because 12 + 12 is 24",
+    "A TypeError",
+    "12",
+    "'1212', because x is a string"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-eval",
+   "category": "py-data",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "eval() reads a string as a Python expression and returns its value: 3 * 4 + 2 = 14.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(eval(\"3 * 4 + 2\"))",
+   "hint": "eval does not print the text, it works it out.",
+   "type": "mcq",
+   "options": [
+    "14",
+    "3 * 4 + 2",
+    "20",
+    "12"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "u-prec",
+   "category": "py-ops",
+   "difficulty": "medium",
+   "prompt": "What does this evaluate to?",
+   "explanation": "** first: 4 ** 2 = 16, then 3 * 16 = 48, then 2 + 48 = 50.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "2 + 3 * 4 ** 2",
+   "hint": "Power first, then multiply, then add.",
+   "type": "mcq",
+   "options": [
+    "80",
+    "400",
+    "50",
+    "98"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-negmod",
+   "category": "py-ops",
+   "difficulty": "medium",
+   "prompt": "What does this evaluate to?",
+   "explanation": "The result of % takes the sign of the divisor. -7 = (-3 × 3) + 2, so the remainder is 2.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "-7 % 3",
+   "hint": "-7 // 3 is -3 because it rounds down. What is left over?",
+   "type": "mcq",
+   "options": [
+    "2",
+    "-1",
+    "1",
+    "-2"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "u-compound",
+   "category": "py-ops",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "The whole right side is worked out first: 2 + 3 = 5. Then a = a * 5 = 25.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "a = 5\na *= 2 + 3\nprint(a)",
+   "hint": "a *= expr means a = a * (expr).",
+   "type": "mcq",
+   "options": [
+    "13",
+    "10",
+    "15",
+    "25"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-bool",
+   "category": "py-ops",
+   "difficulty": "medium",
+   "prompt": "What does this evaluate to?",
+   "explanation": "not binds tightest: not 0 is True, and True or anything is True. Python never even needs to look at the and.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "not 0 or 1 and 0",
+   "hint": "Order: not, then and, then or.",
+   "type": "mcq",
+   "options": [
+    "False",
+    "1",
+    "0",
+    "True"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-while",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "i takes the values 1, 3 and 5, so s = 1 + 3 + 5 = 9.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "i, s = 1, 0\nwhile i <= 5:\n    s += i\n    i += 2\nprint(s)",
+   "hint": "i goes up in steps of 2.",
+   "type": "mcq",
+   "options": [
+    "15",
+    "9",
+    "6",
+    "8"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-range3",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "range(2, 10, 3) starts at 2 and adds 3 while below 10: 2, 5, 8.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "for i in range(2, 10, 3):\n    print(i, end=\" \")",
+   "hint": "The stop value is never reached.",
+   "type": "mcq",
+   "options": [
+    "2 5 8 11",
+    "2 5 8",
+    "3 6 9",
+    "2 4 6 8"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-nested-break",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "break leaves only the inner loop. i = 0: breaks at once. i = 1: prints 1 0, then breaks. i = 2: prints 2 0 and 2 1.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "for i in range(3):\n    for j in range(3):\n        if j == i:\n            break\n        print(i, j)",
+   "hint": "break only stops the loop it sits in.",
+   "type": "mcq",
+   "options": [
+    "0 0 then 1 1 then 2 2",
+    "1 0 then 2 0",
+    "0 1 then 0 2 then 1 2",
+    "1 0 then 2 0 then 2 1"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-pass",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What does the pass statement do?",
+   "explanation": "pass lets you write an empty block, for example def todo(): pass, without a syntax error.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "Skips to the next loop iteration",
+    "Nothing; it is a placeholder where a statement is needed",
+    "Exits the loop",
+    "Ends the program"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-elif",
+   "category": "py-control",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "The chain stops at the first true test. 72 >= 90 is false, 72 >= 60 is true, so only B is printed.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "marks = 72\nif marks >= 90:\n    print(\"A\")\nelif marks >= 60:\n    print(\"B\")\nelif marks >= 40:\n    print(\"C\")\nelse:\n    print(\"F\")",
+   "hint": "Only one branch of an if-elif-else chain ever runs.",
+   "type": "mcq",
+   "options": [
+    "B",
+    "A",
+    "C",
+    "B then C"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "u-default",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "msg falls back to \"Hello\" when no second argument is given. The second call overrides it with \"Hi\".",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def greet(name, msg=\"Hello\"):\n    print(msg, name)\ngreet(\"Sita\")\ngreet(\"Ram\", \"Hi\")",
+   "hint": "A default is used only when the caller leaves that argument out.",
+   "type": "mcq",
+   "options": [
+    "Hello Sita then Hello Ram",
+    "Hello Sita then Hi Ram",
+    "Sita Hello then Ram Hi",
+    "Hello Sita then Ram Hi"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-keyword",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "Keyword arguments are matched by name, not position: base = 5 and exp = 2, so 5 ** 2 = 25.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def power(base, exp):\n    return base ** exp\nprint(power(exp=2, base=5))",
+   "hint": "Match the names, not the order.",
+   "type": "mcq",
+   "options": [
+    "25",
+    "10",
+    "32",
+    "7"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "u-global-shadow",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "Assigning inside f creates a new local x. The global x is untouched, so it still prints 10.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "x = 10\ndef f():\n    x = 20\nf()\nprint(x)",
+   "hint": "Does assigning in a function change a global without the global keyword?",
+   "type": "mcq",
+   "options": [
+    "20",
+    "30",
+    "Error",
+    "10"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-global-kw",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "The global keyword makes x inside f mean the global one, so f changes it from 1 to 6.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "x = 1\ndef f():\n    global x\n    x += 5\nf()\nprint(x)",
+   "hint": "What does the global keyword change about the name x?",
+   "type": "mcq",
+   "options": [
+    "1",
+    "5",
+    "6",
+    "51"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-unbound",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What happens when this runs?",
+   "explanation": "Because f assigns to x, Python treats x as local throughout f. Reading it for x += 1 before it has a value is an UnboundLocalError.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "x = 1\ndef f():\n    x += 1\nf()",
+   "hint": "An assignment anywhere in a function makes that name local to the whole function.",
+   "type": "mcq",
+   "options": [
+    "NameError",
+    "UnboundLocalError",
+    "SyntaxError",
+    "TypeError"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-fact",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "fact(5) = 5 × 4 × 3 × 2 × 1 = 120.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def fact(n):\n    return 1 if n <= 1 else n * fact(n - 1)\nprint(fact(5))",
+   "hint": "Multiply every whole number from 5 down to 1.",
+   "type": "mcq",
+   "options": [
+    "24",
+    "120",
+    "720",
+    "15"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-fib",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "The sequence runs 0, 1, 1, 2, 3, 5, 8, 13, so fib(7) is 13.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\nprint(fib(7))",
+   "hint": "fib(0) = 0, fib(1) = 1, and each next one is the sum of the two before.",
+   "type": "mcq",
+   "options": [
+    "21",
+    "13",
+    "8",
+    "34"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-sumrec",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "s(4) = 4 + 3 + 2 + 1 + 0 = 10.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def s(n):\n    if n == 0:\n        return 0\n    return n + s(n - 1)\nprint(s(4))",
+   "hint": "Add the numbers 4, 3, 2, 1 and the base case.",
+   "type": "mcq",
+   "options": [
+    "24",
+    "4",
+    "6",
+    "10"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-lambda",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "A lambda is a small unnamed function. sq(7) returns 7 * 7 = 49.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "sq = lambda x: x * x\nprint(sq(7))",
+   "hint": "Multiplication, not addition.",
+   "type": "mcq",
+   "options": [
+    "14",
+    "77",
+    "49",
+    "7"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-lambda2",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "Lambdas take defaults too. add(3) uses b = 2 and gives 5. add(3, 4) gives 7.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "add = lambda a, b=2: a + b\nprint(add(3), add(3, 4))",
+   "hint": "Does the second call use the default?",
+   "type": "mcq",
+   "options": [
+    "5 5",
+    "3 4",
+    "5 12",
+    "5 7"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-index",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "L[1] is 20. L[-2] is the second from the end, 40. len(L) - 1 = 4, and L[4] is 50.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "L = [10, 20, 30, 40, 50]\nprint(L[1], L[-2], L[len(L) - 1])",
+   "hint": "Negative indexes count from the end: -1 is the last item.",
+   "type": "mcq",
+   "options": [
+    "10 40 50",
+    "20 30 50",
+    "20 40 50",
+    "20 40 40"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-slice",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "L[2:6] takes indexes 2 to 5. L[::3] takes every third item from the start: indexes 0, 3 and 6.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "L = [0, 1, 2, 3, 4, 5, 6, 7]\nprint(L[2:6], L[::3])",
+   "hint": "The slice stops before its end index.",
+   "type": "mcq",
+   "options": [
+    "[2, 3, 4, 5, 6] [0, 3, 6]",
+    "[2, 3, 4, 5] [0, 3]",
+    "[3, 4, 5, 6] [0, 3, 6]",
+    "[2, 3, 4, 5] [0, 3, 6]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "u-append-extend",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "append adds its argument as one item, so a is [1, 2, [3, 4]], length 3. extend adds each item, so b is [1, 2, 3, 4], length 4.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "a = [1, 2]\na.append([3, 4])\nb = [1, 2]\nb.extend([3, 4])\nprint(len(a), len(b))",
+   "hint": "One adds a single item, the other adds each item of the list.",
+   "type": "mcq",
+   "options": [
+    "4 4",
+    "3 3",
+    "3 4",
+    "4 3"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-sort-ret",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "list.sort() sorts in place and returns None. So r is None, and L is now [1, 2, 3].",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "L = [3, 1, 2]\nr = L.sort()\nprint(r, L)",
+   "hint": "What does an in-place method hand back?",
+   "type": "mcq",
+   "options": [
+    "[1, 2, 3] [1, 2, 3]",
+    "None [3, 1, 2]",
+    "None [1, 2, 3]",
+    "[1, 2, 3] None"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-alias",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "b = a makes a second name for the same list, so a also grows to [1, 2, 3, 4]. a[:] is a copy, so c grows on its own.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "a = [1, 2, 3]\nb = a\nb.append(4)\nc = a[:]\nc.append(5)\nprint(a, c)",
+   "hint": "Assignment does not copy a list. A full slice does.",
+   "type": "mcq",
+   "options": [
+    "[1, 2, 3] [1, 2, 3, 5]",
+    "[1, 2, 3, 4] [1, 2, 3, 4, 5]",
+    "[1, 2, 3, 4, 5] [1, 2, 3, 4, 5]",
+    "[1, 2, 3] [1, 2, 3, 4, 5]"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "u-builtins",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "There are 4 items, the largest is 9, the smallest is 2, and 4 + 9 + 2 + 7 = 22.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "n = [4, 9, 2, 7]\nprint(len(n), max(n), min(n), sum(n))",
+   "hint": "Add them up carefully.",
+   "type": "mcq",
+   "options": [
+    "4 9 2 22",
+    "4 9 2 21",
+    "4 7 2 22",
+    "3 9 2 22"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "u-pop",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "pop() removes and returns the last item, 8. pop(0) removes the first of what remains, 5. That leaves [6, 7].",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "L = [5, 6, 7, 8]\nx = L.pop()\ny = L.pop(0)\nprint(x, y, L)",
+   "hint": "pop() with no argument takes the last item.",
+   "type": "mcq",
+   "options": [
+    "5 8 [6, 7]",
+    "8 5 [5, 6, 7]",
+    "8 5 [6, 7]",
+    "8 6 [5, 7]"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "u-return-multi",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "return a + b, a * b hands back the tuple (7, 12), which is unpacked into s and p.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def mm(a, b):\n    return a + b, a * b\ns, p = mm(3, 4)\nprint(s, p)",
+   "hint": "Two values after return make one tuple.",
+   "type": "mcq",
+   "options": [
+    "7 12",
+    "(7, 12) None",
+    "7 7",
+    "12 7"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "u-args",
+   "category": "py-func",
+   "difficulty": "medium",
+   "prompt": "What does this print?",
+   "explanation": "*nums collects any number of arguments into a tuple. With none given, sum of an empty tuple is 0.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def total(*nums):\n    return sum(nums)\nprint(total(1, 2, 3), total())",
+   "hint": "What is the sum of nothing?",
+   "type": "mcq",
+   "options": [
+    "6 None",
+    "3 0",
+    "6 0",
+    "1 0"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-pycache",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Where does Python keep the bytecode it compiles for you?",
+   "explanation": "Compiled .pyc files are written to __pycache__ next to your source, so the next import starts faster.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "In a bin folder",
+    "Inside the .py file itself",
+    "In the Windows registry",
+    "In the __pycache__ folder"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-gc",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "Python counts references and runs a garbage collector, so memory is handled for you.",
+   "tags": [
+    "unit1"
+   ],
+   "showcase": "Python frees unused memory automatically, so you never call free() yourself.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-styles",
+   "category": "py-intro",
+   "difficulty": "easy",
+   "prompt": "Python supports which programming styles?",
+   "explanation": "It is a multi-paradigm language, so you can mix functions, classes and functional tools such as lambda.",
+   "tags": [
+    "unit1"
+   ],
+   "type": "mcq",
+   "options": [
+    "Only object-oriented",
+    "Only procedural",
+    "Procedural, object-oriented and functional",
+    "Only functional"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-input-type",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "input() always returns a value of type:",
+   "explanation": "Even when the user types digits, you get a string. Wrap it in int() or float() to calculate.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "str",
+    "int",
+    "float",
+    "bool"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-int",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "int(\"42\") is the number 42, so adding 1 gives 43.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "int(\"42\") + 1",
+   "type": "mcq",
+   "options": [
+    "'421'",
+    "Error",
+    "42",
+    "43"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-type",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "What does this give?",
+   "explanation": "A number with a decimal point is a float, even when the decimal part is zero. Python has no type called double.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "type(3.0)",
+   "type": "mcq",
+   "options": [
+    "<class 'float'>",
+    "<class 'int'>",
+    "<class 'str'>",
+    "<class 'double'>"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-ident",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "Which is a valid variable name?",
+   "explanation": "Names cannot start with a digit, cannot contain a hyphen and cannot be a keyword such as class.",
+   "tags": [
+    "unit2"
+   ],
+   "type": "mcq",
+   "options": [
+    "2total",
+    "my-var",
+    "class",
+    "_total2"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-quotes",
+   "category": "py-data",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "Single and double quotes make identical strings. Pick whichever lets you avoid escaping.",
+   "tags": [
+    "unit2"
+   ],
+   "showcase": "In Python, \"hello\" and 'hello' are the same string.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-floor",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "// is floor division: 17 divided by 5 is 3.4, and rounded down it is 3.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "17 // 5",
+   "type": "mcq",
+   "options": [
+    "3.4",
+    "4",
+    "2",
+    "3"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-pow",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "** raises to a power: 2 × 2 × 2 × 2 × 2 = 32.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "2 ** 5",
+   "type": "mcq",
+   "options": [
+    "10",
+    "32",
+    "25",
+    "7"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-mod",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "20 = 3 × 6 + 2, so the remainder is 2.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "20 % 6",
+   "type": "mcq",
+   "options": [
+    "3",
+    "4",
+    "2",
+    "0"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-xor",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "5 is 101 and 3 is 011. XOR gives 1 where the bits differ: 110, which is 6.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "5 ^ 3",
+   "type": "mcq",
+   "options": [
+    "6",
+    "8",
+    "2",
+    "15"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-cmp",
+   "category": "py-ops",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "3 != 4 is True and 2 > 1 is True, so the whole expression is True.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "3 != 4 and 2 > 1",
+   "type": "mcq",
+   "options": [
+    "True",
+    "False",
+    "1",
+    "4"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-elif",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which keyword means \"else if\" in Python?",
+   "explanation": "It is spelled elif, one word.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "else if",
+    "elseif",
+    "elif",
+    "elsif"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-colon",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "A header line such as if, while, for or def ends with:",
+   "explanation": "The colon opens an indented block, which Python uses instead of braces.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "A colon",
+    "A semicolon",
+    "A full stop",
+    "A closing brace"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-range",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "It starts at 3 and adds 4 while below 12: 3, 7, 11.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "print(list(range(3, 12, 4)))",
+   "type": "mcq",
+   "options": [
+    "[3, 7]",
+    "[3, 7, 11, 15]",
+    "[4, 8, 12]",
+    "[3, 7, 11]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-continue",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "Which statement skips the rest of the loop body and moves to the next iteration?",
+   "explanation": "break leaves the loop altogether, pass does nothing, and continue goes straight to the next round.",
+   "tags": [
+    "unit4"
+   ],
+   "type": "mcq",
+   "options": [
+    "break",
+    "pass",
+    "return",
+    "continue"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-while-true",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "The condition is always true, so only break, return or an exception can end it.",
+   "tags": [
+    "unit4"
+   ],
+   "showcase": "A while True loop runs forever unless something inside it breaks out.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-for-str",
+   "category": "py-control",
+   "difficulty": "easy",
+   "prompt": "What does this print?",
+   "explanation": "A for loop on a string visits each character in order, and upper() turns each into a capital: ABC.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "for ch in \"abc\":\n    print(ch.upper(), end=\"\")",
+   "type": "mcq",
+   "options": [
+    "abc",
+    "cba",
+    "Abc",
+    "ABC"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-def",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "Which keyword starts a function definition?",
+   "explanation": "def name(parameters): followed by an indented body.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "func",
+    "function",
+    "define",
+    "def"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-none",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "A function with no return statement gives back:",
+   "explanation": "Falling off the end of a function returns the special value None.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "0",
+    "An empty string",
+    "None",
+    "Nothing; calling it is an error"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-call-first",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "The name does not exist until the def statement has run, so an early call raises NameError.",
+   "tags": [
+    "unit5"
+   ],
+   "showcase": "You can call a function on a line that runs before its def line.",
+   "type": "truefalse",
+   "answer": false
+  },
+  {
+   "id": "r-param",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "In def f(x), x is a ___. In f(5), 5 is an ___.",
+   "explanation": "A parameter is the name in the definition. An argument is the value passed in the call.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "argument; parameter",
+    "variable; function",
+    "constant; variable",
+    "parameter; argument"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-lambda-kw",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "Which keyword creates an anonymous (unnamed) function?",
+   "explanation": "lambda x: x + 1 is a function with no name, written as one expression.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "lambda",
+    "anon",
+    "def",
+    "func"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-lambda-expr",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "No statements are allowed inside a lambda. It returns the value of that one expression.",
+   "tags": [
+    "unit5"
+   ],
+   "showcase": "The body of a lambda can only be a single expression.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-recursive",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "A recursive function is one that:",
+   "explanation": "Each call works on a smaller version of the problem until a base case stops it.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "Calls itself",
+    "Has no parameters",
+    "Has no return",
+    "Is defined inside a loop"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-base",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "Every recursive function needs:",
+   "explanation": "Without a base case the function calls itself until Python gives up.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "A global variable",
+    "A base case that stops the recursion",
+    "A loop inside it",
+    "A lambda inside it"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-recerr",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What happens when this runs?",
+   "explanation": "There is no base case, so Python stops at its recursion limit (about 1000 calls) with a RecursionError.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def f(n):\n    return f(n + 1)\nf(0)",
+   "type": "mcq",
+   "options": [
+    "StackFull",
+    "MemoryError",
+    "OverflowError",
+    "RecursionError"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-global-read",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "The global keyword is needed only when the function assigns to the name.",
+   "tags": [
+    "unit5"
+   ],
+   "showcase": "A function can read a global variable without using the global keyword.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-global-kw",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "To assign to a global variable inside a function you use:",
+   "explanation": "global x tells Python that x in this function means the module-level x.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "public",
+    "extern",
+    "global",
+    "static"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-brackets",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "A list is written with:",
+   "explanation": "Round brackets make a tuple and curly braces make a set or dictionary.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "Round brackets ()",
+    "Square brackets []",
+    "Curly braces {}",
+    "Angle brackets <>"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-mutable",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "True or false?",
+   "explanation": "Lists are mutable: you can assign to items, append, remove and sort.",
+   "tags": [
+    "unit5"
+   ],
+   "showcase": "A list can be changed after it is created.",
+   "type": "truefalse",
+   "answer": true
+  },
+  {
+   "id": "r-len",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "The inner list counts as one item, so there are three items.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "len([1, [2, 3], 4])",
+   "type": "mcq",
+   "options": [
+    "4",
+    "5",
+    "3",
+    "2"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-idx",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "-1 is the last index, so the answer is 30.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[10, 20, 30][-1]",
+   "type": "mcq",
+   "options": [
+    "10",
+    "30",
+    "20",
+    "IndexError"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-slice",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "Indexes 1 and 2 are included. Index 3 is where the slice stops.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[1, 2, 3, 4, 5][1:3]",
+   "type": "mcq",
+   "options": [
+    "[1, 2, 3]",
+    "[2, 3, 4]",
+    "[1, 2]",
+    "[2, 3]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-rev",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "A step of -1 walks the list backwards, giving a reversed copy.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[1, 2, 3][::-1]",
+   "type": "mcq",
+   "options": [
+    "[3, 2, 1]",
+    "[1, 2, 3]",
+    "[2, 1]",
+    "[3, 2]"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-sum",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "2 + 4 + 6 = 12.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "sum([2, 4, 6])",
+   "type": "mcq",
+   "options": [
+    "10",
+    "24",
+    "12",
+    "246"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-concat",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "+ joins two lists into a new list.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[1, 2] + [3]",
+   "type": "mcq",
+   "options": [
+    "[1, 2, [3]]",
+    "[4]",
+    "[1, 2, 3]",
+    "[1, 2, 3, 3]"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-mult",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "* repeats the list: three zeros.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[0] * 3",
+   "type": "mcq",
+   "options": [
+    "[0, 3]",
+    "[0, 0, 0]",
+    "[0]",
+    "0"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "r-append",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "Which method adds one item at the end of a list?",
+   "explanation": "L.append(x) puts x at the end. Lists have no push or add method.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "add()",
+    "push()",
+    "insert_end()",
+    "append()"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "r-sort",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "Which list method sorts the list itself, in place?",
+   "explanation": "sort() changes the list. sorted() is a built-in function that returns a new sorted list.",
+   "tags": [
+    "unit5"
+   ],
+   "type": "mcq",
+   "options": [
+    "sort()",
+    "sorted()",
+    "order()",
+    "arrange()"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "r-in",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "in tests membership: 3 is one of the items.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "3 in [1, 2, 3]",
+   "type": "mcq",
+   "options": [
+    "False",
+    "1",
+    "True",
+    "IndexError"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-count",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "The value 2 appears three times.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[1, 2, 2, 3, 2].count(2)",
+   "type": "mcq",
+   "options": [
+    "2",
+    "5",
+    "3",
+    "4"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "r-index",
+   "category": "py-func",
+   "difficulty": "easy",
+   "prompt": "What does this evaluate to?",
+   "explanation": "index() returns the position of the first match: 7 is at index 2.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "[5, 6, 7].index(7)",
+   "type": "mcq",
+   "options": [
+    "3",
+    "2",
+    "7",
+    "1"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "h-mutdefault",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The default list is created once, when def runs, and every call that leaves L out shares it. Both results are that same list, now [1, 2].",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def add(x, L=[]):\n    L.append(x)\n    return L\nprint(add(1), add(2))",
+   "hint": "How many times is the default value [] created?",
+   "type": "mcq",
+   "options": [
+    "[1] [2]",
+    "[1] [1, 2]",
+    "[1, 2] [2]",
+    "[1, 2] [1, 2]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-late-lambda",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Each lambda looks up i when it is called, not when it was made. By then the loop has finished and i is 2.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "fs = [lambda: i for i in range(3)]\nprint([f() for f in fs])",
+   "hint": "When is the name i looked up: when the lambda is made, or when it is called?",
+   "type": "mcq",
+   "options": [
+    "[0, 1, 2]",
+    "[3, 3, 3]",
+    "[0, 0, 0]",
+    "[2, 2, 2]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-rec-after",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The print comes after the recursive call, so the deepest call (n = 0) prints first: 0 1 2 3.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def f(n):\n    if n > 0:\n        f(n - 1)\n    print(n, end=\" \")\nf(3)",
+   "hint": "Which call finishes first, f(3) or f(0)?",
+   "type": "mcq",
+   "options": [
+    "3 2 1 0",
+    "3 2 1",
+    "1 2 3",
+    "0 1 2 3"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-rec-before",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Here the print comes before the recursive call, so the numbers appear on the way down: 3 2 1. When n is 0 nothing prints.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def f(n):\n    if n > 0:\n        print(n, end=\" \")\n        f(n - 1)\nf(3)",
+   "hint": "Does 0 get printed? Look at the if.",
+   "type": "mcq",
+   "options": [
+    "1 2 3",
+    "3 2 1 0",
+    "0 1 2 3",
+    "3 2 1"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-scope",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "g looks for x in the enclosing function first and finds \"local\". The module-level x is never changed.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "x = \"global\"\ndef f():\n    x = \"local\"\n    def g():\n        return x\n    return g()\nprint(f(), x)",
+   "hint": "Python searches local, then enclosing, then global.",
+   "type": "mcq",
+   "options": [
+    "global global",
+    "local local",
+    "local global",
+    "global local"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-param-int",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Integers cannot be changed in place. Inside add, n is a separate local name, so the global n stays 5. add(n) returns 6.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def add(n):\n    n += 1\n    return n\nn = 5\nadd(n)\nprint(n, add(n))",
+   "hint": "Is an int mutable? Does the outer n change?",
+   "type": "mcq",
+   "options": [
+    "5 6",
+    "6 6",
+    "5 5",
+    "6 7"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-param-list",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "A list passed to a function is the same object, so append changes it. First len is 1, then 2: [1, 1, 2].",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def grow(L):\n    L.append(len(L))\nx = [1]\ngrow(x)\ngrow(x)\nprint(x)",
+   "hint": "The function receives the list itself, not a copy.",
+   "type": "mcq",
+   "options": [
+    "[1]",
+    "[1, 0, 1]",
+    "[1, 1, 2]",
+    "[1, 1, 1]"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-param-rebind",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "L = [] makes the local name L point at a new list. The append changes that new list only, so a is still [1].",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def reset(L):\n    L = []\n    L.append(9)\na = [1]\nreset(a)\nprint(a)",
+   "hint": "Assigning to the parameter name does not touch the caller's list.",
+   "type": "mcq",
+   "options": [
+    "[9]",
+    "[]",
+    "[1, 9]",
+    "[1]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-slice-assign",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "Assigning to a slice replaces those items with the new ones. Indexes 1 and 2 (2 and 3) become a single 9.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "L = [1, 2, 3, 4, 5]\nL[1:3] = [9]\nprint(L)",
+   "hint": "Two items go out, one comes in.",
+   "type": "mcq",
+   "options": [
+    "[1, 9, 3, 4, 5]",
+    "[1, 9, 4, 5]",
+    "[1, 9, 9, 4, 5]",
+    "[9, 4, 5]"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "h-slice-neg",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "L[-3:] is the last three. L[:-7] stops before the 7th from the end, giving 0, 1, 2. L[8:2:-3] goes 8, 5 and stops before 2.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "L = list(range(10))\nprint(L[-3:], L[:-7], L[8:2:-3])",
+   "hint": "A negative step walks backwards, and the stop index is still excluded.",
+   "type": "mcq",
+   "options": [
+    "[7, 8, 9] [0, 1, 2] [8, 5]",
+    "[7, 8, 9] [0, 1, 2] [8, 5, 2]",
+    "[7, 8] [0, 1, 2] [8, 5]",
+    "[7, 8, 9] [0, 1, 2, 3] [8, 5]"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-nested-copy",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "a[:] copies only the outer list, so the inner lists are shared. b[0].append(9) shows up in a[0], but b.append([4]) changes b alone.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "a = [[1, 2], [3]]\nb = a[:]\nb[0].append(9)\nb.append([4])\nprint(len(a), a[0])",
+   "hint": "Which parts of the list does a slice copy?",
+   "type": "mcq",
+   "options": [
+    "3 [1, 2]",
+    "2 [1, 2]",
+    "3 [1, 2, 9]",
+    "2 [1, 2, 9]"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-grid",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The outer * 2 repeats a reference to the same inner list, so both rows are one list. Changing it shows up in both.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "g = [[0] * 2] * 2\ng[0][0] = 1\nprint(g)",
+   "hint": "Are the two rows two lists, or one list shown twice?",
+   "type": "mcq",
+   "options": [
+    "[[1, 0], [0, 0]]",
+    "[[1, 1], [0, 0]]",
+    "[[1, 0], [1, 0]]",
+    "[[0, 0], [1, 0]]"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-sortkey",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The lambda gives each word's length as the sort key. fig (3) comes first, then pear and kiwi (4, in their original order, since sort is stable), then banana (6).",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "words = [\"pear\", \"fig\", \"banana\", \"kiwi\"]\nwords.sort(key=lambda w: len(w))\nprint(words)",
+   "hint": "Sort by length, and equal lengths keep their original order.",
+   "type": "mcq",
+   "options": [
+    "['fig', 'kiwi', 'pear', 'banana']",
+    "['fig', 'pear', 'kiwi', 'banana']",
+    "['banana', 'pear', 'kiwi', 'fig']",
+    "['pear', 'fig', 'banana', 'kiwi']"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "h-lambda-call",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The lambda returns the larger of its two arguments, and the brackets after it call it straight away: 9.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "print((lambda a, b: a if a > b else b)(4, 9))",
+   "hint": "Read it as a function that picks the bigger value.",
+   "type": "mcq",
+   "options": [
+    "9",
+    "4",
+    "13",
+    "(4, 9)"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-palin",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "It compares the first and last letters, then recurses on the middle. \"level\" matches all the way in. \"lever\" fails at l against r.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def pal(s):\n    if len(s) < 2:\n        return True\n    return s[0] == s[-1] and pal(s[1:-1])\nprint(pal(\"level\"), pal(\"lever\"))",
+   "hint": "Peel off the first and last characters each time.",
+   "type": "mcq",
+   "options": [
+    "True False",
+    "True True",
+    "False False",
+    "False True"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-gcd",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "g(48, 18) → g(18, 12) → g(12, 6) → g(6, 0) → 6. This is Euclid's algorithm for the greatest common divisor.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def g(a, b):\n    return a if b == 0 else g(b, a % b)\nprint(g(48, 18))",
+   "hint": "Each step swaps in the remainder.",
+   "type": "mcq",
+   "options": [
+    "6",
+    "12",
+    "3",
+    "18"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-first-even",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "return leaves the function at the first even number, 8. For [1, 3] the loop ends without a match and -1 is returned.",
+   "tags": [
+    "unit5",
+    "code"
+   ],
+   "showcase": "def first_even(L):\n    for x in L:\n        if x % 2 == 0:\n            return x\n    return -1\nprint(first_even([3, 5, 8, 10]), first_even([1, 3]))",
+   "hint": "return stops the function immediately.",
+   "type": "mcq",
+   "options": [
+    "10 -1",
+    "8 -1",
+    "8 None",
+    "3 -1"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "h-eval-rep",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "\"2+3\" * 2 is the string \"2+32+3\". eval works that out as 2 + 32 + 3 = 37.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "print(eval(\"2+3\" * 2))",
+   "hint": "Repeat the string first, then evaluate the longer text.",
+   "type": "mcq",
+   "options": [
+    "37",
+    "10",
+    "25",
+    "56"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-nested-sum",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "i = 1 adds 0. i = 2 adds 0 + 1. i = 3 adds 0 + 1 + 2. In all 0 + 1 + 3 = 4.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "total = 0\nfor i in range(1, 4):\n    for j in range(i):\n        total += j\nprint(total)",
+   "hint": "range(i) gives 0 up to i - 1.",
+   "type": "mcq",
+   "options": [
+    "6",
+    "3",
+    "5",
+    "4"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "h-assert",
+   "category": "py-control",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The assertion is false, so it raises AssertionError carrying the message \"math\". The except block prints both.",
+   "tags": [
+    "unit4",
+    "code"
+   ],
+   "showcase": "try:\n    assert 2 + 2 == 5, \"math\"\nexcept AssertionError as e:\n    print(\"caught\", e)",
+   "hint": "The text after the comma becomes the error message.",
+   "type": "mcq",
+   "options": [
+    "caught",
+    "math",
+    "caught math",
+    "Nothing is printed"
+   ],
+   "answerIndex": 2
+  },
+  {
+   "id": "h-prec-bool",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "not 3 > 2 is False. 4 < 1 is False, so (False and 5) is False. False or False gives False.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(not 3 > 2 or 4 < 1 and 5)",
+   "hint": "Comparisons first, then not, then and, then or.",
+   "type": "mcq",
+   "options": [
+    "False",
+    "True",
+    "5",
+    "0"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-bit-prec",
+   "category": "py-ops",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "The order is & then ^ then |. 6 & 3 = 2, 8 ^ 2 = 10, and 2 | 10 = 10.",
+   "tags": [
+    "unit3",
+    "code"
+   ],
+   "showcase": "print(6 & 3 | 8 ^ 2)",
+   "hint": "Bitwise AND binds tightest, then XOR, then OR.",
+   "type": "mcq",
+   "options": [
+    "10",
+    "11",
+    "2",
+    "14"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "h-strops",
+   "category": "py-data",
+   "difficulty": "hard",
+   "prompt": "What does this print?",
+   "explanation": "s *= 2 gives \"abab\". s += \"c\" gives \"ababc\", which has five characters.",
+   "tags": [
+    "unit2",
+    "code"
+   ],
+   "showcase": "s = \"ab\"\ns *= 2\ns += \"c\"\nprint(s, len(s))",
+   "hint": "*= on a string repeats it.",
+   "type": "mcq",
+   "options": [
+    "ababc 5",
+    "abc 3",
+    "ababc 4",
+    "ab2c 4"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "b-len-nested",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "The list has three items: 1, a list of two numbers, and an empty list. len counts the items, not what is inside them.",
+   "tags": [
+    "unit5",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(len([1, [2, 3], []]))",
+   "hint": "Count the top-level items only.",
+   "type": "mcq",
+   "options": [
+    "4",
+    "6",
+    "2",
+    "3"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "b-slice-out",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "A slice never raises an IndexError. Starting past the end simply gives an empty list.",
+   "tags": [
+    "unit5",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print([1, 2, 3][5:])",
+   "hint": "Slices are forgiving about their limits.",
+   "type": "mcq",
+   "options": [
+    "[]",
+    "IndexError",
+    "[3]",
+    "None"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "b-lambda-twice",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "f(3) = 6, then f(6) = 12.",
+   "tags": [
+    "unit5",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "f = lambda n: n * 2\nprint(f(f(3)))",
+   "hint": "Work from the inside out.",
+   "type": "mcq",
+   "options": [
+    "6",
+    "9",
+    "36",
+    "12"
+   ],
+   "answerIndex": 3
+  },
+  {
+   "id": "b-pass-none",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "f does nothing and has no return, so the call gives None.",
+   "tags": [
+    "unit5",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "def f():\n    pass\nprint(f())",
+   "hint": "What does a function return when it has no return?",
+   "type": "mcq",
+   "options": [
+    "None",
+    "pass",
+    "0",
+    "Error"
+   ],
+   "answerIndex": 0
+  },
+  {
+   "id": "b-builtins-mix",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "sum is 6, max is 5, and min is 3. So 6 × 5 − 3 = 27.",
+   "tags": [
+    "unit5",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "print(sum([1, 2, 3]) * max([4, 5]) - min(7, 3))",
+   "hint": "Work out each built-in first.",
+   "type": "mcq",
+   "options": [
+    "25",
+    "27",
+    "30",
+    "57"
+   ],
+   "answerIndex": 1
+  },
+  {
+   "id": "b-pow2",
+   "category": "py-func",
+   "difficulty": "hard",
+   "prompt": "Tie-breaker: what does this print?",
+   "explanation": "This computes 2 to the power n: f(6) = 2 ** 6 = 64.",
+   "tags": [
+    "unit5",
+    "tiebreak",
+    "code"
+   ],
+   "showcase": "def f(n):\n    return 1 if n == 0 else 2 * f(n - 1)\nprint(f(6))",
+   "hint": "Each step doubles the result of the step below.",
+   "type": "mcq",
+   "options": [
+    "12",
+    "32",
+    "64",
+    "128"
+   ],
+   "answerIndex": 2
+  }
+ ]
+}
